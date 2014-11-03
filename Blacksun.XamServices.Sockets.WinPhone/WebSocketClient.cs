@@ -17,8 +17,6 @@ namespace Blacksun.XamServices.Sockets.WinPhone
 
             var tcs = new TaskCompletionSource<string>();
 
-            
-
             _webSocket = new WebSocket("ws://" + hostName + ":" + portNumber + "/");
 
             _webSocket.Opened += (o, t) =>

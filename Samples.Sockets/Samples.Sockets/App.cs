@@ -13,7 +13,7 @@ namespace Samples.Sockets
         public static Page GetMainPage()
         {
             AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
-            AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            AppColors.AndroidTheme = AndroidTheme.HoloDarkTheme;
             return new MainView();
         }
     }

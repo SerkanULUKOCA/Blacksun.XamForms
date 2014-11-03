@@ -94,7 +94,7 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
                 return result;
                  */
 
-                return ImageSource.FromResource("Blacksun.XamForms.Images.bioshock.jpg");
+                return ImageSource.FromResource("Blacksun.XamForms.Sample.Core.Images.bioshock.jpg");
 
             }
         }
