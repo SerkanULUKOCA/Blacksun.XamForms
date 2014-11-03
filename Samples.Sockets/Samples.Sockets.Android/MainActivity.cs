@@ -1,12 +1,8 @@
-﻿using System;
-
+﻿using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-
+using Blacksun.XamServices.Sockets.Android;
 using Xamarin.Forms.Platform.Android;
 
 namespace Samples.Sockets.Droid
@@ -19,7 +15,8 @@ namespace Samples.Sockets.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
-
+            new AndroidSocketManager();
+            new UserDialogService();
             SetPage(App.GetMainPage());
         }
     }
