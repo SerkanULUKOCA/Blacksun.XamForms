@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Samples.Sockets.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Blacksun.XamServices.Sockets.Android.Resource", IsApplication=false)]
 
-namespace Samples.Sockets.Droid
+namespace Blacksun.XamServices.Sockets.Android
 {
 	
 	
@@ -22,10 +22,6 @@ namespace Samples.Sockets.Droid
 		static Resource()
 		{
 			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-		}
-		
-		public static void UpdateIdValues()
-		{
 		}
 		
 		public partial class Attribute
@@ -41,18 +37,21 @@ namespace Samples.Sockets.Droid
 			}
 		}
 		
-		public partial class Drawable
+		public partial class String
 		{
 			
-			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			// aapt resource value: 0x7f020001
+			public static int ApplicationName = 2130837505;
 			
-			static Drawable()
+			// aapt resource value: 0x7f020000
+			public static int Hello = 2130837504;
+			
+			static String()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			private Drawable()
+			private String()
 			{
 			}
 		}

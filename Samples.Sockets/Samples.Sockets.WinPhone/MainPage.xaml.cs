@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using Acr.XamForms.UserDialogs.WindowsPhone;
+using Blacksun.XamServices.Sockets.WinPhone;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
 using Xamarin.Forms;
 
 
@@ -20,6 +13,8 @@ namespace Samples.Sockets.WinPhone
             InitializeComponent();
 
             Forms.Init();
+            new WindowsPhone8SocketManager();
+            new UserDialogService();
             Content = Samples.Sockets.App.GetMainPage().ConvertPageToUIElement(this);
         }
     }

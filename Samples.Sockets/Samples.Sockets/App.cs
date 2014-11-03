@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using BlacksunForms.Resources;
+using Samples.Sockets.Views;
 using Xamarin.Forms;
 
 namespace Samples.Sockets
@@ -11,15 +12,9 @@ namespace Samples.Sockets
     {
         public static Page GetMainPage()
         {
-            return new ContentPage
-            {
-                Content = new Label
-                {
-                    Text = "Hello, Forms !",
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                },
-            };
+            AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+            AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            return new MainView();
         }
     }
 }

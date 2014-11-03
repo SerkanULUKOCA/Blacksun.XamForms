@@ -166,6 +166,14 @@
       <Project>{d25e4c43-1bb4-4b15-9997-e7f29e59bd41}</Project>
       <Name>Blacksun.XamServices.Bluetooth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Blacksun.XamServices.Sockets.WinPhone\Blacksun.XamServices.Sockets.WinPhone.csproj">
+      <Project>{82d76deb-310f-4bfd-8d1c-d4962bcf1eeb}</Project>
+      <Name>Blacksun.XamServices.Sockets.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Blacksun.XamServices.Sockets\Blacksun.XamServices.Sockets.csproj">
+      <Project>{1d912a2e-9f16-415f-a2b4-8e84204a5fa7}</Project>
+      <Name>Blacksun.XamServices.Sockets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Bluetooth\Sample.Bluetooth.csproj">
       <Name>Sample.Bluetooth</Name>
     </ProjectReference>
