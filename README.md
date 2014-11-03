@@ -1,5 +1,8 @@
 Blacksun.XamForms
 =================
+
+I have no idea of what Im doing so bare with me
+
 ##View Helpers
 
 Xamforms is just a view helper that cuts down the time you make views, when doing them in code behind c# what it does is have a standard padding margins and spacings already done so you only have to write down the properties and their bindings, this is a small library which I did to make my job a little easier. I have made it public so that anyone who wishes to help me make this better ill have the chance to do so
@@ -48,3 +51,13 @@ public MainView()
         }
 
 ```
+
+##Bindable Picker
+
+Theres even a bindable picker which can be used like so
+
+```c#
+ViewHelper.GetPickerProperty("LABEL VALUE","VIEWMODELPROPERTY","DISPLAYPATH","VALUEMEMBERPATH",ITEMSSOURCE)
+
+```
+
