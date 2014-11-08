@@ -15,7 +15,7 @@ namespace Samples.Sockets.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
-            new AndroidSocketManager();
+            new AndroidWebSocketManager();
             new UserDialogService();
             SetPage(App.GetMainPage());
         }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Blacksun.XamServices.Sockets
 {
-    public interface ISocketManager
+    public class DataReceivedEventArgs
     {
-        Task<string> SendTCPMessage(string host, int port, string message);
+        public Byte[] Data { get; set; }
     }
 }

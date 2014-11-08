@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using Blacksun.XamServices.Sockets;
 using Newtonsoft.Json;
-using Samples.Sockets.Models;
 using Xamarin.Forms;
 
 namespace Samples.Sockets.ViewModels
@@ -16,12 +12,12 @@ namespace Samples.Sockets.ViewModels
     public class MainViewModel : ViewModel
     {
         private readonly IUserDialogService _dialogService;
-        private readonly ISocketManager _socketManager;
+        private readonly IWebSocketManager _webSocketManager;
         public MainViewModel()
         {
             try
             {
-                _socketManager = DependencyService.Get<ISocketManager>();
+                _webSocketManager = DependencyService.Get<IWebSocketManager>();
                 _dialogService = DependencyService.Get<IUserDialogService>();
                 
             }
@@ -33,35 +29,36 @@ namespace Samples.Sockets.ViewModels
         }
 
 
-        private string _host = "dma-source.com";
+        private string _host = "localhost";
         public string Host
         {
             get { return _host; }
             set { _host = value; OnPropertyChanged(); }
         }
 
-        private int _port = 8124;
+        private int _port = 80;
         public int Port
         {
             get { return _port; }
             set { _port = value; OnPropertyChanged(); }
         }
 
-        public ICommand TurnOnCommand
+        private string _message = "";
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; OnPropertyChanged(); }
+        }
+
+        public ICommand OpenCommand
         {
             get
             {
                 return new Command(async () =>
                 {
-
-                    var message = JsonConvert.SerializeObject(new CustomMessage());
-                    try
+                    using (_dialogService.Loading("Opening..."))
                     {
-                        var result = await _socketManager.SendTCPMessage(Host, Port, message);
-                    }
-                    catch (Exception ex)
-                    {
-                        
+                        await _webSocketManager.Open(Host, Port);
                     }
 
                 });
@@ -74,15 +71,10 @@ namespace Samples.Sockets.ViewModels
             {
                 return new Command(async () =>
                 {
-
-                    var message = JsonConvert.SerializeObject(new CustomMessage(){R= "0"});
-                    try
+                    using (_dialogService.Loading("Sending..."))
                     {
-                        var result = await _socketManager.SendTCPMessage(Host, Port, message);
-                    }
-                    catch (Exception ex)
-                    {
-
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        _webSocketManager.Send(Message);
                     }
 
                 });

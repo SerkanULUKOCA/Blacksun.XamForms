@@ -13,7 +13,7 @@ namespace Samples.Sockets.WinPhone
             InitializeComponent();
 
             Forms.Init();
-            new WindowsPhone8SocketManager();
+            new WindowsPhone8WebSocketManager();
             new UserDialogService();
             Content = Samples.Sockets.App.GetMainPage().ConvertPageToUIElement(this);
         }

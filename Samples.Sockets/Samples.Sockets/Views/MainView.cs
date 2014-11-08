@@ -29,8 +29,9 @@ namespace Samples.Sockets.Views
                 {
                     ViewHelper.GetTextProperty("Host", "Host"),
                     ViewHelper.GetTextProperty("Port", "Port"),
-                    ViewHelper.GetButton("On",Color.White,AppColors.Accent,ViewModel.TurnOnCommand),
-                    ViewHelper.GetButton("Off",Color.White,AppColors.Accent,ViewModel.TurnOffCommand)
+                    ViewHelper.GetTextProperty("Message", "Message"),
+                    ViewHelper.GetButton("Open",Color.White,AppColors.Accent,ViewModel.OpenCommand),
+                    //ViewHelper.GetButton("Off",Color.White,AppColors.Accent,ViewModel.TurnOffCommand)
                 })
             });
         }
