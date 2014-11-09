@@ -15,21 +15,21 @@ namespace BlacksunForms.Resources
         public static Font FormGroupFont
         {
 
-            get { return Device.OnPlatform(Font.SystemFontOfSize(35), Font.SystemFontOfSize(30), Font.SystemFontOfSize(50)); }
+            get { return Device.OnPlatform(Font.SystemFontOfSize(25), Font.SystemFontOfSize(30), Font.SystemFontOfSize(50)); }
             
         }
 
         public static Font FormLabelFont
         {
 
-            get { return Device.OnPlatform(Font.SystemFontOfSize(35), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
+            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
 
         }
 
         public static Font FormReadOnlyFont
         {
 
-            get { return Device.OnPlatform(Font.SystemFontOfSize(35), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
+            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
 
         }
 

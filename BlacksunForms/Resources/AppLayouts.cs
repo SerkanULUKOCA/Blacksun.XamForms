@@ -17,7 +17,7 @@ namespace BlacksunForms.Resources
 
         public static int FormGroupLabelSpacing
         {
-            get { return Device.OnPlatform(20, 20, 20); }
+            get { return Device.OnPlatform(10, 20, 20); }
         }
 
         public static int FormPropertiesSpacing

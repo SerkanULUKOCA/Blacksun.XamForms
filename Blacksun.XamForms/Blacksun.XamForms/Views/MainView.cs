@@ -18,7 +18,7 @@ namespace Blacksun.XamForms.Sample.Core.Views
         {
 
             BindingContext = new MainViewModel();
-
+            
             Content = ViewHelper.GetForm(new List<View>
             {
                 ViewHelper.GetFormGroup("Group", new List<View>
