@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Blacksun.XamServices.Sockets.Android;
 using WebSocket4Net;
@@ -18,22 +19,34 @@ namespace Blacksun.XamServices.Sockets.Android
         public Task Open(string host, int port)
         {
             var tcs = new TaskCompletionSource<string>();
+            Timer timer = new Timer((e) =>
+            {
+                tcs.TrySetException(new TimeoutException());
+            }, null, 3000, Timeout.Infinite);
+
 
             _webSocket = new WebSocket("ws://" + host + ":" + port + "/");
 
-            _webSocket.Opened += (o, t) => OnOpened(t);
-            _webSocket.Closed += (o, t) =>
+            _webSocket.Opened += (o, t) =>
             {
-                OnClosed(t);
-                tcs.TrySetResult(null);
+                OnOpened(t);
+                tcs.TrySetResult("success");
             };
-            _webSocket.Open();
+            _webSocket.Closed += (o, t) => OnClosed(t);
             _webSocket.DataReceived += (o, t) =>
             {
                 var args = new DataReceivedEventArgs();
                 args.Data = t.Data;
                 OnDataReceived(args);
             };
+            _webSocket.Error += (o, t) =>
+            {
+                tcs.TrySetException(t.Exception);
+            };
+
+
+            _webSocket.Open();
+
             return tcs.Task;
         }
 

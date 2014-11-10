@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Blacksun.XamServices.Sockets.iOS;
 using WebSocket4Net;
@@ -20,26 +21,34 @@ namespace Blacksun.XamServices.Sockets.iOS
         public Task Open(string host, int port)
         {
             var tcs = new TaskCompletionSource<string>();
+            Timer timer = new Timer((e) =>
+            {
+                tcs.TrySetException(new TimeoutException());
+            }, null, 3000, Timeout.Infinite);
+
 
             _webSocket = new WebSocket("ws://" + host + ":" + port + "/");
 
             _webSocket.Opened += (o, t) =>
-                                 {
-                                     OnOpened(t);
-                                     tcs.TrySetResult(null);
-                                 };
-            _webSocket.Error += (o, t) =>
-                                {
-                                    tcs.TrySetException(t.Exception);
-                                };
+            {
+                OnOpened(t);
+                tcs.TrySetResult("success");
+            };
             _webSocket.Closed += (o, t) => OnClosed(t);
-            _webSocket.Open();
             _webSocket.DataReceived += (o, t) =>
             {
                 var args = new DataReceivedEventArgs();
                 args.Data = t.Data;
                 OnDataReceived(args);
             };
+            _webSocket.Error += (o, t) =>
+            {
+                tcs.TrySetException(t.Exception);
+            };
+
+
+            _webSocket.Open();
+
             return tcs.Task;
         }
 
