@@ -29,14 +29,14 @@ namespace Samples.Sockets.ViewModels
         }
 
 
-        private string _host = "localhost";
+        private string _host = "localhost.com";
         public string Host
         {
             get { return _host; }
             set { _host = value; OnPropertyChanged(); }
         }
 
-        private int _port = 80;
+        private int _port = 8124;
         public int Port
         {
             get { return _port; }
@@ -50,6 +50,20 @@ namespace Samples.Sockets.ViewModels
             set { _message = value; OnPropertyChanged(); }
         }
 
+        private bool _showOpen = true;
+        public bool ShowOpen
+        {
+            get { return _showOpen; }
+            set { _showOpen = value; OnPropertyChanged(); }
+        }
+
+        private bool _showMessage = false;
+        public bool ShowMessage
+        {
+            get { return _showMessage; }
+            set { _showMessage = value; OnPropertyChanged(); }
+        }
+
         public ICommand OpenCommand
         {
             get
@@ -58,14 +72,24 @@ namespace Samples.Sockets.ViewModels
                 {
                     using (_dialogService.Loading("Opening..."))
                     {
-                        await _webSocketManager.Open(Host, Port);
+                        try
+                        {
+                            await _webSocketManager.Open(Host, Port);
+                            ShowOpen = false;
+                            ShowMessage = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            _dialogService.Alert("Couldt connect...");
+                        }
+                        
                     }
 
                 });
             }
         }
 
-        public ICommand TurnOffCommand
+        public ICommand SendMessageCommand
         {
             get
             {

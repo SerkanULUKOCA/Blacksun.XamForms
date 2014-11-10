@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
-using Blacksun.XamServices.Sockets.WinPhone;
+using Blacksun.XamServices.Sockets.iOS;
 using WebSocket4Net;
 
-[assembly: Xamarin.Forms.Dependency(typeof(WindowsPhone8WebSocketManager))]
-namespace Blacksun.XamServices.Sockets.WinPhone
+[assembly: Xamarin.Forms.Dependency(typeof(iOSWebSocketManager))]
+namespace Blacksun.XamServices.Sockets.iOS
 {
-    public class WindowsPhone8WebSocketManager : IWebSocketManager
+    public class iOSWebSocketManager : IWebSocketManager
     {
 
         private WebSocket _webSocket = null;
@@ -19,34 +20,26 @@ namespace Blacksun.XamServices.Sockets.WinPhone
         public Task Open(string host, int port)
         {
             var tcs = new TaskCompletionSource<string>();
-            Timer timer = new Timer((e) =>
-                                    {
-                                        tcs.TrySetException(new TimeoutException()); 
-                                    }, null, 3000, Timeout.Infinite);
-
 
             _webSocket = new WebSocket("ws://" + host + ":" + port + "/");
 
             _webSocket.Opened += (o, t) =>
                                  {
                                      OnOpened(t);
-                                     tcs.TrySetResult("success");
+                                     tcs.TrySetResult(null);
                                  };
+            _webSocket.Error += (o, t) =>
+                                {
+                                    tcs.TrySetException(t.Exception);
+                                };
             _webSocket.Closed += (o, t) => OnClosed(t);
+            _webSocket.Open();
             _webSocket.DataReceived += (o, t) =>
             {
                 var args = new DataReceivedEventArgs();
                 args.Data = t.Data;
                 OnDataReceived(args);
             };
-            _webSocket.Error += (o, t) =>
-                                {
-                                    tcs.TrySetException(t.Exception);
-                                };
-
-
-            _webSocket.Open();
-            
             return tcs.Task;
         }
 
@@ -78,7 +71,7 @@ namespace Blacksun.XamServices.Sockets.WinPhone
         {
             if (Closed != null)
             {
-                Closed(this,e);
+                Closed(this, e);
             }
         }
 

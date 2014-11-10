@@ -33,6 +33,12 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
             set { _property = value; OnPropertyChanged();}
         }
 
+        private string _watermarkProperty = "";
+        public string WatermarkProperty
+        {
+            get { return _watermarkProperty; }
+            set { _watermarkProperty = value; OnPropertyChanged(); }
+        }
 
         public ICommand LoadingCommand { 
              get { 

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Windows.Input;
 using BlacksunForms.CustomControls;
+using BlacksunForms.Helpers;
+using BlacksunForms.Layouts;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
@@ -12,8 +15,7 @@ namespace BlacksunForms
     {
         None,
         Label,
-        Watermark,
-        WatermarkLabel
+        Watermark
     }
 
     public static class ViewHelper
@@ -38,9 +40,12 @@ namespace BlacksunForms
             return result;
         }
 
-        public static StackLayout GetFormGroup(string groupLabel,IList<View> fields)
+        public static GroupLayout GetFormGroup(string groupLabel,IList<View> fields)
         {
 
+            var content = new GroupLayout(groupLabel, fields);
+
+            /*
             var groupContent = new StackLayout();
             groupContent.Spacing = AppLayouts.FormPropertiesSpacing;
 
@@ -67,123 +72,29 @@ namespace BlacksunForms
             {
                 groupContent.Children.Add(field);
             }
-
-            return result;
+            */
+            return content;
         }
 
-        public static View GetForm(IList<View> fields, StackLayout layoutParameters = null)
+        public static FormLayout GetForm(IList<GroupLayout> groups, FormConfig layoutParameters = null)
         {
-
-            
-
-            if (layoutParameters == null)
-            {
-                layoutParameters = new StackLayout();
-                layoutParameters.Padding = 30;
-            }
-
-            var result = new StackLayout
-            {
-                Spacing = AppLayouts.FormGroupsSpacing,
-                VerticalOptions = layoutParameters.VerticalOptions,
-                HorizontalOptions = layoutParameters.HorizontalOptions,
-                Padding = layoutParameters.Padding
-            };
-
-            foreach (var field in fields)
-            {
-                result.Children.Add(field);
-            }
-
-            var scrollview = new ScrollView
-            {
-                Content = result
-            };
-
-
-            return scrollview;
-        }
-
-        public static StackLayout GetTextProperty(string labelName, string propertyBind, BindingMode bindingMode = BindingMode.TwoWay, Keyboard keyboard = null, LabelType labelType = LabelType.Label)
-        {
-            var binding = new Binding(propertyBind, bindingMode);
-
-            var txtEntry = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
-            txtEntry.SetBinding(Entry.TextProperty, binding);
-            txtEntry.HorizontalOptions = LayoutOptions.FillAndExpand;
-
-            var content = new StackLayout
-            {
-                Spacing = AppLayouts.LabelPropertySpacing,
-                Padding = 0
-            };
-
-            if (labelName != null)
-            {
-                var label = GetLabel(labelName);
-
-                switch (labelType)
-                {
-                    case LabelType.None:
-
-                        break;
-                    case LabelType.Label:
-
-                        content.Children.Add(label);
-                        break;
-                    case LabelType.Watermark:
-                        txtEntry.Placeholder = labelName;
-                        break;
-                    case LabelType.WatermarkLabel:
-                        content.Children.Add(label);
-                        txtEntry.Placeholder = labelName;
-                        break;
-                }
-            }
-
-            
-
-            content.Children.Add(txtEntry);
+            var content = new FormLayout(groups, layoutParameters);
 
             return content;
         }
 
-        public static StackLayout GetReadOnlyTextProperty(string labelName, string propertyBind, LabelType labelType = LabelType.Label)
+        public static PropertyLayout GetTextProperty(string labelName, string propertyBind,PropertyConfig config = null)
         {
-            var binding = new Binding(propertyBind, BindingMode.OneWay);
+            var content = new PropertyLayout();
+            content.InitiateAsEntry(labelName, propertyBind, config);
+            return content;
+        }
 
-            var txtEntry = new Label();
-            txtEntry.TextColor = AppColors.FormReadOnlyColor;
-            txtEntry.Font = AppFonts.FormReadOnlyFont;
-            txtEntry.SetBinding(Label.TextProperty, binding);
-            txtEntry.HorizontalOptions = LayoutOptions.FillAndExpand;
-
-            var content = new StackLayout
-            {
-                Spacing = AppLayouts.LabelPropertySpacing,
-
-            };
-
-            var label = GetLabel(labelName);
-
-            switch (labelType)
-            {
-                case LabelType.None:
-
-                    break;
-                case LabelType.Label:
-
-                    content.Children.Add(label);
-                    break;
-                case LabelType.Watermark:
-                    break;
-                case LabelType.WatermarkLabel:
-                    content.Children.Add(label);
-                    break;
-            }
-
-            content.Children.Add(txtEntry);
-
+        public static PropertyLayout GetReadOnlyTextProperty(string labelName, string propertyBind, PropertyConfig config = null)
+        {
+            
+            var content = new PropertyLayout();
+            content.InitiateAsReadOnlyEntry(labelName, propertyBind, config);
             return content;
         }
 
@@ -201,44 +112,34 @@ namespace BlacksunForms
 
         public static StackLayout GetLabelForContent(string labelName,View view)
         {
-
-            var content = new StackLayout
-            {
-                Spacing = AppLayouts.LabelPropertySpacing,
-
-            };
-
-            var label = GetLabel(labelName);
-
-            content.Children.Add(label);
-
-            content.Children.Add(view);
+            
+            var content = new PropertyLayout();
+            content.InitiateWithContent(labelName, view);
+            return content;
 
             return content;
         }
 
-        public static StackLayout GetPasswordProperty(string labelName, string propertyBind, BindingMode bindingMode = BindingMode.Default, Keyboard keyboard = null, LabelType labelType = LabelType.Label)
+        public static StackLayout GetPasswordProperty(string labelName, string propertyBind, PropertyConfig config = null)
+        {
+            var content = new PropertyLayout();
+            content.InitiateAsPasswordEntry(labelName, propertyBind, config);
+
+            return content;
+        }
+
+        public static Button GetButton(string content,ICommand command,ButtonConfig config = null)
         {
 
-            var content = GetTextProperty(labelName, propertyBind, bindingMode, keyboard, labelType);
-
-            var query = content.Children.FirstOrDefault(x => x is Entry);
-
-            if (query != null)
+            if (config == null)
             {
-                var entry = query as Entry;
-                entry.IsPassword = true;
+                config = new ButtonConfig();
             }
 
-            return content;
-        }
-
-        public static Button GetButton(string content,Color textColor,Color backgroundColor,ICommand command = null)
-        {
             var button = new Button();
             button.Text = content;
-            button.TextColor = textColor;
-            button.BackgroundColor = backgroundColor;
+            button.TextColor = config.TextColor;
+            button.BackgroundColor = config.BackgroundColor;
             if (command != null)
             {
                 button.Command = command;
@@ -295,20 +196,7 @@ namespace BlacksunForms
 
             var mainControl = new Image();
             mainControl.SetBinding(Image.SourceProperty, binding);
-            /*
-            mainControl.HorizontalOptions = horizontalOptions;
-            mainControl.VerticalOptions = verticalOptions;
-
-            if (width>= 0)
-            {
-                mainControl.WidthRequest = width;
-            }
-
-            if (height >= 0)
-            {
-                mainControl.HeightRequest = height;
-            }
-            */
+            
             
 
             content.Children.Add(mainControl);

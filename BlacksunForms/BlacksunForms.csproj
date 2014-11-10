@@ -37,6 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomControls\BlacksunFormsPicker.cs" />
+    <Compile Include="CustomControls\ButtonConfig.cs" />
+    <Compile Include="Layouts\FormLayout.cs" />
+    <Compile Include="Layouts\GroupLayout.cs" />
+    <Compile Include="Layouts\PropertyLayout.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppColors.cs" />

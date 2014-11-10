@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Acr.XamForms.UserDialogs.iOS;
+using Blacksun.XamServices.Sockets.iOS;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
@@ -28,7 +29,8 @@ namespace Samples.Sockets.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
-
+            new iOSWebSocketManager();
+            new UserDialogService(); 
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             window.RootViewController = App.GetMainPage().CreateViewController();
