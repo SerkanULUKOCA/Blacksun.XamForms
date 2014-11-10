@@ -12,9 +12,12 @@ namespace BlacksunForms.Layouts
             LabelType = LabelType.Label;
             BindingMode = BindingMode.TwoWay;
             Keyboard = Keyboard.Default;
+            LabelHorizontalPosition = LayoutOptions.FillAndExpand;
         }
 
         public LabelType LabelType { get; set; }
+
+        public LayoutOptions LabelHorizontalPosition { get; set; }
 
         public BindingMode BindingMode { get; set; }
 
@@ -30,7 +33,7 @@ namespace BlacksunForms.Layouts
             
         }
 
-        public PropertyLayout InitiateAsEntry(string labelName, string propertyBind, PropertyConfig properties = null)
+        public PropertyLayout InitiateAsEntry(string labelText, string propertyBind, PropertyConfig properties = null)
         {
 
             if (properties == null)
@@ -47,9 +50,9 @@ namespace BlacksunForms.Layouts
             Padding = 0;
 
 
-            if (labelName != null)
+            if (labelText != null)
             {
-                var label = GetLabel(labelName);
+                var label = GetLabel(labelText);
 
                 switch (properties.LabelType)
                 {
@@ -62,7 +65,7 @@ namespace BlacksunForms.Layouts
                         Label = label;
                         break;
                     case LabelType.Watermark:
-                        txtEntry.Placeholder = labelName;
+                        txtEntry.Placeholder = labelText;
                         break;
                 }
             }
@@ -77,7 +80,7 @@ namespace BlacksunForms.Layouts
             return this;
         }
 
-        public PropertyLayout InitiateAsReadOnlyEntry(string labelName, string propertyBind, PropertyConfig properties = null)
+        public PropertyLayout InitiateAsReadOnlyEntry(string labelText, string propertyBind, PropertyConfig properties = null)
         {
 
             if (properties == null)
@@ -93,9 +96,9 @@ namespace BlacksunForms.Layouts
             Padding = 0;
 
 
-            if (labelName != null)
+            if (labelText != null)
             {
-                var label = GetLabel(labelName);
+                var label = GetLabel(labelText);
 
                 switch (properties.LabelType)
                 {
@@ -120,10 +123,10 @@ namespace BlacksunForms.Layouts
             return this;
         }
 
-        public PropertyLayout InitiateAsPasswordEntry(string labelName, string propertyBind, PropertyConfig properties = null)
+        public PropertyLayout InitiateAsPasswordEntry(string labelText, string propertyBind, PropertyConfig properties = null)
         {
 
-            InitiateAsEntry(labelName, propertyBind, properties);
+            InitiateAsEntry(labelText, propertyBind, properties);
 
             var query = Content as Entry; 
 
@@ -136,16 +139,16 @@ namespace BlacksunForms.Layouts
             return this;
         }
 
-        public PropertyLayout InitiateWithContent(string labelName, View view,PropertyConfig properties = null)
+        public PropertyLayout InitiateWithContent(string labelText, View view,PropertyConfig properties = null)
         {
             if (properties == null)
             {
                 properties = new PropertyConfig();
             }
 
-            if (labelName != null)
+            if (labelText != null)
             {
-                var label = GetLabel(labelName);
+                var label = GetLabel(labelText);
 
                 switch (properties.LabelType)
                 {
@@ -165,16 +168,58 @@ namespace BlacksunForms.Layouts
             return this;
         }
 
+        public PropertyLayout InitiateAsSlider(string labelText, string propertyBind, PropertyConfig properties = null)
+        {
+            if (properties == null)
+            {
+                properties = new PropertyConfig();
+            }
+
+            var binding = new Binding(propertyBind, properties.BindingMode);
+            var content = new Slider() { HorizontalOptions = LayoutOptions.FillAndExpand };
+            content.SetBinding(Slider.ValueProperty, binding);
+            content.HorizontalOptions = LayoutOptions.FillAndExpand;
+            Spacing = AppLayouts.LabelPropertySpacing;
+            Padding = 0;
+
+
+            if (labelText != null)
+            {
+                var label = GetLabel(labelText);
+
+                switch (properties.LabelType)
+                {
+                    case LabelType.None:
+
+                        break;
+                    case LabelType.Label:
+
+                        this.Children.Add(label);
+                        Label = label;
+                        break;
+                }
+            }
+
+
+
+            this.Children.Add(content);
+
+
+            Content = content;
+
+            return this;
+        }
+
         public Label Label { get; set; }
 
         public View Content { get; set; }
 
 
-        public static Label GetLabel(string labelName)
+        public static Label GetLabel(string labelText)
         {
             var label = new Label
             {
-                Text = labelName,
+                Text = labelText,
                 Font = AppFonts.FormLabelFont,
                 TextColor = AppColors.FormLabelColor,
                 HorizontalOptions = LayoutOptions.FillAndExpand

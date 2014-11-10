@@ -105,23 +105,16 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
             }
         }
 
-        /*
-        private string _base64Image;
-        public string Base64Image
+        private int _sliderValue;
+        public int SliderValue
         {
-            get { return _base64Image; }
+            get { return _sliderValue; }
             set
             {
-                _base64Image = value;
+                _sliderValue = value;
                 OnPropertyChanged();
-                OnPropertyChanged("ImageSource");
-
             }
         }
-
-        */
-
-        
 
 
     }

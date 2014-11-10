@@ -33,6 +33,7 @@ namespace Blacksun.XamForms.Sample.Core.Views
                     ViewHelper.GetLabelForContent("Progress bar",ViewHelper.GetButton("Show progress bar",ViewModel.ProgressCommand)),
                     ViewHelper.GetPickerProperty("Picker","CustomerID","Name","ID",ViewModel.Customers),
                     ViewHelper.GetReadOnlyTextProperty("Picker Selected Value", "CustomerID"),
+                    ViewHelper.GetSliderProperty("Slider", "SliderValue",0,255),
                     ViewHelper.GetImageProperty("Image", "ImageSource"),
                 })
             });

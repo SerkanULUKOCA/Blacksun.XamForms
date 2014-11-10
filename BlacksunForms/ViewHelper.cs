@@ -44,35 +44,6 @@ namespace BlacksunForms
         {
 
             var content = new GroupLayout(groupLabel, fields);
-
-            /*
-            var groupContent = new StackLayout();
-            groupContent.Spacing = AppLayouts.FormPropertiesSpacing;
-
-            var result = new StackLayout
-            {
-                Spacing = AppLayouts.FormGroupLabelSpacing,
-                Children =
-                {
-
-                    new Label
-                            {
-                                Text = groupLabel,
-                                Font = AppFonts.FormGroupFont,
-                                TextColor = AppColors.FormGroupColor,
-                                HorizontalOptions = LayoutOptions.StartAndExpand,
-                            },
-                    groupContent
-                    
-                }
-
-            };
-
-            foreach (var field in fields)
-            {
-                groupContent.Children.Add(field);
-            }
-            */
             return content;
         }
 
@@ -83,26 +54,26 @@ namespace BlacksunForms
             return content;
         }
 
-        public static PropertyLayout GetTextProperty(string labelName, string propertyBind,PropertyConfig config = null)
+        public static PropertyLayout GetTextProperty(string labelText, string propertyBind,PropertyConfig config = null)
         {
             var content = new PropertyLayout();
-            content.InitiateAsEntry(labelName, propertyBind, config);
+            content.InitiateAsEntry(labelText, propertyBind, config);
             return content;
         }
 
-        public static PropertyLayout GetReadOnlyTextProperty(string labelName, string propertyBind, PropertyConfig config = null)
+        public static PropertyLayout GetReadOnlyTextProperty(string labelText, string propertyBind, PropertyConfig config = null)
         {
             
             var content = new PropertyLayout();
-            content.InitiateAsReadOnlyEntry(labelName, propertyBind, config);
+            content.InitiateAsReadOnlyEntry(labelText, propertyBind, config);
             return content;
         }
 
-        public static Label GetLabel(string labelName)
+        public static Label GetLabel(string labelText)
         {
             var label = new Label
             {
-                Text = labelName,
+                Text = labelText,
                 Font = AppFonts.FormLabelFont,
                 TextColor = AppColors.FormLabelColor,
                 HorizontalOptions = LayoutOptions.FillAndExpand
@@ -110,20 +81,20 @@ namespace BlacksunForms
             return label;
         }
 
-        public static StackLayout GetLabelForContent(string labelName,View view)
+        public static StackLayout GetLabelForContent(string labelText,View view)
         {
             
             var content = new PropertyLayout();
-            content.InitiateWithContent(labelName, view);
+            content.InitiateWithContent(labelText, view);
             return content;
 
             return content;
         }
 
-        public static StackLayout GetPasswordProperty(string labelName, string propertyBind, PropertyConfig config = null)
+        public static StackLayout GetPasswordProperty(string labelText, string propertyBind, PropertyConfig config = null)
         {
             var content = new PropertyLayout();
-            content.InitiateAsPasswordEntry(labelName, propertyBind, config);
+            content.InitiateAsPasswordEntry(labelText, propertyBind, config);
 
             return content;
         }
@@ -147,7 +118,7 @@ namespace BlacksunForms
             return button;
         }
 
-        public static StackLayout GetPickerProperty(string labelName, string propertyBind, string displayMemberPath, string valueMemberPath, IEnumerable<object> itemsSource, BindingMode bindingMode = BindingMode.TwoWay)
+        public static StackLayout GetPickerProperty(string labelText, string propertyBind, string displayMemberPath, string valueMemberPath, IEnumerable<object> itemsSource, BindingMode bindingMode = BindingMode.TwoWay)
         {
             var binding = new Binding(propertyBind, bindingMode);
 
@@ -157,9 +128,9 @@ namespace BlacksunForms
                 Padding = 0
             };
 
-            if (labelName != null)
+            if (labelText != null)
             {
-                var label = GetLabel(labelName);
+                var label = GetLabel(labelText);
                 content.Children.Add(label);
             }
 
@@ -178,7 +149,7 @@ namespace BlacksunForms
             return content;
         }
 
-        public static StackLayout GetImageProperty(string labelName, string propertyBind,Aspect aspect = Aspect.AspectFit)
+        public static StackLayout GetImageProperty(string labelText, string propertyBind,Aspect aspect = Aspect.AspectFit)
         {
             var binding = new Binding(propertyBind, BindingMode.TwoWay);
 
@@ -188,9 +159,9 @@ namespace BlacksunForms
                 Padding = 0
             };
 
-            if (labelName != null)
+            if (labelText != null)
             {
-                var label = GetLabel(labelName);
+                var label = GetLabel(labelText);
                 content.Children.Add(label);
             }
 
@@ -201,6 +172,15 @@ namespace BlacksunForms
 
             content.Children.Add(mainControl);
 
+            return content;
+        }
+
+        public static PropertyLayout GetSliderProperty(string labelText, string propertyBind,double minValue = 0,double maxValue = 1, PropertyConfig config = null)
+        {
+            var content = new PropertyLayout();
+            content.InitiateAsSlider(labelText, propertyBind, config);
+            ((Slider) content.Content).Minimum = minValue;
+            ((Slider) content.Content).Maximum = maxValue;
             return content;
         }
 
