@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Blacksun.XamServices.Sockets.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>BlacksunXamServicesSocketsiOS</AssemblyName>
+    <AssemblyName>Blacksun.XamServices.Sockets.iOS</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>9dd0a700</NuGetPackageImportStamp>
