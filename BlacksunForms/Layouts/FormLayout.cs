@@ -1,26 +1,12 @@
 ﻿using System.Collections.Generic;
+using BlacksunForms.Controls;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Layouts
 {
 
-    public class FormConfig
-    {
-
-        public FormConfig()
-        {
-            Padding = 30;
-            VerticalOptions = LayoutOptions.FillAndExpand;
-            HorizontalOptions = LayoutOptions.FillAndExpand;
-        }
-
-        public LayoutOptions VerticalOptions { get; set; }
-
-        public LayoutOptions HorizontalOptions { get; set; }
-
-        public Thickness Padding { get; set; }
-    }
+    
 
     public class FormLayout : ScrollView
     {
@@ -29,7 +15,7 @@ namespace BlacksunForms.Layouts
         {
             
         }
-
+        /*
         public FormLayout(IList<GroupLayout> groups, FormConfig config = null)
         {
 
@@ -56,7 +42,7 @@ namespace BlacksunForms.Layouts
 
             Content = result;
         }
-
+        */
         public List<GroupLayout> Groups { get; set; }
 
         public StackLayout Layout { get; set; }

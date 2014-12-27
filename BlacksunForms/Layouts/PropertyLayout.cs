@@ -9,11 +9,14 @@ namespace BlacksunForms.Layouts
 
         public PropertyConfig()
         {
-            LabelType = LabelType.Label;
+
             BindingMode = BindingMode.TwoWay;
             Keyboard = Keyboard.Default;
+            LabelType = LabelType.Label;
             LabelHorizontalPosition = LayoutOptions.FillAndExpand;
         }
+
+        public bool IsReadOnly { get; set; }
 
         public LabelType LabelType { get; set; }
 
@@ -24,7 +27,7 @@ namespace BlacksunForms.Layouts
         public Keyboard Keyboard { get; set; }
 
     }
-
+    /*
     public class PropertyLayout : StackLayout
     {
 
@@ -226,21 +229,10 @@ namespace BlacksunForms.Layouts
             };
             return label;
 
-            
-
         }
-        /*
-        public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create<BindablePicker, object>(p => p.SelectedValue, null);
 
-        public object IsVisible
-        {
-            get { return GetValue(IsVisibleProperty); }
-            set
-            {
-                SetValue(IsVisibleProperty, value);
-                OnPropertyChanged();
-            }
-        }
-        */
+
     }
+
+    */
 }

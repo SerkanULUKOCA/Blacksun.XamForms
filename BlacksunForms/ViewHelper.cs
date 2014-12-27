@@ -39,10 +39,9 @@ namespace BlacksunForms
 
             return result;
         }
-
+        /*
         public static GroupLayout GetFormGroup(string groupLabel,IList<View> fields)
         {
-
             var content = new GroupLayout(groupLabel, fields);
             return content;
         }
@@ -53,7 +52,8 @@ namespace BlacksunForms
 
             return content;
         }
-
+        */
+        /*
         public static PropertyLayout GetTextProperty(string labelText, string propertyBind,PropertyConfig config = null)
         {
             var content = new PropertyLayout();
@@ -83,11 +83,8 @@ namespace BlacksunForms
 
         public static StackLayout GetLabelForContent(string labelText,View view)
         {
-            
             var content = new PropertyLayout();
             content.InitiateWithContent(labelText, view);
-            return content;
-
             return content;
         }
 
@@ -118,9 +115,10 @@ namespace BlacksunForms
             return button;
         }
 
-        public static StackLayout GetPickerProperty(string labelText, string propertyBind, string displayMemberPath, string valueMemberPath, IEnumerable<object> itemsSource, BindingMode bindingMode = BindingMode.TwoWay)
+        public static StackLayout GetPickerProperty(string labelText, string propertyBind, string displayMemberPath, string valueMemberPath,string itemsSourcePath, BindingMode bindingMode = BindingMode.TwoWay)
         {
             var binding = new Binding(propertyBind, bindingMode);
+            var itemsourceBinding = new Binding(itemsSourcePath, bindingMode);
 
             var content = new StackLayout
             {
@@ -139,9 +137,9 @@ namespace BlacksunForms
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 DisplayMemberPath =  displayMemberPath,
                 SelectedValueMemberPath = valueMemberPath,
-                ItemsSource = itemsSource
             };
             mainControl.SetBinding(BindablePicker.SelectedValueProperty, binding);
+            mainControl.SetBinding(BindablePicker.ItemsSourceProperty, itemsourceBinding);
             mainControl.HorizontalOptions = LayoutOptions.FillAndExpand;
             
             content.Children.Add(mainControl);
@@ -183,6 +181,6 @@ namespace BlacksunForms
             ((Slider) content.Content).Maximum = maxValue;
             return content;
         }
-
+        */
     }
 }

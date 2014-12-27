@@ -12,8 +12,7 @@ namespace BlacksunForms.CustomControls
     public class BindablePicker : Picker
     {
 
-        public static BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<BindablePicker, IEnumerable<object>>(o => o.ItemsSource, default(IEnumerable<object>), propertyChanged: OnItemsSourceChanged);
+        public static BindableProperty ItemsSourceProperty = BindableProperty.Create<BindablePicker, IEnumerable>(o => o.ItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
         public static BindableProperty SelectedItemProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
 
 
@@ -25,17 +24,6 @@ namespace BlacksunForms.CustomControls
         private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
         {
             var picker = bindable as BindablePicker;
-            /*
-            picker.Items.Clear();
-            if (newvalue != null)
-            {
-                //now it works like "subscribe once" but you can improve
-                foreach (var item in newvalue)
-                {
-                    picker.Items.Add(item.ToString());
-                }
-            }
-            */
 
             picker.Items.Clear();
 
@@ -51,26 +39,21 @@ namespace BlacksunForms.CustomControls
 
         }
 
-        /*
-        private void OnSelectedIndexChanged(object sender, EventArgs eventArgs)
-        {
-            if (SelectedIndex < 0 || SelectedIndex > Items.Count - 1)
-            {
-                SelectedItem = null;
-            }
-            else
-            {
-                SelectedItem = Items[SelectedIndex];
-            }
-        }
-        */
 
         private static void OnSelectedItemChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             var picker = bindable as BindablePicker;
             if (newvalue != null)
             {
-                picker.SelectedIndex = picker.Items.IndexOf(newvalue.ToString());
+                if (picker.Items[picker.SelectedIndex].Equals(newvalue.GetPropertyValue(picker.DisplayMemberPath)))
+                {
+                    
+                }
+                else
+                {
+                    picker.SelectedIndex = picker.Items.IndexOf(newvalue.GetPropertyValue(picker.DisplayMemberPath).ToString());
+                }
+                
             }
         }
 
@@ -108,13 +91,12 @@ namespace BlacksunForms.CustomControls
             set { SetValue(ItemsSourceProperty, value); }
         }
 
-        private object _selectedItem;
         public object SelectedItem
         {
-            get { return _selectedItem; }
+            get { return GetValue(SelectedItemProperty); }
             set
             {
-                _selectedItem = value;
+                SetValue(SelectedItemProperty, value);
                 OnPropertyChanged();
             }
         }
