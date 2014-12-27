@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CustomControls\BlacksunFormsPicker.cs" />
+    <Compile Include="CustomControls\BindablePicker.cs" />
     <Compile Include="CustomControls\ButtonConfig.cs" />
     <Compile Include="Layouts\FormLayout.cs" />
     <Compile Include="Layouts\GroupLayout.cs" />

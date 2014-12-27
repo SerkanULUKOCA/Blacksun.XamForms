@@ -134,14 +134,14 @@ namespace BlacksunForms
                 content.Children.Add(label);
             }
 
-            var mainControl = new BlacksunFormsPicker()
+            var mainControl = new BindablePicker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 DisplayMemberPath =  displayMemberPath,
                 SelectedValueMemberPath = valueMemberPath,
                 ItemsSource = itemsSource
             };
-            mainControl.SetBinding(BlacksunFormsPicker.SelectedValueProperty, binding);
+            mainControl.SetBinding(BindablePicker.SelectedValueProperty, binding);
             mainControl.HorizontalOptions = LayoutOptions.FillAndExpand;
             
             content.Children.Add(mainControl);

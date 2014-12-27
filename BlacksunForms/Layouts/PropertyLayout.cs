@@ -230,7 +230,7 @@ namespace BlacksunForms.Layouts
 
         }
         /*
-        public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create<BlacksunFormsPicker, object>(p => p.SelectedValue, null);
+        public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create<BindablePicker, object>(p => p.SelectedValue, null);
 
         public object IsVisible
         {
