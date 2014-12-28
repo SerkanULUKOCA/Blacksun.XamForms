@@ -8,7 +8,6 @@ namespace Blacksun.XamForms.Sample.Core
     {
         public static Page GetMainPage()
         {
-
             AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
             AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
             return new MainView();

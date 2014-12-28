@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksun.XamForms.Sample.An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksun.XamForms.Sameple.WinPhone", "Blacksun.XamForms\Blacksun.XamForms.WinPhone\Blacksun.XamForms.Sameple.WinPhone.csproj", "{80351F51-BBA8-4DC7-8ACF-6E338BFD473F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlacksunForms", "BlacksunForms\BlacksunForms.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksun.XamForms", "BlacksunForms\Blacksun.XamForms.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XamForms", "XamForms", "{5FDF6859-8CB4-4F6A-9447-CA336CAA915D}"
 EndProject
