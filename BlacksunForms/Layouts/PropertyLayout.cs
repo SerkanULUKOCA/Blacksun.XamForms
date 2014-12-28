@@ -1,4 +1,5 @@
-﻿using BlacksunForms.Resources;
+﻿using BlacksunForms.Enums;
+using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Layouts
@@ -179,8 +180,8 @@ namespace BlacksunForms.Layouts
             }
 
             var binding = new Binding(propertyBind, properties.BindingMode);
-            var content = new Slider() { HorizontalOptions = LayoutOptions.FillAndExpand };
-            content.SetBinding(Slider.ValueProperty, binding);
+            var content = new SliderField() { HorizontalOptions = LayoutOptions.FillAndExpand };
+            content.SetBinding(SliderField.ValueProperty, binding);
             content.HorizontalOptions = LayoutOptions.FillAndExpand;
             Spacing = AppLayouts.LabelPropertySpacing;
             Padding = 0;

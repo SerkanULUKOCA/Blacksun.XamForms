@@ -1,22 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlacksunForms.CustomControls;
+﻿using BlacksunForms.CustomControls;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls
 {
-    public class DataFormPickerField : StackLayout
+    public class DataFormPickerField : ContentView
     {
+
+        public Label LabelField = new Label()
+        {
+            Font = AppFonts.FormLabelFont,
+            TextColor = AppColors.FormLabelColor,
+            HorizontalOptions = LayoutOptions.FillAndExpand
+        };
+
+        public string Label
+        {
+            get { return LabelField.Text; }
+            set
+            {
+                LabelField.Text = value;
+
+            }
+        }
+
+        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
+
+        BindablePicker Picker = new BindablePicker()
+        {
+            HorizontalOptions = LayoutOptions.FillAndExpand,
+        };
+
+        public string DisplayMemberPath
+        {
+            get { return Picker.DisplayMemberPath; }
+            set { Picker.DisplayMemberPath = value; }
+        }
+
+        public string SelectedValueMemberPath
+        {
+            get { return Picker.SelectedValueMemberPath; }
+            set { Picker.SelectedValueMemberPath = value; }
+        }
+
+        private string _dataMemberBindingPath;
+        public string DatamemberBindingPath
+        {
+            get { return _dataMemberBindingPath; }
+            set
+            {
+                _dataMemberBindingPath = value;
+                var binding = new Binding(value,BindingMode.TwoWay);
+                Picker.SetBinding(BindablePicker.SelectedValueProperty, binding);
+            }
+        }
+
+        private string _itemSourcePath;
+        public string ItemSourcePath
+        {
+            get { return _itemSourcePath; }
+            set
+            {
+                _itemSourcePath = value;
+                var binding = new Binding(value, BindingMode.TwoWay);
+                Picker.SetBinding(BindablePicker.ItemsSourceProperty, binding);
+            }
+        }
 
         public DataFormPickerField()
         {
-            
+            Container.Children.Clear();
+            Container.Children.Add(LabelField);
+            Container.Children.Add(Picker);
+            Content = Container;
         }
 
+
+
+        /*
         public DataFormPickerField(string labelText, string propertyBind, string displayMemberPath, string valueMemberPath, string itemsSourcePath, BindingMode bindingMode = BindingMode.TwoWay)
         {
             var binding = new Binding(propertyBind, bindingMode);
@@ -72,6 +133,6 @@ namespace BlacksunForms.Controls
 
         }
 
-
+        */
     }
 }

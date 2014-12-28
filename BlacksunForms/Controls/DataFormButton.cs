@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BlacksunForms.CustomControls;
+using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls
@@ -14,9 +15,10 @@ namespace BlacksunForms.Controls
 
         public DataFormButton()
         {
-            
+            TextColor = Color.White;
+            BackgroundColor = AppColors.Accent;
         }
-
+        /*
         public DataFormButton(string content, ICommand command, ButtonConfig config = null)
         {
             if (config == null)
@@ -32,7 +34,7 @@ namespace BlacksunForms.Controls
                 Command = command;
             }
         }
-
+        */
 
     }
 }

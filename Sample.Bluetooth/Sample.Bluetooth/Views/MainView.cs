@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlacksunForms;
+using BlacksunForms.Controls;
 using BlacksunForms.Resources;
 using Sample.Bluetooth.ViewModels;
 using Xamarin.Forms;
@@ -22,14 +23,21 @@ namespace Sample.Bluetooth.Views
         {
 
             BindingContext = new MainViewModel();
-
-            Content = ViewHelper.GetForm(new List<View>
+            Content = new DataForm()
             {
-                ViewHelper.GetFormGroup("Bluetooth test", new List<View>
+                Children =
                 {
-                    ViewHelper.GetLabelForContent("Availability",ViewHelper.GetButton("Check",Color.White,AppColors.Accent,ViewModel.CheckBluetoothAvailableCommand))
-                })
-            });
+                    new DataFormGroup()
+                    {
+                        Header = "Bluetooth test",
+                        Children =
+                        {
+                            new DataFormContentField{Label = "Availability",Content = new DataFormButton(){Text ="Check",Command = ViewModel.CheckBluetoothAvailableCommand}}
+                        }
+                    }
+                }
+            };
+
         }
 
     }

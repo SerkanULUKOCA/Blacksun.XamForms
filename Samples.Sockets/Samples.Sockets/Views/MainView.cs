@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlacksunForms;
+using BlacksunForms.Controls;
 using BlacksunForms.CustomControls;
 using BlacksunForms.Layouts;
 using BlacksunForms.Resources;
@@ -25,35 +26,42 @@ namespace Samples.Sockets.Views
 
             BindingContext = new MainViewModel();
 
-            FormLayout content = null;
+            DataForm content = null;
 
-            Content = content = ViewHelper.GetForm(new List<GroupLayout>
+            Content = content = new DataForm
             {
-                ViewHelper.GetFormGroup("Web Socket test", new List<View>
+                Children =
                 {
-                    ViewHelper.GetTextProperty("Host", "Host"),
-                    ViewHelper.GetTextProperty("Port", "Port",new PropertyConfig{Keyboard = Keyboard.Numeric}),
-                    ViewHelper.GetButton("Open",ViewModel.OpenCommand),
-                    ViewHelper.GetTextProperty("Message", "Message"),
-                    ViewHelper.GetButton("Send message",ViewModel.SendMessageCommand),
-                })
-            });
+                    new DataFormGroup()
+                    {
+                        Header = "Web Socket Test",
+                        Children =
+                        {
+                            new DataFormDataField(){Label = "Host",DataMemberBindingPath = "Host"},
+                            new DataFormDataField(){Label = "Port",DataMemberBindingPath = "Port",Keyboard = Keyboard.Numeric},
+                            new DataFormButton(){Text = "Host",Command = ViewModel.OpenCommand},
+                            new DataFormDataField(){Label = "Message",DataMemberBindingPath = "Message"},
+                            new DataFormButton(){Text = "Send message",Command = ViewModel.SendMessageCommand},
+                        }
+                    }
+                }
+            };
 
             //SPECIFIC CONFIGURATIONS
-            var group = content.Groups.First();
+            var group = content.Children.First() as DataFormGroup;
 
             //SET BINDINGS FOR SHOWOPEN
-            var host = ((PropertyLayout)group.Fields[0]);
+            var host = ((DataFormDataField)group.Children[0]);
             host.SetBinding(IsVisibleProperty, "ShowOpen");
-            var port = ((PropertyLayout)group.Fields[1]);
+            var port = ((DataFormDataField)group.Children[1]);
             port.SetBinding(IsVisibleProperty, "ShowOpen");
-            var openButton = ((Button)group.Fields[2]);
+            var openButton = ((DataFormButton)group.Children[2]);
             openButton.SetBinding(IsVisibleProperty, "ShowOpen");
 
             //SET BINDINGS FOR SHOWMESSAGE
-            var message = ((PropertyLayout)group.Fields[3]);
+            var message = ((DataFormDataField)group.Children[3]);
             message.SetBinding(IsVisibleProperty, "ShowMessage");
-            var buttonMessage = ((Button)group.Fields[4]);
+            var buttonMessage = ((DataFormButton)group.Children[4]);
             buttonMessage.SetBinding(IsVisibleProperty, "ShowMessage");
 
         }

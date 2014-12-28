@@ -9,10 +9,9 @@ using Xamarin.Forms;
 
 namespace BlacksunForms.Controls
 {
-    public class DataFormImageField : ContentView
+    public class DataFormContentField : ContentView
     {
 
-        private Image ImageField = new Image() { HorizontalOptions = LayoutOptions.FillAndExpand };
         public Label LabelField = new Label()
         {
             Font = AppFonts.FormLabelFont,
@@ -20,9 +19,6 @@ namespace BlacksunForms.Controls
             HorizontalOptions = LayoutOptions.FillAndExpand
         };
 
-        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
-
-        private string _label;
         public string Label
         {
             get { return LabelField.Text; }
@@ -33,53 +29,51 @@ namespace BlacksunForms.Controls
             }
         }
 
-        private string _dataMemberBindingPath;
-        public string DataMemberBindingPath
+        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
+        
+        public DataFormContentField()
         {
-            get { return _dataMemberBindingPath; }
-            set
+            ((ContentView)this).Content = Container;
+            ProcessContent();
+        }
+
+        private View _content;
+        public new View Content
+        {
+            get { return _content; }
+            set { _content = value; ProcessContent(); }
+        }
+
+        private void ProcessContent()
+        {
+            Container.Children.Clear();
+            Container.Children.Add(LabelField);
+            if (Content != null)
             {
-                _dataMemberBindingPath = value;
-                ImageField.SetBinding(Image.SourceProperty, new Binding(value, BindingMode.TwoWay));
+                Container.Children.Add(Content);
             }
         }
 
-        public DataFormImageField()
-        {
-            Container.Children.Add(LabelField);
-            Container.Children.Add(ImageField);
-            Content = Container;
-        }
-
         /*
-        public DataFormImageField(string labelText, string propertyPath, Aspect aspect = Aspect.AspectFit)
+        public DataFormContentField(string labelText, View view)
         {
-            var binding = new Binding(propertyPath, BindingMode.TwoWay);
-
-            this.Spacing = AppLayouts.LabelPropertySpacing;
-            this.Padding = 0;
 
             if (labelText != null)
             {
                 var label = GetLabel(labelText);
                 Children.Add(label);
-
                 Label = label;
             }
 
-            var image = new Image();
-            image.SetBinding(Image.SourceProperty, binding);
+            Children.Add(view);
 
-            Children.Add(image);
-
-            Content = image;
-
+            Content = view;
         }
+        */
 
-        public Label Label { get; set; }
-
-        public View Content { get; set; }
-
+        
+        
+        
         public static Label GetLabel(string labelText)
         {
             var label = new Label
@@ -91,9 +85,8 @@ namespace BlacksunForms.Controls
             };
             return label;
 
-
-
         }
-        */
+
+
     }
 }

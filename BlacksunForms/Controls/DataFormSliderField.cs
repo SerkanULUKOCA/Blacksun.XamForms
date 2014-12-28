@@ -9,14 +9,67 @@ using Xamarin.Forms;
 
 namespace BlacksunForms.Controls
 {
-    public class DataFormSliderField : StackLayout
+    public class DataFormSliderField : ContentView
     {
+
+        private Slider SliderField = new Slider() {HorizontalOptions = LayoutOptions.FillAndExpand};
+
+        public Label LabelField = new Label()
+        {
+            Font = AppFonts.FormLabelFont,
+            TextColor = AppColors.FormLabelColor,
+            HorizontalOptions = LayoutOptions.FillAndExpand
+        };
+
+        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
+
+        private string _label;
+        public string Label
+        {
+            get { return LabelField.Text; }
+            set
+            {
+                LabelField.Text = value;
+
+            }
+        }
+
+        private string _dataMemberBindingPath;
+        public string DataMemberBindingPath
+        {
+            get { return _dataMemberBindingPath; }
+            set
+            {
+                _dataMemberBindingPath = value;
+                SliderField.SetBinding(Slider.ValueProperty, new Binding(value, BindingMode.TwoWay));
+            }
+        }
+
+        public double Minimum
+        {
+            get { return SliderField.Minimum; }
+            set
+            {
+                SliderField.Minimum = value;
+            }
+        }
+
+        public double Maximum
+        {
+            get { return SliderField.Maximum; }
+            set
+            {
+                SliderField.Maximum = value;
+            }
+        }
 
         public DataFormSliderField()
         {
-            
+            Container.Children.Add(LabelField);
+            Container.Children.Add(SliderField);
+            Content = Container;
         }
-
+        /*
         public DataFormSliderField(string propertyBind, double minValue = 0, double maxValue = 1, PropertyConfig config = null)
         {
             Init(null, propertyBind, minValue, maxValue, config);
@@ -35,8 +88,8 @@ namespace BlacksunForms.Controls
             }
 
             var binding = new Binding(propertyBind, config.BindingMode);
-            var content = new Slider() { HorizontalOptions = LayoutOptions.FillAndExpand };
-            content.SetBinding(Slider.ValueProperty, binding);
+            var content = new SliderField() { HorizontalOptions = LayoutOptions.FillAndExpand };
+            content.SetBinding(SliderField.ValueProperty, binding);
             content.HorizontalOptions = LayoutOptions.FillAndExpand;
             Spacing = AppLayouts.LabelPropertySpacing;
             Padding = 0;
@@ -88,6 +141,6 @@ namespace BlacksunForms.Controls
 
         }
 
-
+        */
     }
 }

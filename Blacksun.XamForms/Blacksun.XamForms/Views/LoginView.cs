@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Blacksun.XamForms.Sample.Core.ViewModels;
 using BlacksunForms;
+using BlacksunForms.Controls;
 using BlacksunForms.CustomControls;
+using BlacksunForms.Enums;
 using BlacksunForms.Layouts;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
@@ -20,9 +22,9 @@ namespace Blacksun.XamForms.Sample.Core.Views
         {
             Content = ViewHelper.GetCenteredForm(new List<View>
             {
-                ViewHelper.GetTextProperty("Username", "Username",new PropertyConfig{LabelType = LabelType.Watermark}),
-                ViewHelper.GetPasswordProperty("Password", "Password",new PropertyConfig{LabelType = LabelType.Watermark}),
-                ViewHelper.GetButton("Login",null),
+                new DataFormDataField(){Label = "Username",DataMemberBindingPath = "Username",LabelType = LabelType.Watermark},
+                new DataFormPasswordField(){Label = "Password",DataMemberBindingPath = "Password",LabelType = LabelType.Watermark},
+                new DataFormButton(){Text = "Login"}
                 
             });
         }

@@ -94,11 +94,6 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
         {
             get
             {
-                /*
-                var imageBytes = Convert.FromBase64String(Base64Image);
-                var result = ImageSource.FromStream(() => new MemoryStream(imageBytes));
-                return result;
-                 */
 
                 return ImageSource.FromResource("Blacksun.XamForms.Sample.Core.Images.bioshock.jpg");
 

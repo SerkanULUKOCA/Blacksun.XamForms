@@ -38,16 +38,18 @@
   <ItemGroup>
     <Compile Include="Controls\DataForm.cs" />
     <Compile Include="Controls\DataFormButton.cs" />
-    <Compile Include="Controls\DataFormContent.cs" />
+    <Compile Include="Controls\DataFormContentField.cs" />
     <Compile Include="Controls\DataFormDataField.cs" />
     <Compile Include="Controls\DataFormGroup.cs" />
     <Compile Include="Controls\DataFormImageField.cs" />
     <Compile Include="Controls\DataFormPasswordField.cs" />
     <Compile Include="Controls\DataFormPickerField.cs" />
+    <Compile Include="Controls\DataFormReadOnlyField.cs" />
     <Compile Include="Controls\DataFormSliderField.cs" />
     <Compile Include="CustomControls\BindableListView.cs" />
     <Compile Include="CustomControls\BindablePicker.cs" />
     <Compile Include="CustomControls\ButtonConfig.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Layouts\FormLayout.cs" />
     <Compile Include="Layouts\GroupLayout.cs" />
     <Compile Include="Layouts\PropertyLayout.cs" />

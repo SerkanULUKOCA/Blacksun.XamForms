@@ -3,69 +3,118 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlacksunForms.Enums;
 using BlacksunForms.Layouts;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls
 {
-    public class DataFormPasswordField : StackLayout
+    public class DataFormPasswordField : ContentView
     {
+
+        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
+
+        public Label LabelField = new Label()
+        {
+            Font = AppFonts.FormLabelFont,
+            TextColor = AppColors.FormLabelColor,
+            HorizontalOptions = LayoutOptions.FillAndExpand
+        };
+
+        public Entry TextField = new Entry()
+        {
+            HorizontalOptions = LayoutOptions.FillAndExpand,
+            IsPassword = true
+        };
+
+        public Keyboard Keyboard
+        {
+            get { return TextField.Keyboard; }
+            set { TextField.Keyboard = value; }
+        }
+
+        private LabelType _labelType = LabelType.Label;
+        public LabelType LabelType
+        {
+            get { return _labelType; }
+            set
+            {
+                _labelType = value;
+
+                TextField.Placeholder = "";
+
+                if (Container.Children.Contains(LabelField))
+                    Container.Children.Remove(LabelField);
+
+                switch (LabelType)
+                {
+                    case LabelType.None:
+
+                        break;
+                    case LabelType.Label:
+
+                        Container.Children.Insert(0, LabelField);
+                        break;
+                    case LabelType.Watermark:
+                        TextField.Placeholder = Label;
+                        break;
+                }
+            }
+        }
+
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                _label = value;
+
+                TextField.Placeholder = "";
+                LabelField.Text = "";
+
+                if (Label != null)
+                {
+                    switch (LabelType)
+                    {
+                        case LabelType.None:
+
+                            break;
+                        case LabelType.Label:
+                            LabelField.Text = value;
+                            if (!Container.Children.Contains(LabelField))
+                            {
+                                Container.Children.Insert(0, LabelField);
+                            }
+                            break;
+                        case LabelType.Watermark:
+                            TextField.Placeholder = value;
+                            break;
+                    }
+                }
+
+            }
+        }
+
+        private string _dataMemberBindingPath;
+        public string DataMemberBindingPath
+        {
+            get { return _dataMemberBindingPath; }
+            set
+            {
+                _dataMemberBindingPath = value;
+                TextField.SetBinding(Image.SourceProperty, new Binding(value, BindingMode.TwoWay));
+            }
+        }
 
         public DataFormPasswordField()
         {
-
+            Container.Children.Add(LabelField);
+            Container.Children.Add(TextField);
+            Content = Container;
         }
 
-        public DataFormPasswordField(string labelText, string propertyBind, PropertyConfig properties = null)
-        {
-            if (properties == null)
-            {
-                properties = new PropertyConfig();
-            }
-
-            var binding = new Binding(propertyBind, properties.BindingMode);
-            var txtEntry = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
-            txtEntry.IsPassword = true;
-            txtEntry.Keyboard = properties.Keyboard;
-            txtEntry.SetBinding(Entry.TextProperty, binding);
-            txtEntry.HorizontalOptions = LayoutOptions.FillAndExpand;
-            Spacing = AppLayouts.LabelPropertySpacing;
-            Padding = 0;
-
-
-            if (labelText != null)
-            {
-                var label = GetLabel(labelText);
-                this.Children.Add(label);
-                Label = label;
-            }
-
-            this.Children.Add(txtEntry);
-
-
-            Content = txtEntry;
-
-        }
-
-        public Label Label { get; set; }
-
-        public View Content { get; set; }
-
-        public static Label GetLabel(string labelText)
-        {
-            var label = new Label
-            {
-                Text = labelText,
-                Font = AppFonts.FormLabelFont,
-                TextColor = AppColors.FormLabelColor,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-            return label;
-
-
-
-        }
-
+        
     }
 }
