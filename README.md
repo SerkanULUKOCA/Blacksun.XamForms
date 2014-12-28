@@ -1,11 +1,27 @@
 Blacksun.XamForms
 =================
 
-I have no idea of what Im doing so bare with me
+Changed everythign to make the way it is done similar to the good old DataForm in Silverlight or WPF
 
 ##View Helpers
 
-Xamforms is just a view helper that cuts down the time you make views, when doing them in code behind c# what it does is have a standard padding margins and spacings already done so you only have to write down the properties and their bindings, this is a small library which I did to make my job a little easier. I have made it public so that anyone who wishes to help me make this better ill have the chance to do so
+Xamforms is just a view helper That adds a label to fields which reduce the time to make forms for now I havent tested it Xaml yet but if you wish to help make the controls xamable please do ask
+
+Aside from adding labels There are Global Positioning Paddings and spacing which are already implemented
+
+if you wish to Change these setting for now you cant but I will implement the static methods to do so 
+
+##NOTE
+
+THere are static colors implemented in these Controls if you want to use HoloLightTheme or Light Theme in Windows Phone please use these, they do not change the theme these are just so that the DataField Controls Use the appropiate colors
+
+```c#
+
+AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+        
+        
+```
 
 for example a simple login viewn would be done like so
 
@@ -15,9 +31,9 @@ public LoginView()
         {
             Content = ViewHelper.GetCenteredForm(new List<View>
             {
-                ViewHelper.GetTextProperty("Username", "Username",bindingMode:BindingMode.TwoWay,labelType:LabelType.Watermark),
-                ViewHelper.GetPasswordProperty("Password", "Password",bindingMode:BindingMode.TwoWay,labelType:LabelType.Watermark),
-                ViewHelper.GetButton("Login",Color.White,AppColors.Accent),
+                new DataFormDataField(){Label = "Username",DataMemberBindingPath = "Username",LabelType = LabelType.Watermark},
+                new DataFormPasswordField(){Label = "Password",DataMemberBindingPath = "Password",LabelType = LabelType.Watermark},
+                new DataFormButton(){Text = "Login"}
                 
             });
         }
@@ -33,22 +49,30 @@ public MainView()
 
             BindingContext = new MainViewModel();
             
-            Content = ViewHelper.GetForm(new List<GroupLayout>
+            Content = new DataForm()
             {
-                ViewHelper.GetFormGroup("Group", new List<View>
+                Children =
                 {
-                    ViewHelper.GetTextProperty("Editable", "Property"),
-                    ViewHelper.GetTextProperty("I am a watermarked Entry", "WatermarkProperty", new PropertyConfig(){LabelType = LabelType.Watermark}),
-                    ViewHelper.GetReadOnlyTextProperty("Read Only", "Property"),
-                    ViewHelper.GetPasswordProperty("Password", "Property"),
-                    ViewHelper.GetLabelForContent("Busy indicator",ViewHelper.GetButton("Show busy indicator",ViewModel.LoadingCommand)),
-                    ViewHelper.GetLabelForContent("Progress bar",ViewHelper.GetButton("Show progress bar",ViewModel.ProgressCommand)),
-                    ViewHelper.GetPickerProperty("Picker","CustomerID","Name","ID",ViewModel.Customers),
-                    ViewHelper.GetReadOnlyTextProperty("Picker Selected Value", "CustomerID"),
-                    ViewHelper.GetSliderProperty("Slider", "SliderValue",0,255),
-                    ViewHelper.GetImageProperty("Image", "ImageSource"),
-                })
-            });
+                    new DataFormGroup()
+                    {
+                        Header = "Group",
+                        Children =
+                        {
+                            new DataFormDataField(){Label = "Editable",DataMemberBindingPath = "Property"},
+                            new DataFormDataField(){Label = "I am a watermarked Entry",DataMemberBindingPath = "WatermarkProperty",LabelType = LabelType.Watermark},
+                            new DataFormReadOnlyField(){Label = "Read Only",DataMemberBindingPath = "Property"},
+                            new DataFormContentField(){Label = "Busy indicator",Content = new DataFormButton(){Text= "Show busy indicator",Command = ViewModel.LoadingCommand}},
+                            new DataFormContentField(){Label = "Progress Dialog",Content = new DataFormButton(){Text= "Show Progress Dialog",Command = ViewModel.ProgressCommand}},
+                            new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
+                            new DataFormReadOnlyField(){Label = "Picker Selected Value",DataMemberBindingPath = "CustomerID"},
+                            new DataFormSliderField(){Label= "Slider",DataMemberBindingPath="SliderValue",Minimum = 0,Maximum = 255},
+                            new DataFormImageField(){Label = "Image",DataMemberBindingPath = "ImageSource"}
+                        }
+                    }
+
+                }
+            };
+
         }
 
 ```
@@ -58,7 +82,7 @@ public MainView()
 Theres even a bindable picker which can be used like so
 
 ```c#
-ViewHelper.GetPickerProperty("LABEL VALUE","VIEWMODELPROPERTY","DISPLAYPATH","VALUEMEMBERPATH",ITEMSSOURCE)
+new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
 
 ```
 
