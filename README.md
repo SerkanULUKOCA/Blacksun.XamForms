@@ -13,7 +13,7 @@ if you wish to Change these setting for now you cant but I will implement the st
 
 ##NOTE
 
-THere are static colors implemented in these Controls if you want to use HoloLightTheme or Light Theme in Windows Phone please use these
+THere are static colors implemented in these Controls if you want to use HoloLightTheme or Light Theme in Windows Phone please use these, they do not change the theme these are just so that the DataField Controls Use the appropiate colors
 
 ```c#
 
