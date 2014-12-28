@@ -1,11 +1,27 @@
 Blacksun.XamForms
 =================
 
-I have no idea of what Im doing so bare with me
+Changed everythign to make the way it is done similar to the good old DataForm in Silverlight or WPF
 
 ##View Helpers
 
-Xamforms is just a view helper that cuts down the time you make views, when doing them in code behind c# what it does is have a standard padding margins and spacings already done so you only have to write down the properties and their bindings, this is a small library which I did to make my job a little easier. I have made it public so that anyone who wishes to help me make this better ill have the chance to do so
+Xamforms is just a view helper That adds a label to fields which reduce the time to make forms for now I havent tested it Xaml yet but if you wish to help make the controls xamable please do ask
+
+Aside from adding labels There are Global Positioning Paddings and spacing which are already implemented
+
+if you wish to Change these setting for now you cant but I will implement the static methods to do so 
+
+##NOTE
+
+THere are static colors implemented in these Controls if you want to use HoloLightTheme or Light Theme in Windows Phone please use these
+
+```c#
+
+AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+        
+        
+```
 
 for example a simple login viewn would be done like so
 
