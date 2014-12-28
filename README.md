@@ -15,9 +15,9 @@ public LoginView()
         {
             Content = ViewHelper.GetCenteredForm(new List<View>
             {
-                ViewHelper.GetTextProperty("Username", "Username",bindingMode:BindingMode.TwoWay,labelType:LabelType.Watermark),
-                ViewHelper.GetPasswordProperty("Password", "Password",bindingMode:BindingMode.TwoWay,labelType:LabelType.Watermark),
-                ViewHelper.GetButton("Login",Color.White,AppColors.Accent),
+                new DataFormDataField(){Label = "Username",DataMemberBindingPath = "Username",LabelType = LabelType.Watermark},
+                new DataFormPasswordField(){Label = "Password",DataMemberBindingPath = "Password",LabelType = LabelType.Watermark},
+                new DataFormButton(){Text = "Login"}
                 
             });
         }
@@ -33,22 +33,30 @@ public MainView()
 
             BindingContext = new MainViewModel();
             
-            Content = ViewHelper.GetForm(new List<GroupLayout>
+            Content = new DataForm()
             {
-                ViewHelper.GetFormGroup("Group", new List<View>
+                Children =
                 {
-                    ViewHelper.GetTextProperty("Editable", "Property"),
-                    ViewHelper.GetTextProperty("I am a watermarked Entry", "WatermarkProperty", new PropertyConfig(){LabelType = LabelType.Watermark}),
-                    ViewHelper.GetReadOnlyTextProperty("Read Only", "Property"),
-                    ViewHelper.GetPasswordProperty("Password", "Property"),
-                    ViewHelper.GetLabelForContent("Busy indicator",ViewHelper.GetButton("Show busy indicator",ViewModel.LoadingCommand)),
-                    ViewHelper.GetLabelForContent("Progress bar",ViewHelper.GetButton("Show progress bar",ViewModel.ProgressCommand)),
-                    ViewHelper.GetPickerProperty("Picker","CustomerID","Name","ID",ViewModel.Customers),
-                    ViewHelper.GetReadOnlyTextProperty("Picker Selected Value", "CustomerID"),
-                    ViewHelper.GetSliderProperty("Slider", "SliderValue",0,255),
-                    ViewHelper.GetImageProperty("Image", "ImageSource"),
-                })
-            });
+                    new DataFormGroup()
+                    {
+                        Header = "Group",
+                        Children =
+                        {
+                            new DataFormDataField(){Label = "Editable",DataMemberBindingPath = "Property"},
+                            new DataFormDataField(){Label = "I am a watermarked Entry",DataMemberBindingPath = "WatermarkProperty",LabelType = LabelType.Watermark},
+                            new DataFormReadOnlyField(){Label = "Read Only",DataMemberBindingPath = "Property"},
+                            new DataFormContentField(){Label = "Busy indicator",Content = new DataFormButton(){Text= "Show busy indicator",Command = ViewModel.LoadingCommand}},
+                            new DataFormContentField(){Label = "Progress Dialog",Content = new DataFormButton(){Text= "Show Progress Dialog",Command = ViewModel.ProgressCommand}},
+                            new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
+                            new DataFormReadOnlyField(){Label = "Picker Selected Value",DataMemberBindingPath = "CustomerID"},
+                            new DataFormSliderField(){Label= "Slider",DataMemberBindingPath="SliderValue",Minimum = 0,Maximum = 255},
+                            new DataFormImageField(){Label = "Image",DataMemberBindingPath = "ImageSource"}
+                        }
+                    }
+
+                }
+            };
+
         }
 
 ```
@@ -58,7 +66,7 @@ public MainView()
 Theres even a bindable picker which can be used like so
 
 ```c#
-ViewHelper.GetPickerProperty("LABEL VALUE","VIEWMODELPROPERTY","DISPLAYPATH","VALUEMEMBERPATH",ITEMSSOURCE)
+new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
 
 ```
 
