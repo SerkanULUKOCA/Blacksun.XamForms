@@ -1,4 +1,6 @@
-﻿using BlacksunForms.CustomControls;
+﻿using System;
+using Blacksun.XamForms.Resources;
+using BlacksunForms.CustomControls;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
@@ -20,7 +22,16 @@ namespace BlacksunForms.Controls
             set
             {
                 LabelField.Text = value;
-
+                if (String.IsNullOrEmpty(Label))
+                {
+                    if (Container.Children.Contains(LabelField))
+                        Container.Children.Remove(LabelField);
+                }
+                else
+                {
+                    if (!Container.Children.Contains(LabelField))
+                        Container.Children.Insert(0, LabelField);
+                }
             }
         }
 

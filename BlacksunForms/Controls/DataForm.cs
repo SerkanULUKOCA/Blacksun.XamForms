@@ -1,36 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
+﻿using System.Collections.Generic;
+using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
-    /*
-    public class FormConfig
-    {
 
-        public FormConfig()
-        {
-            Padding = 30;
-            VerticalOptions = LayoutOptions.StartAndExpand;
-            HorizontalOptions = LayoutOptions.FillAndExpand;
-        }
-
-        public LayoutOptions VerticalOptions { get; set; }
-
-        public LayoutOptions HorizontalOptions { get; set; }
-
-        public Thickness Padding { get; set; }
-    }
-    */
     public class DataForm : ScrollView
     {
 
-        private StackLayout ContentLayout = new StackLayout();
+        private StackLayout ContentLayout = new StackLayout() { Spacing = AppLayouts.FormGroupsSpacing, };
 
         private StackLayout FormLayout = new StackLayout() { Spacing = AppLayouts.FormGroupsSpacing,VerticalOptions = LayoutOptions.StartAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = 30 };
 
@@ -44,6 +22,12 @@ namespace BlacksunForms.Controls
         {
             get { return FormLayout.HorizontalOptions; }
             set { FormLayout.HorizontalOptions = value; }
+        }
+
+        public double Spacing
+        {
+            get { return ContentLayout.Spacing; }
+            set { ContentLayout.Spacing = value; }
         }
 
         public DataForm()

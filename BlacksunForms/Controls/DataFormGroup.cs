@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Blacksun.XamForms.Resources;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
     public class DataFormGroup : ContentView 
     {
 
         private StackLayout ContentLayout = new StackLayout(){Spacing = AppLayouts.FormPropertiesSpacing};
 
-        private StackLayout FormGroupLayout = new StackLayout() { Spacing = AppLayouts.FormGroupsSpacing, VerticalOptions = LayoutOptions.StartAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = 0 };
+        private StackLayout FormGroupLayout = new StackLayout() { Spacing = AppLayouts.FormGroupLabelSpacing, VerticalOptions = LayoutOptions.StartAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = 0 };
 
         public string Header
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blacksun.XamForms.Resources;
 using BlacksunForms.Enums;
 using BlacksunForms.Layouts;
 using BlacksunForms.Resources;
@@ -104,7 +105,7 @@ namespace BlacksunForms.Controls
             set
             {
                 _dataMemberBindingPath = value;
-                TextField.SetBinding(Image.SourceProperty, new Binding(value, BindingMode.TwoWay));
+                TextField.SetBinding(Entry.TextProperty, new Binding(value, BindingMode.TwoWay));
             }
         }
 

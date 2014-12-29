@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blacksun.XamForms.Resources;
 using BlacksunForms.Resources;
 using Xamarin.Forms;
 
@@ -33,7 +34,16 @@ namespace BlacksunForms.Controls
             set
             {
                 LabelField.Text = value;
-                
+                if (String.IsNullOrEmpty(Label))
+                {
+                    if (Container.Children.Contains(LabelField))
+                        Container.Children.Remove(LabelField);
+                }
+                else
+                {
+                    if(!Container.Children.Contains(LabelField))
+                        Container.Children.Insert(0,LabelField);
+                }
             }
         }
 
