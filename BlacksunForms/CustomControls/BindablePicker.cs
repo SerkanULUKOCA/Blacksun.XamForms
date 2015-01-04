@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BlacksunForms.Helpers;
 using Xamarin.Forms;
 
-namespace BlacksunForms.CustomControls
+namespace Blacksun.XamForms.CustomControls
 {
     public class BindablePicker : Picker
     {

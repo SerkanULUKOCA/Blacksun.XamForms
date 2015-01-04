@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BlacksunForms;
 using BlacksunForms.Controls;
-using BlacksunForms.Resources;
 using Sample.Bluetooth.ViewModels;
 using Xamarin.Forms;
 

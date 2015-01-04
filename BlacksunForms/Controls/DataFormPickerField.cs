@@ -1,7 +1,6 @@
 ﻿using System;
+using Blacksun.XamForms.CustomControls;
 using Blacksun.XamForms.Resources;
-using BlacksunForms.CustomControls;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls

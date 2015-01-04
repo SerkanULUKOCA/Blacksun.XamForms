@@ -1,7 +1,6 @@
-﻿using Blacksun.XamForms.Resources;
-using BlacksunForms.Enums;
+﻿using Blacksun.XamForms.Enums;
+using Blacksun.XamForms.Resources;
 using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls

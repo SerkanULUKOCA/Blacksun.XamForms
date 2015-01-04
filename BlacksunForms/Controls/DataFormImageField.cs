@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Blacksun.XamForms.Resources;
 using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls

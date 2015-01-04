@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Resources;
-using BlacksunForms.Enums;
 using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls

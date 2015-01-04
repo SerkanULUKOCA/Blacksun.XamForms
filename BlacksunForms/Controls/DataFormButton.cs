@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using BlacksunForms.CustomControls;
-using BlacksunForms.Resources;
+using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Controls

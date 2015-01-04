@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BlacksunForms.Resources;
+using Blacksun.XamForms.Resources;
 using Samples.Sockets.Views;
 using Xamarin.Forms;
 

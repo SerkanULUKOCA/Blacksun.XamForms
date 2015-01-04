@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using Blacksun.XamForms.Controls;
+using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Sample.Core.ViewModels;
 using BlacksunForms;
 using BlacksunForms.Controls;
-using BlacksunForms.CustomControls;
-using BlacksunForms.Enums;
 using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Sample.Core.Views

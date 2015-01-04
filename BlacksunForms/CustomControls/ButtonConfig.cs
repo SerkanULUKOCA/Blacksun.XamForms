@@ -1,7 +1,7 @@
-﻿using BlacksunForms.Resources;
+﻿using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms.CustomControls
+namespace Blacksun.XamForms.CustomControls
 {
     public class ButtonConfig
     {

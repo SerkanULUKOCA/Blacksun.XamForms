@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BlacksunForms.Controls;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Layouts

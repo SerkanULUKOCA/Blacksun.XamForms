@@ -1,14 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Windows.Input;
-using BlacksunForms.CustomControls;
-using BlacksunForms.Helpers;
-using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms
+namespace Blacksun.XamForms
 {
 
     

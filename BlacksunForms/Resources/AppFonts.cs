@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace BlacksunForms.Resources
+namespace Blacksun.XamForms.Resources
 {
     public static class AppFonts
     {
-
-
-
         public static Font FormGroupFont
         {
 
@@ -22,14 +14,14 @@ namespace BlacksunForms.Resources
         public static Font FormLabelFont
         {
 
-            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
+            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(20), Font.SystemFontOfSize(30)); }
 
         }
 
         public static Font FormReadOnlyFont
         {
 
-            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(30), Font.SystemFontOfSize(30)); }
+            get { return Device.OnPlatform(Font.SystemFontOfSize(15), Font.SystemFontOfSize(15), Font.SystemFontOfSize(30)); }
 
         }
 

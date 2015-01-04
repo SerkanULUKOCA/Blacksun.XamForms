@@ -1,5 +1,5 @@
-﻿using Blacksun.XamForms.Sample.Core.Views;
-using BlacksunForms.Resources;
+﻿using Blacksun.XamForms.Resources;
+using Blacksun.XamForms.Sample.Core.Views;
 using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Sample.Core

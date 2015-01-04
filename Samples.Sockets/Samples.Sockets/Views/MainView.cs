@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlacksunForms;
 using BlacksunForms.Controls;
-using BlacksunForms.CustomControls;
 using BlacksunForms.Layouts;
-using BlacksunForms.Resources;
 using Samples.Sockets.ViewModels;
 using Xamarin.Forms;
 

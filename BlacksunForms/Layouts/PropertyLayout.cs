@@ -1,5 +1,4 @@
-﻿using BlacksunForms.Enums;
-using BlacksunForms.Resources;
+﻿using Blacksun.XamForms.Enums;
 using Xamarin.Forms;
 
 namespace BlacksunForms.Layouts

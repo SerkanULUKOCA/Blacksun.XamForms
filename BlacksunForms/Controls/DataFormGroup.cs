@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Blacksun.XamForms.Resources;
-using BlacksunForms.Resources;
 using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
