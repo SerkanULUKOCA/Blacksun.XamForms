@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Blacksun.XamForms.Resources;
+﻿using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
     public class DataFormButton : Button
     {

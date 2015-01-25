@@ -3,7 +3,7 @@ using Blacksun.XamForms.CustomControls;
 using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
     public class DataFormPickerField : ContentView
     {

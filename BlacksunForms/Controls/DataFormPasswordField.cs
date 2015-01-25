@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Blacksun.XamForms.Enums;
+﻿using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Resources;
-using BlacksunForms.Layouts;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
     public class DataFormPasswordField : ContentView
     {

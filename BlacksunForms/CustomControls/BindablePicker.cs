@@ -12,11 +12,39 @@ namespace Blacksun.XamForms.CustomControls
 
         public static BindableProperty ItemsSourceProperty = BindableProperty.Create<BindablePicker, IEnumerable>(o => o.ItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
         public static BindableProperty SelectedItemProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
-
+        public static BindableProperty SelectedValueProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnValueChanged);
 
         public BindablePicker()
         {
             this.SelectedIndexChanged += BlacksunFormsPicker_SelectedIndexChanged;
+        }
+
+        private static void OnValueChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+
+            var picker = bindable as BindablePicker;
+
+            if (picker.ItemsSource == null)
+                return;
+            try
+            {
+                foreach (var item in picker.ItemsSource)
+                {
+                    var selectedValue = item.GetPropertyValueIfExists(picker.SelectedValueMemberPath,"").ToString();
+
+                    if (selectedValue.Equals(picker.SelectedValue))
+                    {
+                        picker.SelectedItem = item;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+           
+
         }
 
         private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
@@ -40,6 +68,12 @@ namespace Blacksun.XamForms.CustomControls
 
         private static void OnSelectedItemChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
+
+            if (oldvalue.Equals(newvalue))
+            {
+                return;
+            }
+
             var picker = bindable as BindablePicker;
             if (newvalue != null)
             {
@@ -51,7 +85,6 @@ namespace Blacksun.XamForms.CustomControls
                 {
                     picker.SelectedIndex = picker.Items.IndexOf(newvalue.GetPropertyValue(picker.DisplayMemberPath).ToString());
                 }
-                
             }
         }
 
@@ -79,9 +112,6 @@ namespace Blacksun.XamForms.CustomControls
 
 
         }
-
-
-        public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create<BindablePicker, object>(p => p.SelectedValue,null);
 
         public IEnumerable<object> ItemsSource
         {

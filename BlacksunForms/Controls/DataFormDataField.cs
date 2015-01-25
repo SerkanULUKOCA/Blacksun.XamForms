@@ -1,9 +1,8 @@
 ﻿using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Resources;
-using BlacksunForms.Layouts;
 using Xamarin.Forms;
 
-namespace BlacksunForms.Controls
+namespace Blacksun.XamForms.Controls
 {
     public class DataFormDataField : ContentView
     {
