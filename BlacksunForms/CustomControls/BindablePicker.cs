@@ -30,7 +30,7 @@ namespace Blacksun.XamForms.CustomControls
             {
                 foreach (var item in picker.ItemsSource)
                 {
-                    var selectedValue = item.GetPropertyValueIfExists(picker.SelectedValueMemberPath,"").ToString();
+                    var selectedValue = item.GetPropertyValueIfExists(picker.SelectedValueMemberPath,"");
 
                     if (selectedValue.Equals(picker.SelectedValue))
                     {
@@ -69,7 +69,7 @@ namespace Blacksun.XamForms.CustomControls
         private static void OnSelectedItemChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
 
-            if (oldvalue.Equals(newvalue))
+            if (oldvalue != null && oldvalue.Equals(newvalue))
             {
                 return;
             }
@@ -77,7 +77,7 @@ namespace Blacksun.XamForms.CustomControls
             var picker = bindable as BindablePicker;
             if (newvalue != null)
             {
-                if (picker.Items[picker.SelectedIndex].Equals(newvalue.GetPropertyValue(picker.DisplayMemberPath)))
+                if (picker.SelectedIndex != -1 && picker.Items[picker.SelectedIndex].Equals(newvalue.GetPropertyValue(picker.DisplayMemberPath)))
                 {
                     
                 }
