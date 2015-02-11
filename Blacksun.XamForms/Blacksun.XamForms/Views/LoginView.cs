@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using Blacksun.XamForms.Controls;
 using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Sample.Core.ViewModels;
 using BlacksunForms;
-using BlacksunForms.Controls;
 using BlacksunForms.Layouts;
 using Xamarin.Forms;
 
