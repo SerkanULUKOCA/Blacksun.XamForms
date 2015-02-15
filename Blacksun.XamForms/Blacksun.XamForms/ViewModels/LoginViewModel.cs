@@ -1,4 +1,4 @@
-﻿using Acr.XamForms.ViewModels;
+﻿using Blacksun.Mvvm;
 
 namespace Blacksun.XamForms.Sample.Core.ViewModels
 {

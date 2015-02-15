@@ -23,7 +23,7 @@ namespace Blacksun.XamForms.Resources
 
         //Light
         private const string White = "#FFFFFFFF";
-        private const string DarkBlue = "#FF2C3E50";
+        private static string AccentColor = "#FF2C3E50";
         private const string DarkGray = "#FF1F1F1F";
         private const string LightGray = "#FF797779";
 
@@ -41,11 +41,16 @@ namespace Blacksun.XamForms.Resources
             set { _androidTheme = value; }
         }
 
+        public static void SetAccent(string colorHex)
+        {
+            AccentColor = colorHex;
+        }
+
 
         //APPLICATION COLORS
         public static Color Accent
         {
-            get { return Color.FromHex(DarkBlue); }
+            get { return Color.FromHex(AccentColor); }
         }
 
         public static Color PageBackground
@@ -55,14 +60,14 @@ namespace Blacksun.XamForms.Resources
 
         public static Color SlideMenuBackground
         {
-            get { return Color.FromHex(DarkBlue); }
+            get { return Color.FromHex(AccentColor); }
         }
 
         public static Color GroupColor
         {
             get
             {
-                return Device.OnPlatform(Color.FromHex(DarkBlue), Color.FromHex(White), Color.FromHex(White));
+                return Device.OnPlatform(Color.FromHex(AccentColor), Color.FromHex(White), Color.FromHex(White));
             }
         }
 

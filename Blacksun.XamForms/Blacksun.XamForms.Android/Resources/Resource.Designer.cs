@@ -166,13 +166,10 @@ namespace Blacksun.XamForms.Droid
 			public const int Icon = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int monoandroidsplash = 2130837507;
+			public const int roundedbg = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int roundedbg = 2130837508;
-			
-			// aapt resource value: 0x7f020005
-			public const int roundedbgdark = 2130837509;
+			public const int roundedbgdark = 2130837508;
 			
 			static Drawable()
 			{
@@ -187,17 +184,17 @@ namespace Blacksun.XamForms.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060002
-			public const int loadingImage = 2131099650;
+			// aapt resource value: 0x7f050002
+			public const int loadingImage = 2131034114;
 			
-			// aapt resource value: 0x7f060000
-			public const int loadingProgressBar = 2131099648;
+			// aapt resource value: 0x7f050000
+			public const int loadingProgressBar = 2131034112;
 			
-			// aapt resource value: 0x7f060003
-			public const int loadingProgressWheel = 2131099651;
+			// aapt resource value: 0x7f050003
+			public const int loadingProgressWheel = 2131034115;
 			
-			// aapt resource value: 0x7f060001
-			public const int textViewStatus = 2131099649;
+			// aapt resource value: 0x7f050001
+			public const int textViewStatus = 2131034113;
 			
 			static Id()
 			{
@@ -249,22 +246,6 @@ namespace Blacksun.XamForms.Droid
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Style
-		{
-			
-			// aapt resource value: 0x7f050000
-			public const int Mono_Android_Theme_Splash = 2131034112;
-			
-			static Style()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Style()
 			{
 			}
 		}

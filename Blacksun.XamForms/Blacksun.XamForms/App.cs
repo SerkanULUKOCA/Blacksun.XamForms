@@ -10,6 +10,7 @@ namespace Blacksun.XamForms.Sample.Core
         {
             AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
             AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            AppColors.SetAccent("#FF31B6E7");
             return new MainView();
         }
     }

@@ -3,9 +3,10 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.XamForms.UserDialogs;
-using Acr.XamForms.ViewModels;
+using Blacksun.Mvvm;
 using Blacksun.XamForms.Sample.Core.Model;
 using Xamarin.Forms;
+using Command = Xamarin.Forms.Command;
 
 namespace Blacksun.XamForms.Sample.Core.ViewModels
 {
