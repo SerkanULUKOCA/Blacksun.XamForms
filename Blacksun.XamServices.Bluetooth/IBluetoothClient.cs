@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Blacksun.XamServices.Bluetooth
 {
-    public interface IBluetoothManager
+    public interface IBluetoothClient
     {
 
         Task<bool> IsBluetoothOn();
 
-        Task<uint> SendCommand(string command);
+        Task<List<IBluetoothDevice>> GetPairedDevices();
 
     }
 }

@@ -8,13 +8,15 @@ using Xamarin.Forms;
 
 namespace Sample.Bluetooth
 {
-    public class App
+    public class App : Application
     {
-        public static Page GetMainPage()
+
+        public App()
         {
-            AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
-            AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
-            return new MainView();
+            //AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+            //AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            MainPage = new MainView();
         }
+
     }
 }

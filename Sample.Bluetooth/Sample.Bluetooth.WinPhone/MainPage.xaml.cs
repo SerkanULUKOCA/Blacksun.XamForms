@@ -22,7 +22,7 @@ namespace Sample.Bluetooth.WinPhone
             InitializeComponent();
 
             Forms.Init();
-            new WindowsPhone8BluetoothManager();
+            new WindowsPhone8BluetoothClient();
             new UserDialogService();
             Content = Sample.Bluetooth.App.GetMainPage().ConvertPageToUIElement(this);
         }

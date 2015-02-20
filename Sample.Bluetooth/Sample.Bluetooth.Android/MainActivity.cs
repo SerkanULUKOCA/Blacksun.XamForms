@@ -1,18 +1,13 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-
 using Xamarin.Forms.Platform.Android;
+
 
 namespace Sample.Bluetooth.Droid
 {
     [Activity(Label = "Sample.Bluetooth", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : AndroidActivity
+    public class MainActivity : FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -20,7 +15,12 @@ namespace Sample.Bluetooth.Droid
 
             Xamarin.Forms.Forms.Init(this, bundle);
 
-            SetPage(App.GetMainPage());
+            //Set Dialog Service
+            Acr.UserDialogs.UserDialogs.Init(this);
+
+            Xamarin.Forms.Forms.Init(this, bundle);
+            
+            LoadApplication(new App());
         }
     }
 }
