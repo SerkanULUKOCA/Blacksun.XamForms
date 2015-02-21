@@ -40,6 +40,7 @@
     <Compile Include="Controls\DataFormButton.cs" />
     <Compile Include="Controls\DataFormContentField.cs" />
     <Compile Include="Controls\DataFormDataField.cs" />
+    <Compile Include="Controls\DataFormEditorField.cs" />
     <Compile Include="Controls\DataFormGroup.cs" />
     <Compile Include="Controls\DataFormImageField.cs" />
     <Compile Include="Controls\DataFormPasswordField.cs" />
