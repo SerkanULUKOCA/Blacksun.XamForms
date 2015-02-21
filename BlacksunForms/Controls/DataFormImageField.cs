@@ -29,7 +29,7 @@ namespace Blacksun.XamForms.Controls
 
         public ImageSource DataMemberBinding
         {
-            get { return ImageField.Source}
+            get { return ImageField.Source; }
             set
             {
                 ImageField.Source = value;
