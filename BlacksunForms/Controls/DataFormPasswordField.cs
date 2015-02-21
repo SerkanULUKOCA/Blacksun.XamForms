@@ -91,6 +91,16 @@ namespace Blacksun.XamForms.Controls
             }
         }
 
+        public string DataMemberBinding
+        {
+            get { return TextField.Text; }
+            set
+            {
+                TextField.Text = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath
         {

@@ -41,6 +41,16 @@ namespace Blacksun.XamForms.Controls
             HorizontalOptions = LayoutOptions.FillAndExpand,
         };
 
+        public object DataMemberBinding
+        {
+            get { return Picker.SelectedValue; }
+            set
+            {
+                Picker.SelectedValue = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string DisplayMemberPath
         {
             get { return Picker.DisplayMemberPath; }

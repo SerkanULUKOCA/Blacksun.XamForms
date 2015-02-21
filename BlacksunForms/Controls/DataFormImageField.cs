@@ -27,6 +27,16 @@ namespace Blacksun.XamForms.Controls
             }
         }
 
+        public ImageSource DataMemberBinding
+        {
+            get { return ImageField.Source}
+            set
+            {
+                ImageField.Source = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath
         {

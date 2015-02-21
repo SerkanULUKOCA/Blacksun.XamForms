@@ -26,7 +26,7 @@ namespace Blacksun.XamForms.Controls
                     FormGroupLayout.Children.Remove(HeaderLabel);
                 }
                 HeaderLabel.Text = value;
-
+                OnPropertyChanged();
             }
         }
 
