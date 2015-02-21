@@ -112,7 +112,7 @@ namespace Blacksun.XamForms.Controls
             set
             {
                 _dataMemberBindingPath = value;
-                TextField.SetBinding(Entry.TextProperty, new Binding(value, BindingMode.TwoWay));
+                TextField.SetBinding(Editor.TextProperty, new Binding(value, BindingMode.TwoWay));
             }
         }
 
