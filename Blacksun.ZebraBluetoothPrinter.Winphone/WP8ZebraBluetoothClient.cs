@@ -6,8 +6,11 @@ using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
 using Blacksun.Bluetooth;
 using Blacksun.Bluetooth.Winphone;
+using Blacksun.ZebraBluetoothPrinter.Winphone;
 using Sample.Bluetooth;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(WP8ZebraBluetoothClient))]
 namespace Blacksun.ZebraBluetoothPrinter.Winphone
 {
     public class WP8ZebraBluetoothClient : IZebraBluetoothClient
@@ -44,16 +47,9 @@ namespace Blacksun.ZebraBluetoothPrinter.Winphone
                     device.UniqueIdentifiers.Add(guid);
                 }
 
-                
-                // Select a paired device. In this example, just pick the first one.
-                PeerInformation selectedDevice = pairedDevices[0];
-                // Attempt a connection
-                StreamSocket socket = new StreamSocket();
-                // Make sure ID_CAP_NETWORKING is enabled in your WMAppManifest.xml, or the next 
-                // line will throw an Access Denied exception.
-                // In this example, the second parameter of the call to ConnectAsync() is the RFCOMM port number, and can range 
-                // in value from 1 to 30.
-                await socket.ConnectAsync(selectedDevice.HostName, "1");
+                _device = device;
+
+                return device;
             }
 
             return null;

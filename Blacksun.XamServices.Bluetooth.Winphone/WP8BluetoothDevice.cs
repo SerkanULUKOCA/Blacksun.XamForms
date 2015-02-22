@@ -71,10 +71,18 @@ namespace Blacksun.Bluetooth.Winphone
 
         public async Task Connect()
         {
-
-            await Socket.ConnectAsync(BluetoothDevice.HostName, "1");
-            dataReader = new DataReader(Socket.InputStream);
-            dataWriter = new DataWriter(Socket.OutputStream);
+            try
+            {
+                await Socket.ConnectAsync(BluetoothDevice.HostName, "1");
+                dataReader = new DataReader(Socket.InputStream);
+                dataWriter = new DataWriter(Socket.OutputStream);
+                IsConnected = true;
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            
         }
 
         public void Disconnect()

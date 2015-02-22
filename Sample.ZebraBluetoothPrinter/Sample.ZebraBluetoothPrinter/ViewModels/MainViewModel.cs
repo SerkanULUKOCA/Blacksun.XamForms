@@ -63,15 +63,27 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
                     try
                     {
 
-                        var checkBluetoothResult = await _bluetoothClient.IsBluetoothOn();
-
-                        if (!checkBluetoothResult)
+                        using (_dialogService.Loading("Checking Bluetooth availability"))
                         {
-                            await _dialogService.AlertAsync("Bluetooth is off, please turn it on", "Error");
-                            return;
+                            var checkBluetoothResult = await _bluetoothClient.IsBluetoothOn();
+
+                            if (!checkBluetoothResult)
+                            {
+                                await _dialogService.AlertAsync("Bluetooth is off, please turn it on", "Error");
+                                return;
+                            }
                         }
 
-                        var printer = await _zebraBluetoothClient.FindPrinter();
+                        
+
+                        IBluetoothDevice printer = null;
+
+                        using (_dialogService.Loading("Looking for printer"))
+                        {
+                            printer = await _zebraBluetoothClient.FindPrinter();
+                        }
+
+                        
 
                         if (printer == null)
                         {
@@ -90,13 +102,16 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
                                 ToPrint = result;
                             }
 
-                            
+                            using (_dialogService.Loading("Connecting"))
+                            {
+                                await printer.Connect();
+                            }
 
-                            printer.Connect();
+                            
 
                             if (printer.IsConnected)
                             {
-                                using (var dialog = _dialogService.Loading("Prinitng"))
+                                using (_dialogService.Loading("Printing"))
                                 {
                                     await Task.Delay(2000);
                                     await _zebraBluetoothClient.Print(ToPrint);
