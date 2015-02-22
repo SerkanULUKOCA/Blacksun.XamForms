@@ -39,6 +39,8 @@ namespace Blacksun.XamServices.Bluetooth.Android
                 if (uuidString == "00001101-0000-1000-8000-00805f9b34fb")
                 {
                     MY_UUID = uuids[j].Uuid;
+                    var stringUUID = MY_UUID.ToString();
+                    UniqueIdentifier = Guid.Parse(stringUUID);
                 }
                 
             }
@@ -75,12 +77,17 @@ namespace Blacksun.XamServices.Bluetooth.Android
                 }
             }
 
-
+            
 
         }
 
 
         public void Write(string message)
+        {
+            Write(Encoding.UTF8.GetBytes(message));
+        }
+
+        public void Write(byte[] bytes)
         {
             try
             {
@@ -88,18 +95,29 @@ namespace Blacksun.XamServices.Bluetooth.Android
             }
             catch (IOException ex)
             {
-                
+
             }
 
-            var msgBuffer = Encoding.UTF8.GetBytes(message);
+            var msgBuffer = bytes;
             try
             {
-                outStream.Write(msgBuffer,0,msgBuffer.Length);
+                outStream.Write(msgBuffer, 0, msgBuffer.Length);
             }
             catch (IOException ex)
             {
-                
+
             }
         }
+
+        private Guid _uniqueIdentifier;
+        public Guid UniqueIdentifier
+        {
+            get { return _uniqueIdentifier; }
+            set { _uniqueIdentifier = value; }
+        }
+
     }
+
+
+
 }

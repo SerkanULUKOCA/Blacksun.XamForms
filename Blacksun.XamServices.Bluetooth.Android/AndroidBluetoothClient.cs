@@ -75,5 +75,7 @@ namespace Blacksun.XamServices.Bluetooth.Android
 
             return devices;
         }
+
+        
     }
 }

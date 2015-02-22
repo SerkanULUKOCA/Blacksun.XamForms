@@ -28,12 +28,19 @@ namespace Blacksun.XamServices.Bluetooth.Winphone
 
         }
 
-        public Task<List<BluetoothDevice>> GetPairedDevices()
+        public Task<List<IBluetoothDevice>> GetPairedDevices()
         {
-            var tcs = new TaskCompletionSource<List<BluetoothDevice>>();
+            var tcs = new TaskCompletionSource<List<IBluetoothDevice>>();
 
 
             return tcs.Task;
+        }
+
+        private string _uuid;
+        public string UUID
+        {
+            get { return _uuid; }
+            set { _uuid = value; }
         }
     }
 }

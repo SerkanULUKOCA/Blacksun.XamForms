@@ -27,6 +27,19 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
             
         }
 
+        private string _lorem = "Lorem ipsum dolor sit amet,";
+        public string Lorem
+        {
+            get { return _lorem; }
+            set
+            {
+                _lorem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
+
         private string _property = "Lorem Ipsum Dolorem";
         public string Property
         {

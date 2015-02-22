@@ -8,6 +8,9 @@ namespace Blacksun.XamServices.Bluetooth
 {
     public interface IBluetoothDevice
     {
+
+        Guid UniqueIdentifier { get; set; }
+
         string Name { get; set; }
 
         string Address { get; set; }
@@ -17,6 +20,9 @@ namespace Blacksun.XamServices.Bluetooth
         void Connect();
 
         void Write(string message);
+
+
+        void Write(byte[] bytes);
 
     }
 }
