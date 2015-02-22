@@ -13,9 +13,6 @@ namespace Sample.Bluetooth.Droid
         {
             base.OnCreate(bundle);
 
-            Xamarin.Forms.Forms.Init(this, bundle);
-
-            //Set Dialog Service
             Acr.UserDialogs.UserDialogs.Init(this);
 
             Xamarin.Forms.Forms.Init(this, bundle);

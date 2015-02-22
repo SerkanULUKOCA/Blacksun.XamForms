@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 using IOException = Java.IO.IOException;
+using System.Threading.Tasks;
 
 namespace Blacksun.XamServices.Bluetooth.Android
 {
@@ -21,29 +22,52 @@ namespace Blacksun.XamServices.Bluetooth.Android
 
         private static UUID MY_UUID = UUID.FromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
         private BluetoothSocket btSocket = null;
+        private Guid CurrentUniqueIdentifier { get; set; }
+
+        private readonly List<Guid> _uniqueIdentifiers = new List<Guid>(); 
+        public List<Guid> UniqueIdentifiers
+        {
+            get { return _uniqueIdentifiers; }
+        }
 
         public string Name { get; set; }
         public string Address { get; set; }
+
+        private bool _isConnected;
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+            set { _isConnected = value; }
+        }
+
         public BluetoothDeviceType Type { get; set; }
         public BluetoothDevice BluetoothDevice { get; set; }
         private Stream outStream = null;
+        private Stream inStream = null;
+        public void SetUniqueIdentifier(Guid uniqueIdentifier)
+        {
+            CurrentUniqueIdentifier = uniqueIdentifier;
+        }
+
         public void Connect()
         {
             var bluetoothAdapter = BluetoothAdapter.DefaultAdapter;
 
-            ParcelUuid[] uuids = BluetoothDevice.GetUuids();
-            for (int j = 0; j < uuids.Length; j++)
+            if (CurrentUniqueIdentifier == Guid.Empty)
             {
+                var uuids = BluetoothDevice.GetUuids().ToList().FirstOrDefault();
 
-                var uuidString = uuids[j].Uuid.ToString();
-                if (uuidString == "00001101-0000-1000-8000-00805f9b34fb")
+                if (uuids != null)
                 {
-                    MY_UUID = uuids[j].Uuid;
                     var stringUUID = MY_UUID.ToString();
-                    UniqueIdentifier = Guid.Parse(stringUUID);
+                    CurrentUniqueIdentifier = Guid.Parse(stringUUID);
                 }
+
                 
+
             }
+
+            MY_UUID = UUID.FromString(CurrentUniqueIdentifier.ToString());
 
             try
             {
@@ -63,10 +87,13 @@ namespace Blacksun.XamServices.Bluetooth.Android
             {
                 var device = btSocket.RemoteDevice;
                 btSocket.Connect();
+                IsConnected = true;
+                inStream = btSocket.InputStream;
                 outStream = btSocket.OutputStream;
             }
             catch (Exception e)
             {
+                IsConnected = false;
                 try
                 {
                     btSocket.Close();
@@ -81,13 +108,45 @@ namespace Blacksun.XamServices.Bluetooth.Android
 
         }
 
-
-        public void Write(string message)
+        public void Disconnect()
         {
-            Write(Encoding.UTF8.GetBytes(message));
+            try
+            {
+                if (inStream != null)
+                {
+                    try { inStream.Close(); }
+                    catch (Exception e) { }
+                    inStream = null;
+                }
+
+                if (outStream != null)
+                {
+                    try { outStream.Close(); }
+                    catch (Exception e) { }
+                    outStream = null;
+                }
+
+                if (btSocket != null)
+                {
+                    try { btSocket.Close(); }
+                    catch (Exception e) { }
+                    btSocket = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
-        public void Write(byte[] bytes)
+
+        public async Task Write(string message)
+        {
+            await Write(Encoding.UTF8.GetBytes(message));
+        }
+
+        public async Task Write(byte[] bytes)
         {
             try
             {
@@ -109,13 +168,33 @@ namespace Blacksun.XamServices.Bluetooth.Android
             }
         }
 
-        private Guid _uniqueIdentifier;
-        public Guid UniqueIdentifier
+
+        public bool ContainsUniqueIdentifier(string uniqueIdentifier)
         {
-            get { return _uniqueIdentifier; }
-            set { _uniqueIdentifier = value; }
+            return ContainsUniqueIdentifier(Guid.Parse(uniqueIdentifier));
         }
 
+        public void SetUniqueIdentifier(string uniqueIdentifier)
+        {
+            SetUniqueIdentifier(Guid.Parse(uniqueIdentifier));
+        }
+
+        public bool ContainsUniqueIdentifier(Guid uniqueIdentifier)
+        {
+            var uuids = BluetoothDevice.GetUuids().ToList();
+
+            foreach (var uuid in uuids)
+            {
+                var stringUUID = uuid.ToString();
+                if (stringUUID == uniqueIdentifier.ToString())
+                {
+                    return true;
+                }
+            }
+
+
+            return false;
+        }
     }
 
 

@@ -9,20 +9,31 @@ namespace Blacksun.XamServices.Bluetooth
     public interface IBluetoothDevice
     {
 
-        Guid UniqueIdentifier { get; set; }
+        List<Guid> UniqueIdentifiers { get; }
 
         string Name { get; set; }
 
         string Address { get; set; }
 
+        bool IsConnected { get; set; }
+
         BluetoothDeviceType Type { get; set; }
+
+        bool ContainsUniqueIdentifier(string uniqueIdentifier);
+
+        void SetUniqueIdentifier(string uniqueIdentifier);
+
+        bool ContainsUniqueIdentifier(Guid uniqueIdentifier);
+
+        void SetUniqueIdentifier(Guid uniqueIdentifier);
 
         void Connect();
 
-        void Write(string message);
+        void Disconnect();
 
+        Task Write(string message);
 
-        void Write(byte[] bytes);
+        Task Write(byte[] bytes);
 
     }
 }

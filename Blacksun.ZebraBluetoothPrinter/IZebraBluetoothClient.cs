@@ -12,9 +12,9 @@ namespace Blacksun.ZebraBluetoothPrinter
 
         Task<IBluetoothDevice> FindPrinter();
 
-        void Print(string str);
+        Task Print(string str);
 
-        void Print(byte[] bytes);
+        Task Print(byte[] bytes);
 
     }
 }

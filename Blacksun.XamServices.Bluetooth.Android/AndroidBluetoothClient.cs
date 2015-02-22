@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.Bluetooth;
 using Android.Content.Res;
+using Android.OS;
 using Android.Views;
 using Blacksun.XamServices.Bluetooth.Android;
 using Java.Util;
@@ -50,21 +52,44 @@ namespace Blacksun.XamServices.Bluetooth.Android
 
  				    var device = new AndroidBluetoothDevice() {Name = paireddevice.Name, Address = paireddevice.Address};
  				    device.BluetoothDevice = paireddevice;
-                    
- 				    switch (paireddevice.Type)
+ 				    try
  				    {
-                        case global::Android.Bluetooth.BluetoothDeviceType.Classic:
- 				            device.Type = BluetoothDeviceType.Classic;
-                            break;
-                        case global::Android.Bluetooth.BluetoothDeviceType.Dual:
-                            device.Type = BluetoothDeviceType.Dual;
-                            break;
-                        case global::Android.Bluetooth.BluetoothDeviceType.Le:
-                            device.Type = BluetoothDeviceType.Le;
-                            break;
-                        case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
-                            device.Type = BluetoothDeviceType.Unknown;
-                            break;
+                        switch (paireddevice.Type)
+                        {
+                            case global::Android.Bluetooth.BluetoothDeviceType.Classic:
+                                device.Type = BluetoothDeviceType.Classic;
+                                break;
+                            case global::Android.Bluetooth.BluetoothDeviceType.Dual:
+                                device.Type = BluetoothDeviceType.Dual;
+                                break;
+                            case global::Android.Bluetooth.BluetoothDeviceType.Le:
+                                device.Type = BluetoothDeviceType.Le;
+                                break;
+                            case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
+                                device.Type = BluetoothDeviceType.Unknown;
+                                break;
+                        }
+ 				    }
+ 				    catch (Exception ex)
+ 				    {
+ 				        
+ 				    }
+
+ 				    try
+ 				    {
+                        var uuids = paireddevice.GetUuids().ToList();
+
+ 				        foreach (var uuid in uuids)
+ 				        {
+
+                            var stringUUID = uuid.ToString();
+ 				            device.UniqueIdentifiers.Add(Guid.Parse(stringUUID));
+ 				        }
+
+ 				    }
+ 				    catch (Exception wz)
+ 				    {
+ 				        
  				    }
 
                     devices.Add(device);

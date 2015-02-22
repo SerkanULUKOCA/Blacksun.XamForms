@@ -10,6 +10,8 @@ namespace Blacksun.ZebraBluetoothPrinter.Android
     public class AndroidZebraBluetoothClient : IZebraBluetoothClient
     {
 
+        private string GeneralSerialIdentifier = "00001101-0000-1000-8000-00805f9b34fb";
+
         private IBluetoothDevice _device;
 
         public async Task<IBluetoothDevice> FindPrinter()
@@ -19,26 +21,29 @@ namespace Blacksun.ZebraBluetoothPrinter.Android
 
             foreach (var device in devices)
             {
-                if (device.UniqueIdentifier.ToString() == "00001101-0000-1000-8000-00805f9b34fb")
+                if (device.ContainsUniqueIdentifier(GeneralSerialIdentifier))
                 {
+                    device.SetUniqueIdentifier(GeneralSerialIdentifier);
                     _device = device;
-                    _device.Connect();
                     return device;
                 }
+
             }
 
             return null;
 
         }
 
-        public void Print(string str)
+        public async Task Print(string str)
         {
-            _device.Write(str);
+            await _device.Write(str);
+            _device.Disconnect();
         }
 
-        public void Print(byte[] bytes)
+        public async Task Print(byte[] bytes)
         {
-            _device.Write(bytes);
+            await _device.Write(bytes);
+            _device.Disconnect();
         }
     }
 }
