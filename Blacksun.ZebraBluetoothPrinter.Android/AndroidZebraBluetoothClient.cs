@@ -1,10 +1,10 @@
-using System;
 using System.Threading.Tasks;
-using Blacksun.XamServices.Bluetooth;
-using Blacksun.XamServices.Bluetooth.Android;
+using Blacksun.Bluetooth;
+using Blacksun.Bluetooth.Android;
 using Blacksun.ZebraBluetoothPrinter.Android;
+using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(AndroidZebraBluetoothClient))]
+[assembly: Dependency(typeof(AndroidZebraBluetoothClient))]
 namespace Blacksun.ZebraBluetoothPrinter.Android
 {
     public class AndroidZebraBluetoothClient : IZebraBluetoothClient

@@ -1,0 +1,42 @@
+﻿
+
+
+
+
+     I am a header I have the power
+        To destory all that is
+           replacemente of 
+              printingP
+
+  Contribuyente Especial Resolucion: 00162
+  Address: Arkham Asylum
+
+
+
+ Order No.: 081-001-0000002591
+ Emision Date: 02/22/2015
+ Customer: Blacksun
+ TaxID: 1992844594544
+ Phne: 8289623
+ Address: Somewhere over the rainbow
+
+ =============================================
+  Quant  Description         Price    Cost   
+ =============================================
+      1  Unicorn meat        $2.45     $2.45  
+      1  Pokemon X          $50.00    $50.00
+ ============================================= 
+                   Subtotal:          $52.45 
+                                   ===========
+                   Base Tax:          $52.45
+                   Tax:                $6.29
+                                   ===========
+
+                   TOTAL               $2.74
+
+                   CASH               $58.74
+
+
+ ============================================
+
+

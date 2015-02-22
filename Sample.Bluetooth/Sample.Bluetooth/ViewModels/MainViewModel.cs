@@ -2,10 +2,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Acr.XamForms.ViewModels;
 using Acr.XamForms.UserDialogs;
-using Blacksun.XamServices.Bluetooth;
+using Blacksun.Bluetooth;
+using Blacksun.Mvvm;
 using Xamarin.Forms;
+using Command = Xamarin.Forms.Command;
 
 namespace Sample.Bluetooth.ViewModels
 {

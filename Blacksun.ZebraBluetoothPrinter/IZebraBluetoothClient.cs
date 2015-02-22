@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Blacksun.XamServices.Bluetooth;
+using Blacksun.Bluetooth;
 
 namespace Blacksun.ZebraBluetoothPrinter
 {

@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Acr.XamForms.UserDialogs.WindowsPhone;
-using Blacksun.XamServices.Bluetooth.Winphone;
+using Blacksun.Bluetooth.Winphone;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -15,16 +15,16 @@ using Xamarin.Forms;
 
 namespace Sample.Bluetooth.WinPhone
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage 
     {
         public MainPage()
         {
             InitializeComponent();
 
             Forms.Init();
-            new WindowsPhone8BluetoothClient();
+            new WP8BluetoothClient();
             new UserDialogService();
-            Content = Sample.Bluetooth.App.GetMainPage().ConvertPageToUIElement(this);
+            LoadApplication(new Bluetooth.App());
         }
     }
 }

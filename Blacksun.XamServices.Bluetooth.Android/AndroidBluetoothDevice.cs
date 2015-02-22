@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
-using Android.App;
+using System.Threading.Tasks;
 using Android.Bluetooth;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Java.Util;
 using IOException = Java.IO.IOException;
-using System.Threading.Tasks;
 
-namespace Blacksun.XamServices.Bluetooth.Android
+namespace Blacksun.Bluetooth.Android
 {
     public class AndroidBluetoothDevice : IBluetoothDevice
     {
 
         private static UUID MY_UUID = UUID.FromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
-        private BluetoothSocket btSocket = null;
+        private BluetoothSocket Socket = null;
         private Guid CurrentUniqueIdentifier { get; set; }
 
         private readonly List<Guid> _uniqueIdentifiers = new List<Guid>(); 
@@ -49,7 +42,7 @@ namespace Blacksun.XamServices.Bluetooth.Android
             CurrentUniqueIdentifier = uniqueIdentifier;
         }
 
-        public void Connect()
+        public async Task Connect()
         {
             var bluetoothAdapter = BluetoothAdapter.DefaultAdapter;
 
@@ -71,7 +64,7 @@ namespace Blacksun.XamServices.Bluetooth.Android
 
             try
             {
-                btSocket = BluetoothDevice.CreateRfcommSocketToServiceRecord(MY_UUID);
+                Socket = BluetoothDevice.CreateRfcommSocketToServiceRecord(MY_UUID);
             }
             catch (Exception ex)
             {
@@ -85,26 +78,24 @@ namespace Blacksun.XamServices.Bluetooth.Android
             // don't care if it blocks.
             try
             {
-                var device = btSocket.RemoteDevice;
-                btSocket.Connect();
+                var device = Socket.RemoteDevice;
+                Socket.Connect();
                 IsConnected = true;
-                inStream = btSocket.InputStream;
-                outStream = btSocket.OutputStream;
+                inStream = Socket.InputStream;
+                outStream = Socket.OutputStream;
             }
             catch (Exception e)
             {
                 IsConnected = false;
                 try
                 {
-                    btSocket.Close();
+                    Socket.Close();
                 }
                 catch (Exception e2)
                 {
                     
                 }
             }
-
-            
 
         }
 
@@ -126,11 +117,11 @@ namespace Blacksun.XamServices.Bluetooth.Android
                     outStream = null;
                 }
 
-                if (btSocket != null)
+                if (Socket != null)
                 {
-                    try { btSocket.Close(); }
+                    try { Socket.Close(); }
                     catch (Exception e) { }
-                    btSocket = null;
+                    Socket = null;
                 }
 
             }
@@ -150,7 +141,7 @@ namespace Blacksun.XamServices.Bluetooth.Android
         {
             try
             {
-                outStream = btSocket.OutputStream;
+                outStream = Socket.OutputStream;
             }
             catch (IOException ex)
             {

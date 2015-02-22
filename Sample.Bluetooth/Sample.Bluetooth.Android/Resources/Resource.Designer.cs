@@ -141,8 +141,8 @@ namespace Sample.Bluetooth.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::Sample.Bluetooth.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Sample.Bluetooth.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Sample.Bluetooth.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::Blacksun.XamServices.Bluetooth.Android.Resource.String.ApplicationName = global::Sample.Bluetooth.Droid.Resource.String.ApplicationName;
-			global::Blacksun.XamServices.Bluetooth.Android.Resource.String.Hello = global::Sample.Bluetooth.Droid.Resource.String.Hello;
+			global::Blacksun.Bluetooth.Android.Resource.String.ApplicationName = global::Sample.Bluetooth.Droid.Resource.String.ApplicationName;
+			global::Blacksun.Bluetooth.Android.Resource.String.Hello = global::Sample.Bluetooth.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

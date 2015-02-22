@@ -71,8 +71,9 @@
     <MonoDroidExtraArgs />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Acr.UserDialogs">
-      <HintPath>..\..\packages\Acr.UserDialogs.3.0.1\lib\MonoAndroid10\Acr.UserDialogs.dll</HintPath>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Acr.UserDialogs.3.0.3\lib\MonoAndroid10\Acr.UserDialogs.dll</HintPath>
     </Reference>
     <Reference Include="Acr.XamForms.UserDialogs">
       <HintPath>..\..\packages\Acr.XamForms.UserDialogs.3.0.3\lib\MonoAndroid10\Acr.XamForms.UserDialogs.dll</HintPath>
@@ -80,8 +81,9 @@
     <Reference Include="Acr.XamForms.UserDialogs.Droid">
       <HintPath>..\..\packages\Acr.XamForms.UserDialogs.3.0.3\lib\MonoAndroid10\Acr.XamForms.UserDialogs.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="AndHUD">
-      <HintPath>..\..\packages\Acr.XamForms.UserDialogs.3.0.3\lib\MonoAndroid10\AndHUD.dll</HintPath>
+    <Reference Include="AndHUD, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Acr.UserDialogs.3.0.3\lib\MonoAndroid10\AndHUD.dll</HintPath>
     </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\..\packages\Xamarin.Forms.1.3.4.6332\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
@@ -112,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -123,13 +126,13 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Blacksun.XamServices.Bluetooth.Android\Blacksun.XamServices.Bluetooth.Android.csproj">
+    <ProjectReference Include="..\..\Blacksun.XamServices.Bluetooth.Android\Blacksun..Bluetooth.Android.csproj">
       <Project>{78c8ef0f-e3c0-462e-8545-87429c0b4019}</Project>
-      <Name>Blacksun.XamServices.Bluetooth.Android</Name>
+      <Name>Blacksun..Bluetooth.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Blacksun.XamServices.Bluetooth\Blacksun.XamServices.Bluetooth.csproj">
+    <ProjectReference Include="..\..\Blacksun.XamServices.Bluetooth\Blacksun.Bluetooth.csproj">
       <Project>{d25e4c43-1bb4-4b15-9997-e7f29e59bd41}</Project>
-      <Name>Blacksun.XamServices.Bluetooth</Name>
+      <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sample.Bluetooth\Sample.Bluetooth.csproj">
       <Name>Sample.Bluetooth</Name>

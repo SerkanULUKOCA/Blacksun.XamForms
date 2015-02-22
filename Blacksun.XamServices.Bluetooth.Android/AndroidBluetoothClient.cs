@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Bluetooth;
-using Android.Content.Res;
-using Android.OS;
-using Android.Views;
-using Blacksun.XamServices.Bluetooth.Android;
-using Java.Util;
+using Blacksun.Bluetooth.Android;
+using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(AndroidBluetoothClient))]
-namespace Blacksun.XamServices.Bluetooth.Android
+[assembly: Dependency(typeof(AndroidBluetoothClient))]
+namespace Blacksun.Bluetooth.Android
 {
     public class AndroidBluetoothClient : IBluetoothClient
     {
