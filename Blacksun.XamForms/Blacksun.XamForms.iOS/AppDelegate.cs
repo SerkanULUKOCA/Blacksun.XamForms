@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Acr.XamForms.UserDialogs.iOS;
-using Blacksun.XamForms.Sample.Core;
+﻿using Blacksun.XamForms.Sample.Core;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace Blacksun.XamForms.iOS
 {
@@ -14,7 +10,7 @@ namespace Blacksun.XamForms.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
+    public partial class AppDelegate : FormsApplicationDelegate 
     {
         // class-level declarations
         UIWindow window;
@@ -29,14 +25,10 @@ namespace Blacksun.XamForms.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
-            new UserDialogService();
-            window = new UIWindow(UIScreen.MainScreen.Bounds);
+            Acr.UserDialogs.UserDialogs.Init();
+            LoadApplication(new Blacksun.XamForms.Sample.Core.App());  // method is new in 1.3
 
-            window.RootViewController = App.GetMainPage().CreateViewController();
-
-            window.MakeKeyAndVisible();
-
-            return true;
+            return base.FinishedLaunching(app, options);
         }
     }
 }

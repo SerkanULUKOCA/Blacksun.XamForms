@@ -1,12 +1,9 @@
-﻿using System;
-using Acr.XamForms.UserDialogs.Droid;
+﻿using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Blacksun.XamForms.Sample.Core;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace Blacksun.XamForms.Droid
@@ -17,10 +14,9 @@ namespace Blacksun.XamForms.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            Xamarin.Forms.Forms.Init(this, bundle);
-            new UserDialogService();
-            SetPage(App.GetMainPage());
+            Forms.Init(this,bundle);
+            UserDialogs.Init(this);
+            LoadApplication(new App());
         }
     }
 }
