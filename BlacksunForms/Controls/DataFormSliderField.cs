@@ -6,6 +6,27 @@ namespace Blacksun.XamForms.Controls
     public class DataFormSliderField : ContentView
     {
 
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormSliderField, double>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: 0,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormSliderField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+
+        public double DataMemberBinding
+        {
+            get { return (double)GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                SliderField.Value = value;
+            }
+        }
+
         private Slider SliderField = new Slider() {HorizontalOptions = LayoutOptions.FillAndExpand};
 
         public Label LabelField = new Label()
@@ -27,7 +48,7 @@ namespace Blacksun.XamForms.Controls
 
             }
         }
-
+        /*
         public double DataMemberBinding
         {
             get { return SliderField.Value; }
@@ -36,7 +57,7 @@ namespace Blacksun.XamForms.Controls
                 SliderField.Value = value;
                 OnPropertyChanged();
             }
-        }
+        }*/
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Blacksun.XamForms.CustomControls;
 using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
@@ -7,6 +8,68 @@ namespace Blacksun.XamForms.Controls
 {
     public class DataFormPickerField : ContentView
     {
+
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormPickerField, object>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: null,
+        defaultBindingMode: BindingMode.Default,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormPickerField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+        public static BindableProperty ItemsSourceProperty =
+        BindableProperty.Create<DataFormPickerField, IEnumerable<object>>(ctrl => ctrl.ItemsSource,
+        defaultValue: null,
+        defaultBindingMode: BindingMode.Default,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormPickerField)bindable;
+            ctrl.ItemsSource = newValue;
+        });
+
+        public static BindableProperty SelectedItemProperty =
+        BindableProperty.Create<DataFormPickerField, object>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: null,
+        defaultBindingMode: BindingMode.Default,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormPickerField)bindable;
+            ctrl.SelectedItem = newValue;
+        });
+
+
+        public object DataMemberBinding
+        {
+            get { return GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                Picker.SelectedValue = value;
+            }
+        }
+
+        public IEnumerable<object> ItemsSource
+        {
+            get { return (IEnumerable<object>)GetValue(ItemsSourceProperty); }
+            set
+            {
+                SetValue(ItemsSourceProperty, value);
+                Picker.ItemsSource = value;
+            }
+        }
+
+        public object SelectedItem
+        {
+            get { return GetValue(SelectedItemProperty); }
+            set
+            {
+                SetValue(SelectedItemProperty, value);
+                Picker.SelectedItem = value;
+            }
+        }
+
 
         public Label LabelField = new Label()
         {
@@ -41,6 +104,7 @@ namespace Blacksun.XamForms.Controls
             HorizontalOptions = LayoutOptions.FillAndExpand,
         };
 
+        /*
         public object DataMemberBinding
         {
             get { return Picker.SelectedValue; }
@@ -49,7 +113,7 @@ namespace Blacksun.XamForms.Controls
                 Picker.SelectedValue = value;
                 OnPropertyChanged();
             }
-        }
+        }*/
 
         public string DisplayMemberPath
         {
@@ -95,64 +159,5 @@ namespace Blacksun.XamForms.Controls
             Content = Container;
         }
 
-
-
-        /*
-        public DataFormPickerField(string labelText, string propertyBind, string displayMemberPath, string valueMemberPath, string itemsSourcePath, BindingMode bindingMode = BindingMode.TwoWay)
-        {
-            var binding = new Binding(propertyBind, bindingMode);
-            var itemsourceBinding = new Binding(itemsSourcePath, bindingMode);
-
-            Spacing = AppLayouts.LabelPropertySpacing;
-            Padding = 0;
-
-            if (labelText != null)
-            {
-                var label = GetLabel(labelText);
-                this.Children.Add(label);
-                Label = label;
-            }
-
-            var mainControl = new BindablePicker()
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                DisplayMemberPath = displayMemberPath,
-                SelectedValueMemberPath = valueMemberPath,
-            };
-
-            mainControl.SetBinding(BindablePicker.SelectedValueProperty, binding);
-            mainControl.SetBinding(BindablePicker.ItemsSourceProperty, itemsourceBinding);
-            mainControl.HorizontalOptions = LayoutOptions.FillAndExpand;
-
-            Content = mainControl;
-
-            this.Children.Add(mainControl);
-        }
-
-        public Label Label { get; set; }
-
-        public BindablePicker Content { get; set; }
-
-        public static Label GetLabel(string labelText)
-        {
-            var label = new Label
-            {
-                Text = labelText,
-                Font = AppFonts.FormLabelFont,
-                TextColor = AppColors.FormLabelColor,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-            return label;
-
-        }
-
-        public object SelectedItem
-        {
-            get { return Content.SelectedItem; }
-            set { Content.SelectedItem = value; }
-
-        }
-
-        */
     }
 }

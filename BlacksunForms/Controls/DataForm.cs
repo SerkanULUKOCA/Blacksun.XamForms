@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
-
+    [ContentProperty("Children")]
     public class DataForm : ScrollView
     {
 
@@ -41,31 +41,6 @@ namespace Blacksun.XamForms.Controls
             VerticalOptions = LayoutOptions.FillAndExpand;
             HorizontalOptions = LayoutOptions.FillAndExpand;
 
-            /*
-            FormLayout.Spacing = AppLayouts.FormGroupsSpacing;
-
-            Padding = 30;
-
-            if (config == null)
-            {
-                config = new FormConfig();
-            }
-            
-            var result = new StackLayout
-            {
-                Spacing = AppLayouts.FormGroupsSpacing,
-                VerticalOptions = config.VerticalOptions,
-                HorizontalOptions = config.HorizontalOptions,
-                Padding = config.Padding
-            };
-
-            foreach (var group in groups)
-            {
-                result.Children.Add(group);
-                Groups.Add(group);
-            }
-             * 
-             * */
 
             FormLayout.Children.Add(ContentLayout);
 
@@ -81,4 +56,5 @@ namespace Blacksun.XamForms.Controls
         }
 
     }
+    
 }

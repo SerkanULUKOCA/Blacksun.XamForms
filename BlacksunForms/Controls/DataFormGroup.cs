@@ -4,6 +4,8 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
+
+    [ContentProperty("Children")]
     public class DataFormGroup : ContentView 
     {
 
@@ -39,37 +41,8 @@ namespace Blacksun.XamForms.Controls
         {
             VerticalOptions = LayoutOptions.FillAndExpand;
             HorizontalOptions = LayoutOptions.FillAndExpand;
-            
-            
-            /*
-            var groupContent = new StackLayout();
-            groupContent.Spacing = AppLayouts.FormPropertiesSpacing;
-            */
-            //Spacing = AppLayouts.FormGroupLabelSpacing;
-            /*
-            HeaderLabel = new Label
-            {
-                Text = Header,
-                Font = AppFonts.FormGroupFont,
-                TextColor = AppColors.FormGroupColor,
-                HorizontalOptions = LayoutOptions.StartAndExpand,
-            };*/
-            /*
-            if (Header != null)
-            {
-                
-                FormGroupLayout.Children.Add(HeaderLabel);
-            }*/
 
             FormGroupLayout.Children.Add(ContentLayout);
-
-            //Children.Add(ContentLayout);
-            /*
-            foreach (var field in fields)
-            {
-                groupContent.Children.Add(field);
-                Fields.Add(field);
-            }*/
 
             Content = FormGroupLayout;
 
@@ -89,4 +62,6 @@ namespace Blacksun.XamForms.Controls
         }
 
     }
+    
+
 }

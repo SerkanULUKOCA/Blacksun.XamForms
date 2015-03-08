@@ -26,24 +26,9 @@ namespace Blacksun.XamForms.CustomControls
 
             if (picker.ItemsSource == null)
                 return;
-            try
-            {
-                foreach (var item in picker.ItemsSource)
-                {
-                    var selectedValue = item.GetPropertyValueIfExists(picker.SelectedValueMemberPath,"");
 
-                    if (selectedValue.Equals(picker.SelectedValue))
-                    {
-                        picker.SelectedItem = item;
-                    }
+            picker.ProcessSelectedValue();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                
-            }
-           
 
         }
 
@@ -63,6 +48,87 @@ namespace Blacksun.XamForms.CustomControls
                 picker.Items.Add(displayValue);
             }
 
+            if (picker.SelectedValue != null)
+            {
+                picker.SetSelectedItem();
+            }
+
+
+        }
+
+        private void SetSelectedItem()
+        {
+            if(ItemsSource == null)
+                return;
+
+            if (SelectedItem == null)
+            {
+
+                try
+                {
+                    foreach (var item in ItemsSource)
+                    {
+                        var value = item.GetPropertyValue(SelectedValueMemberPath);
+
+                        if (value.Equals(SelectedValue))
+                        {
+                            SelectedItem = item;
+                            break;
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            else
+            {
+                ProcessSelectedItem();
+            }
+
+            
+
+            
+        }
+
+        private void ProcessSelectedValue()
+        {
+            try
+            {
+                foreach (var item in ItemsSource)
+                {
+                    var selectedValue = item.GetPropertyValueIfExists(SelectedValueMemberPath, "");
+
+                    if (selectedValue.Equals(SelectedValue))
+                    {
+                        SelectedItem = item;
+                        break;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void ProcessSelectedItem()
+        {
+            if (SelectedItem != null)
+            {
+                if (SelectedIndex != -1 && Items[SelectedIndex].Equals(SelectedItem.GetPropertyValue(DisplayMemberPath)))
+                {
+
+                }
+                else
+                {
+                    SelectedIndex = Items.IndexOf(SelectedItem.GetPropertyValue(DisplayMemberPath).ToString());
+                }
+            }
         }
 
 
@@ -75,17 +141,7 @@ namespace Blacksun.XamForms.CustomControls
             }
 
             var picker = bindable as BindablePicker;
-            if (newvalue != null)
-            {
-                if (picker.SelectedIndex != -1 && picker.Items[picker.SelectedIndex].Equals(newvalue.GetPropertyValue(picker.DisplayMemberPath)))
-                {
-                    
-                }
-                else
-                {
-                    picker.SelectedIndex = picker.Items.IndexOf(newvalue.GetPropertyValue(picker.DisplayMemberPath).ToString());
-                }
-            }
+            picker.ProcessSelectedItem();
         }
 
         void BlacksunFormsPicker_SelectedIndexChanged(object sender, EventArgs e)

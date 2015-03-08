@@ -3,6 +3,7 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
+    [ContentProperty("Content")]
     public class DataFormContentField : ContentView
     {
 

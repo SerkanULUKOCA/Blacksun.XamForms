@@ -6,6 +6,28 @@ namespace Blacksun.XamForms.Controls
     public class DataFormImageField : ContentView
     {
 
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormImageField, ImageSource>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormImageField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+
+        public ImageSource DataMemberBinding
+        {
+            get { return (string)GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                ImageField.Source = value;
+            }
+        }
+
+
         private Image ImageField = new Image() { HorizontalOptions = LayoutOptions.FillAndExpand };
         public Label LabelField = new Label()
         {
@@ -26,7 +48,7 @@ namespace Blacksun.XamForms.Controls
 
             }
         }
-
+        /*
         public ImageSource DataMemberBinding
         {
             get { return ImageField.Source; }
@@ -35,7 +57,7 @@ namespace Blacksun.XamForms.Controls
                 ImageField.Source = value;
                 OnPropertyChanged();
             }
-        }
+        }*/
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath

@@ -1,18 +1,18 @@
-﻿using Acr.XamForms.UserDialogs.WindowsPhone;
+﻿using Acr.UserDialogs;
 using Microsoft.Phone.Controls;
 using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Sample.WinPhone
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
         public MainPage()
         {
             InitializeComponent();
-
+            this.SupportedOrientations = SupportedPageOrientation.Portrait;
             Forms.Init();
-            new UserDialogService();
-            Content = Blacksun.XamForms.Sample.Core.App.GetMainPage().ConvertPageToUIElement(this);
+            UserDialogs.Init();
+            LoadApplication(new Core.App());
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Sample.Bluetooth
+namespace Blacksun.Bluetooth
 {
     public static class ReflectionHelper
     {

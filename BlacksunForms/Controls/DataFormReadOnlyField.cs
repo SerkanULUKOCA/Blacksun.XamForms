@@ -7,6 +7,26 @@ namespace Blacksun.XamForms.Controls
     public class DataFormReadOnlyField: ContentView
     {
 
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormReadOnlyField, string>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormReadOnlyField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+
+        public string DataMemberBinding
+        {
+            get { return (string)GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                TextField.Text = value;
+            }
+        }
 
         private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
 
@@ -41,7 +61,7 @@ namespace Blacksun.XamForms.Controls
                 }
             }
         }
-
+        /*
         public string DataMemberBinding
         {
             get { return TextField.Text; }
@@ -50,7 +70,7 @@ namespace Blacksun.XamForms.Controls
                 TextField.Text = value;
                 OnPropertyChanged();
             }
-        }
+        }*/
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath

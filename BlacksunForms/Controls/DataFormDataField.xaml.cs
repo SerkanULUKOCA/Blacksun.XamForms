@@ -1,23 +1,47 @@
-﻿using Blacksun.XamForms.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Blacksun.XamForms.Enums;
 using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
-    public class DataFormDataField : ContentView
+    public partial class DataFormDataField
     {
 
-
-        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
-
-        public Label LabelField = new Label(){
-                Font = AppFonts.FormLabelFont,
-                TextColor = AppColors.FormLabelColor,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-
-        public Entry TextField = new Entry()
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormDataField, string>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanging: (bindable, oldValue, newValue) =>
         {
+            var ctrl = (DataFormDataField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+
+        public string DataMemberBinding
+        {
+            get { return (string)GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                TextField.Text = value;
+            }
+        }
+
+        public DataFormDataField()
+        {
+            InitializeComponent();
+        }
+
+        public Label LabelField = new Label()
+        {
+            Font = AppFonts.FormLabelFont,
+            TextColor = AppColors.FormLabelColor,
             HorizontalOptions = LayoutOptions.FillAndExpand
         };
 
@@ -31,7 +55,7 @@ namespace Blacksun.XamForms.Controls
         public LabelType LabelType
         {
             get { return _labelType; }
-            set 
+            set
             {
                 _labelType = value;
 
@@ -86,21 +110,9 @@ namespace Blacksun.XamForms.Controls
                             break;
                     }
                 }
-                
+
             }
         }
-
-        public string DataMemberBinding
-        {
-            get { return TextField.Text; }
-            set
-            {
-                TextField.Text = value;
-                OnPropertyChanged();
-            }
-        }
-
-        
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath
@@ -113,13 +125,6 @@ namespace Blacksun.XamForms.Controls
             }
         }
 
-
-        public DataFormDataField()
-        {
-            Container.Children.Add(TextField);
-            Content = Container;
-
-        }
 
     }
 }

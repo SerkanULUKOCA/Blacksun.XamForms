@@ -9,8 +9,30 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
+    
     public class DataFormEditorField: ContentView
     {
+
+        public static BindableProperty DataMemberBindingProperty =
+        BindableProperty.Create<DataFormEditorField, string>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanging: (bindable, oldValue, newValue) =>
+        {
+            var ctrl = (DataFormEditorField)bindable;
+            ctrl.DataMemberBinding = newValue;
+        });
+
+
+        public string DataMemberBinding
+        {
+            get { return (string)GetValue(DataMemberBindingProperty); }
+            set
+            {
+                SetValue(DataMemberBindingProperty, value);
+                TextField.Text = value;
+            }
+        }
 
 
         private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
@@ -95,15 +117,6 @@ namespace Blacksun.XamForms.Controls
             }
         }
 
-        public string DataMemberBinding
-        {
-            get { return TextField.Text; }
-            set
-            {
-                TextField.Text = value;
-                OnPropertyChanged();
-            }
-        }
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath
@@ -125,4 +138,6 @@ namespace Blacksun.XamForms.Controls
         }
 
     }
+
+    
 }

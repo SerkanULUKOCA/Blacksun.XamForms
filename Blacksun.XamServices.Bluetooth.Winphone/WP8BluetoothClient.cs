@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
 using Blacksun.Bluetooth.Winphone;
-using Sample.Bluetooth;
 
 [assembly: Xamarin.Forms.Dependency(typeof(WP8BluetoothClient))]
 namespace Blacksun.Bluetooth.Winphone
@@ -69,7 +68,7 @@ namespace Blacksun.Bluetooth.Winphone
                    
                     device.BluetoothDevice = paireddevice;
 
-                    var id = paireddevice.GetPropertyValue<string>("Id");
+                    var id = device.GetPropertyValue<string>("Id");
 
                     if (!String.IsNullOrEmpty(id))
                     {
