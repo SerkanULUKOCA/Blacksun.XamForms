@@ -10,7 +10,7 @@ namespace Blacksun.XamForms.Controls
         public static BindableProperty DataMemberBindingProperty =
         BindableProperty.Create<DataFormPasswordField, string>(ctrl => ctrl.DataMemberBinding,
         defaultValue: string.Empty,
-        defaultBindingMode: BindingMode.TwoWay,
+        defaultBindingMode: BindingMode.Default,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
             var ctrl = (DataFormPasswordField)bindable;
@@ -135,6 +135,13 @@ namespace Blacksun.XamForms.Controls
 
         public DataFormPasswordField()
         {
+            TextField.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "Text")
+                {
+                    SetValue(DataMemberBindingProperty, TextField.Text);
+                }
+            };
             Container.Children.Add(LabelField);
             Container.Children.Add(TextField);
             Content = Container;

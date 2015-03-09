@@ -9,7 +9,7 @@ namespace Blacksun.XamForms.Controls
         public static BindableProperty DataMemberBindingProperty =
         BindableProperty.Create<DataFormSliderField, double>(ctrl => ctrl.DataMemberBinding,
         defaultValue: 0,
-        defaultBindingMode: BindingMode.TwoWay,
+        defaultBindingMode: BindingMode.Default,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
             var ctrl = (DataFormSliderField)bindable;
@@ -90,6 +90,13 @@ namespace Blacksun.XamForms.Controls
 
         public DataFormSliderField()
         {
+            SliderField.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "Value")
+                {
+                    SetValue(DataMemberBindingProperty,SliderField.Value);
+                }
+            };
             Container.Children.Add(LabelField);
             Container.Children.Add(SliderField);
             Content = Container;

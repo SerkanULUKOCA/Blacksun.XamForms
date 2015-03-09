@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blacksun.XamForms.CustomControls;
 using Blacksun.XamForms.Resources;
 using Xamarin.Forms;
 
@@ -45,8 +44,14 @@ namespace Blacksun.XamForms.Controls
             get { return GetValue(DataMemberBindingProperty); }
             set
             {
-                SetValue(DataMemberBindingProperty, value);
-                Picker.SelectedValue = value;
+                if (GetValue(DataMemberBindingProperty) != value)
+                {
+                    SetValue(DataMemberBindingProperty, value);
+                    SetValue(SelectedItemProperty, Picker.SelectedItem);
+                    Picker.SelectedValue = value;
+                    OnPropertyChanged();
+                }
+                
             }
         }
 
@@ -57,6 +62,7 @@ namespace Blacksun.XamForms.Controls
             {
                 SetValue(ItemsSourceProperty, value);
                 Picker.ItemsSource = value;
+                OnPropertyChanged();
             }
         }
 
@@ -65,8 +71,14 @@ namespace Blacksun.XamForms.Controls
             get { return GetValue(SelectedItemProperty); }
             set
             {
-                SetValue(SelectedItemProperty, value);
-                Picker.SelectedItem = value;
+                if (GetValue(SelectedItemProperty) != value)
+                {
+                    SetValue(SelectedItemProperty, value);
+                    Picker.SelectedItem = value;
+                    SetValue(DataMemberBindingProperty,Picker.SelectedValue);
+                    OnPropertyChanged();
+                }
+                
             }
         }
 
@@ -99,7 +111,7 @@ namespace Blacksun.XamForms.Controls
 
         private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
 
-        BindablePicker Picker = new BindablePicker()
+        DataPicker Picker = new DataPicker()
         {
             HorizontalOptions = LayoutOptions.FillAndExpand,
         };
@@ -135,7 +147,7 @@ namespace Blacksun.XamForms.Controls
             {
                 _dataMemberBindingPath = value;
                 var binding = new Binding(value,BindingMode.TwoWay);
-                Picker.SetBinding(BindablePicker.SelectedValueProperty, binding);
+                Picker.SetBinding(DataPicker.SelectedValueProperty, binding);
             }
         }
 
@@ -147,7 +159,7 @@ namespace Blacksun.XamForms.Controls
             {
                 _itemSourcePath = value;
                 var binding = new Binding(value, BindingMode.TwoWay);
-                Picker.SetBinding(BindablePicker.ItemsSourceProperty, binding);
+                Picker.SetBinding(DataPicker.ItemsSourceProperty, binding);
             }
         }
 
@@ -156,6 +168,19 @@ namespace Blacksun.XamForms.Controls
             Container.Children.Clear();
             Container.Children.Add(LabelField);
             Container.Children.Add(Picker);
+            Picker.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "SelectedValue")
+                {
+                    SetValue(DataMemberBindingProperty,Picker.SelectedValue);
+                }
+
+                if (t.PropertyName == "SelectedItem")
+                {
+                    SetValue(SelectedItemProperty,Picker.SelectedItem);
+                }
+
+            };
             Content = Container;
         }
 

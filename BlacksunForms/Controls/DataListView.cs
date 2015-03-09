@@ -4,12 +4,12 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Blacksun.XamForms.CustomControls
+namespace Blacksun.XamForms.Controls
 {
-    public class BindableListView : ListView
+    public class DataListView : ListView
     {
-        public static BindableProperty ItemClickedCommandProperty = BindableProperty.Create<BindableListView, ICommand>(o => o.ItemClickedCommand, default(ICommand));
-        public static BindableProperty SelectedItemProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
+        public static BindableProperty ItemClickedCommandProperty = BindableProperty.Create<DataListView, ICommand>(o => o.ItemClickedCommand, default(ICommand));
+        public static BindableProperty SelectedItemProperty = BindableProperty.Create<DataPicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
 
         public ICommand ItemClickedCommand
         {
@@ -17,11 +17,11 @@ namespace Blacksun.XamForms.CustomControls
             set { SetValue(ItemClickedCommandProperty, value); }
         }
 
-        public static BindableProperty ScrollableItemsSourceProperty = BindableProperty.Create<BindableListView, IEnumerable>(o => o.ScrollableItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
+        public static BindableProperty ScrollableItemsSourceProperty = BindableProperty.Create<DataListView, IEnumerable>(o => o.ScrollableItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
 
         private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
         {
-            var listView = bindable as BindableListView;
+            var listView = bindable as DataListView;
             if (listView == null)
                 return;
 
@@ -42,7 +42,7 @@ namespace Blacksun.XamForms.CustomControls
 
         private static void OnSelectedItemChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
-            var picker = bindable as BindablePicker;
+            var picker = bindable as DataPicker;
             if (newvalue != null)
             {
                 picker.SelectedIndex = picker.Items.IndexOf(newvalue.ToString());
@@ -65,7 +65,7 @@ namespace Blacksun.XamForms.CustomControls
             }
         }
 
-        public BindableListView()
+        public DataListView()
         {
             ItemTapped += OnItemTapped;
         }

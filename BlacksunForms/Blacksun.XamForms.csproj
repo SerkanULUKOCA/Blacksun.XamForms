@@ -42,16 +42,18 @@
     <Compile Include="Controls\DataForm.cs" />
     <Compile Include="Controls\DataFormButton.cs" />
     <Compile Include="Controls\DataFormContentField.cs" />
+    <Compile Include="Controls\DataFormDateField.xaml.cs">
+      <DependentUpon>DataFormDateField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataFormEditorField.cs" />
     <Compile Include="Controls\DataFormGroup.cs" />
     <Compile Include="Controls\DataFormImageField.cs" />
     <Compile Include="Controls\DataFormPasswordField.cs" />
     <Compile Include="Controls\DataFormPickerField.cs" />
-    <Compile Include="Controls\DataFormReadOnlyField.cs" />
+    <Compile Include="Controls\DataFormLabelField.cs" />
     <Compile Include="Controls\DataFormSliderField.cs" />
-    <Compile Include="CustomControls\BindableListView.cs" />
-    <Compile Include="CustomControls\BindablePicker.cs" />
-    <Compile Include="CustomControls\ButtonConfig.cs" />
+    <Compile Include="Controls\DataListView.cs" />
+    <Compile Include="Controls\DataPicker.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Layouts\FormLayout.cs" />
     <Compile Include="Layouts\GroupLayout.cs" />
@@ -80,7 +82,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DataFormDateField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

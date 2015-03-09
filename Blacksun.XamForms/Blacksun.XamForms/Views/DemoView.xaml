@@ -9,23 +9,25 @@
   </ContentPage.BindingContext>
   <controls:DataForm >
     <controls:DataFormGroup Header="Group">
-      <controls:DataFormDataField Label="Editable" DataMemberBinding="{Binding Property}"/>
-      <controls:DataFormDataField Label="I am a watermarked Entry" LabelType="Watermark" DataMemberBinding="{Binding WatermarkProperty}"/>
-      <controls:DataFormReadOnlyField Label="Read Only" DataMemberBinding="{Binding Property}"/>
-      <controls:DataFormEditorField Label="Editor multiline" DataMemberBinding="{Binding Lorem}"/>
+      <controls:DataFormDataField Label="Editable" DataMemberBinding="{Binding Property,Mode=TwoWay}"/>
+      <controls:DataFormDataField Label="I am a watermarked Entry" LabelType="Watermark" DataMemberBinding="{Binding WatermarkProperty,Mode=TwoWay}"/>
+      <controls:DataFormLabelField Label="Read Only" DataMemberBinding="{Binding Property}"/>
+      <controls:DataFormEditorField Label="Editor multiline" DataMemberBinding="{Binding Lorem,Mode=TwoWay}"/>
       <controls:DataFormContentField Label="Busy indicator">
         <controls:DataFormButton Text="Show busy indicator" Command="{Binding LoadingCommand}"/>
       </controls:DataFormContentField>
       <controls:DataFormContentField Label="Progress Dialog">
         <controls:DataFormButton Text="Show Progress Dialog" Command="{Binding ProgressCommand}"/>
       </controls:DataFormContentField>
-      <controls:DataFormPickerField Label="Picker" DataMemberBinding="{Binding CustomerID}" 
-                                    DisplayMemberPath="Name" SelectedValueMemberPath = "ID" 
+      <controls:DataFormPickerField Label="Picker" DataMemberBinding="{Binding CustomerID,Mode = TwoWay}" 
+                                    DisplayMemberPath="Name" SelectedValueMemberPath ="ID" 
                                     SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
                                     ItemsSource= "{Binding Customers}"/>
-      <controls:DataFormReadOnlyField Label="Picker Selected Value" DataMemberBinding="{Binding CustomerID}"/>
-      <controls:DataFormSliderField Label="Slider" DataMemberBinding="{Binding SliderValue}" Minimum="0" Maximum="255"/>
+      <controls:DataFormLabelField Label="Picker Selected Value" DataMemberBinding="{Binding CustomerID}"/>
+      <controls:DataFormSliderField Label="Slider" DataMemberBinding="{Binding SliderValue,Mode=TwoWay}" Minimum="0" Maximum="255"/>
+      <controls:DataFormLabelField Label="Slider Value" DataMemberBinding="{Binding SliderValue}" />
       <controls:DataFormImageField Label="Image" DataMemberBinding="{Binding ImageSource}" />
+      <controls:DataFormDateField Label="Date picker" DataMemberBinding="{Binding CurrentDate,Mode=TwoWay}" />
     </controls:DataFormGroup>
   </controls:DataForm>
 </ContentPage>

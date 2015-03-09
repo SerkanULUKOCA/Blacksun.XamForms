@@ -2,19 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using BlacksunForms.Helpers;
+using Blacksun.XamForms.Helpers;
 using Xamarin.Forms;
 
-namespace Blacksun.XamForms.CustomControls
+namespace Blacksun.XamForms.Controls
 {
-    public class BindablePicker : Picker
+    public class DataPicker : Picker
     {
 
-        public static BindableProperty ItemsSourceProperty = BindableProperty.Create<BindablePicker, IEnumerable>(o => o.ItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
-        public static BindableProperty SelectedItemProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
-        public static BindableProperty SelectedValueProperty = BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnValueChanged);
+        public static BindableProperty ItemsSourceProperty = BindableProperty.Create<DataPicker, IEnumerable>(o => o.ItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
+        public static BindableProperty SelectedItemProperty = BindableProperty.Create<DataPicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
+        public static BindableProperty SelectedValueProperty = BindableProperty.Create<DataPicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnValueChanged);
 
-        public BindablePicker()
+        public DataPicker()
         {
             this.SelectedIndexChanged += BlacksunFormsPicker_SelectedIndexChanged;
         }
@@ -22,7 +22,7 @@ namespace Blacksun.XamForms.CustomControls
         private static void OnValueChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
 
-            var picker = bindable as BindablePicker;
+            var picker = bindable as DataPicker;
 
             if (picker.ItemsSource == null)
                 return;
@@ -34,7 +34,7 @@ namespace Blacksun.XamForms.CustomControls
 
         private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
         {
-            var picker = bindable as BindablePicker;
+            var picker = bindable as DataPicker;
 
             picker.Items.Clear();
 
@@ -140,7 +140,7 @@ namespace Blacksun.XamForms.CustomControls
                 return;
             }
 
-            var picker = bindable as BindablePicker;
+            var picker = bindable as DataPicker;
             picker.ProcessSelectedItem();
         }
 

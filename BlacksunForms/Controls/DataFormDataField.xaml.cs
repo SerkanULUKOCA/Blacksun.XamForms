@@ -13,9 +13,9 @@ namespace Blacksun.XamForms.Controls
     {
 
         public static BindableProperty DataMemberBindingProperty =
-        BindableProperty.Create<DataFormDataField, string>(ctrl => ctrl.DataMemberBinding,
+        BindableProperty.Create<DataFormDataField, object>(ctrl => ctrl.DataMemberBinding,
         defaultValue: string.Empty,
-        defaultBindingMode: BindingMode.TwoWay,
+        defaultBindingMode: BindingMode.OneWay,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
             var ctrl = (DataFormDataField)bindable;
@@ -23,19 +23,26 @@ namespace Blacksun.XamForms.Controls
         });
 
 
-        public string DataMemberBinding
+        public object DataMemberBinding
         {
-            get { return (string)GetValue(DataMemberBindingProperty); }
+            get { return (object)GetValue(DataMemberBindingProperty); }
             set
             {
-                SetValue(DataMemberBindingProperty, value);
-                TextField.Text = value;
+                SetValue(DataMemberBindingProperty, value.ToString());
+                TextField.Text = value.ToString();
             }
         }
 
         public DataFormDataField()
         {
             InitializeComponent();
+            TextField.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "Text")
+                {
+                    SetValue(DataMemberBindingProperty,TextField.Text);
+                }
+            };
         }
 
         public Label LabelField = new Label()

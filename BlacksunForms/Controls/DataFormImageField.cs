@@ -9,7 +9,7 @@ namespace Blacksun.XamForms.Controls
         public static BindableProperty DataMemberBindingProperty =
         BindableProperty.Create<DataFormImageField, ImageSource>(ctrl => ctrl.DataMemberBinding,
         defaultValue: string.Empty,
-        defaultBindingMode: BindingMode.TwoWay,
+        defaultBindingMode: BindingMode.Default,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
             var ctrl = (DataFormImageField)bindable;

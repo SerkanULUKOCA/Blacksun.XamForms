@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace BlacksunForms.Helpers
+namespace Blacksun.XamForms.Helpers
 {
     internal static class ReflectionHelper
     {

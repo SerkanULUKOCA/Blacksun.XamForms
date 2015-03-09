@@ -4,16 +4,16 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
-    public class DataFormReadOnlyField: ContentView
+    public class DataFormLabelField: ContentView
     {
 
         public static BindableProperty DataMemberBindingProperty =
-        BindableProperty.Create<DataFormReadOnlyField, string>(ctrl => ctrl.DataMemberBinding,
+        BindableProperty.Create<DataFormLabelField, string>(ctrl => ctrl.DataMemberBinding,
         defaultValue: string.Empty,
         defaultBindingMode: BindingMode.TwoWay,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
-            var ctrl = (DataFormReadOnlyField)bindable;
+            var ctrl = (DataFormLabelField)bindable;
             ctrl.DataMemberBinding = newValue;
         });
 
@@ -84,8 +84,15 @@ namespace Blacksun.XamForms.Controls
         }
 
 
-        public DataFormReadOnlyField()
+        public DataFormLabelField()
         {
+            TextField.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "Text")
+                {
+                    SetValue(DataMemberBindingProperty, TextField.Text);
+                }
+            };
             Container.Children.Add(TextField);
             Content = Container;
 

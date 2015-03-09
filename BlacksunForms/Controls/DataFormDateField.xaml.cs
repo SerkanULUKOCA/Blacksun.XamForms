@@ -9,60 +9,56 @@ using Xamarin.Forms;
 
 namespace Blacksun.XamForms.Controls
 {
-    
-    public class DataFormEditorField: ContentView
+    public partial class DataFormDateField 
     {
 
         public static BindableProperty DataMemberBindingProperty =
-        BindableProperty.Create<DataFormEditorField, string>(ctrl => ctrl.DataMemberBinding,
-        defaultValue: string.Empty,
+        BindableProperty.Create<DataFormDateField, DateTime>(ctrl => ctrl.DataMemberBinding,
+        defaultValue: DateTime.Now,
         defaultBindingMode: BindingMode.Default,
         propertyChanging: (bindable, oldValue, newValue) =>
         {
-            var ctrl = (DataFormEditorField)bindable;
+            var ctrl = (DataFormDateField)bindable;
             ctrl.DataMemberBinding = newValue;
         });
 
 
-        public string DataMemberBinding
+        public DateTime DataMemberBinding
         {
-            get { return (string)GetValue(DataMemberBindingProperty); }
+            get { return (DateTime)GetValue(DataMemberBindingProperty); }
             set
             {
                 SetValue(DataMemberBindingProperty, value);
-                TextField.Text = value;
+                DateField.Date = value;
             }
         }
 
-
-        private StackLayout Container = new StackLayout() { Spacing = AppLayouts.LabelPropertySpacing, Padding = 0 };
-
-        public Label LabelField = new Label(){
-                Font = AppFonts.FormLabelFont,
-                TextColor = AppColors.FormLabelColor,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
-
-        public Editor TextField = new Editor()
+        public DataFormDateField()
         {
+            InitializeComponent();
+            DateField.PropertyChanged += (o, t) =>
+            {
+                if (t.PropertyName == "Date")
+                {
+                    SetValue(DataMemberBindingProperty, DateField.Date);
+                }
+            };
+        }
+
+        public Label LabelField = new Label()
+        {
+            Font = AppFonts.FormLabelFont,
+            TextColor = AppColors.FormLabelColor,
             HorizontalOptions = LayoutOptions.FillAndExpand
         };
-
-        public Keyboard Keyboard
-        {
-            get { return TextField.Keyboard; }
-            set { TextField.Keyboard = value; }
-        }
 
         private LabelType _labelType = LabelType.Label;
         public LabelType LabelType
         {
             get { return _labelType; }
-            set 
+            set
             {
                 _labelType = value;
-
-                //TextField.Text = "";
 
                 if (Container.Children.Contains(LabelField))
                     Container.Children.Remove(LabelField);
@@ -77,7 +73,6 @@ namespace Blacksun.XamForms.Controls
                         Container.Children.Insert(0, LabelField);
                         break;
                     case LabelType.Watermark:
-                        //TextField.Placeholder = Label;
                         break;
                 }
             }
@@ -91,7 +86,6 @@ namespace Blacksun.XamForms.Controls
             {
                 _label = value;
 
-                //TextField.Placeholder = "";
                 LabelField.Text = "";
 
                 if (Label != null)
@@ -109,14 +103,12 @@ namespace Blacksun.XamForms.Controls
                             }
                             break;
                         case LabelType.Watermark:
-                            //TextField.Placeholder = value;
                             break;
                     }
                 }
-                
+
             }
         }
-
 
         private string _dataMemberBindingPath;
         public string DataMemberBindingPath
@@ -125,26 +117,10 @@ namespace Blacksun.XamForms.Controls
             set
             {
                 _dataMemberBindingPath = value;
-                TextField.SetBinding(Editor.TextProperty, new Binding(value, BindingMode.TwoWay));
+                DateField.SetBinding(DatePicker.DateProperty, new Binding(value, BindingMode.TwoWay));
             }
         }
 
 
-        public DataFormEditorField()
-        {
-            TextField.PropertyChanged += (o, t) =>
-            {
-                if (t.PropertyName == "Text")
-                {
-                    SetValue(DataMemberBindingProperty, TextField.Text);
-                }
-            };
-            Container.Children.Add(TextField);
-            Content = Container;
-
-        }
-
     }
-
-    
 }

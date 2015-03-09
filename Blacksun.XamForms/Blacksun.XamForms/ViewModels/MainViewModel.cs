@@ -25,8 +25,21 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
             Customers.Add(new Customer(1598,"Yamilet Contreras"));
             Customers.Add(new Customer(1234,"Alexis Enriquez"));
             Customers.Add(new Customer(4730,"Alex Lopez"));
-            SelectedItem = Customers.FirstOrDefault();
+            SelectedItem = Customers.Last();
         }
+
+        private DateTime _currentDate = DateTime.Now;
+        public DateTime CurrentDate
+        {
+            get { return _currentDate; }
+            set
+            {
+                _currentDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
 
         private string _lorem = "Lorem ipsum dolor sit amet,";
         public string Lorem
@@ -129,8 +142,8 @@ namespace Blacksun.XamForms.Sample.Core.ViewModels
             }
         }
 
-        private int _sliderValue;
-        public int SliderValue
+        private double _sliderValue;
+        public double SliderValue
         {
             get { return _sliderValue; }
             set

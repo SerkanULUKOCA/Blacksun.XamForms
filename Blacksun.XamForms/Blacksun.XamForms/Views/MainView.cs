@@ -32,12 +32,12 @@ namespace Blacksun.XamForms.Sample.Core.Views
                         {
                             new DataFormDataField(){Label = "Editable",DataMemberBindingPath = "Property"},
                             new DataFormDataField(){Label = "I am a watermarked Entry",DataMemberBindingPath = "WatermarkProperty",LabelType = LabelType.Watermark},
-                            new DataFormReadOnlyField(){Label = "Read Only",DataMemberBindingPath = "Property"},
+                            new DataFormLabelField(){Label = "Read Only",DataMemberBindingPath = "Property"},
                             new DataFormEditorField(){Label = "Editor multiline",DataMemberBindingPath = "Lorem"},
                             new DataFormContentField(){Label = "Busy indicator",Content = new DataFormButton(){Text= "Show busy indicator",Command = ViewModel.LoadingCommand}},
                             new DataFormContentField(){Label = "Progress Dialog",Content = new DataFormButton(){Text= "Show Progress Dialog",Command = ViewModel.ProgressCommand}},
                             new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
-                            new DataFormReadOnlyField(){Label = "Picker Selected Value",DataMemberBindingPath = "CustomerID"},
+                            new DataFormLabelField(){Label = "Picker Selected Value",DataMemberBindingPath = "CustomerID"},
                             new DataFormSliderField(){Label= "Slider",DataMemberBindingPath="SliderValue",Minimum = 0,Maximum = 255},
                             new DataFormImageField(){Label = "Image",DataMemberBindingPath = "ImageSource"}
                         }
