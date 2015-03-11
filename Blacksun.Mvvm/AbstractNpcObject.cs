@@ -15,7 +15,7 @@ namespace Blacksun.Mvvm
 
         protected virtual bool SetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null)
         {
-            if (!Object.Equals(property, value))
+            if (!Equals(property, value))
             {
                 property = value;
                 this.OnPropertyChanged(propertyName);
