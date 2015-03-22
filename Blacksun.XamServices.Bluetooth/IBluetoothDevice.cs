@@ -27,7 +27,7 @@ namespace Blacksun.Bluetooth
 
         Task Connect();
 
-        void Disconnect();
+        Task Disconnect();
 
         Task Write(string message);
 

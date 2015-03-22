@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace Blacksun.Bluetooth
 {
-    public class BluetoothNotFoundException : Exception
+    public class BluetoothDeviceNotFoundException : Exception
     {
+        public BluetoothDeviceNotFoundException()
+        {
+            
+        }
 
-    }
+        public BluetoothDeviceNotFoundException(string message) : base(message)
+        {
+            
+        }
 
-    public class BluetoohNotAvailableException : Exception
-    {
-        
     }
 
 }
