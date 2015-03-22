@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Acr.UserDialogs;
-using Blacksun.Bluetooth.Winphone;
-using Blacksun.ZebraBluetoothPrinter.Winphone;
+﻿using Acr.UserDialogs;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using Xamarin.Forms;
 
 namespace Sample.ZebraBluetoothPrinter.WinPhone
@@ -19,13 +9,11 @@ namespace Sample.ZebraBluetoothPrinter.WinPhone
         public MainPage()
         {
             InitializeComponent();
-            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
-            
             Forms.Init();
             UserDialogs.Init();
-            new WP8BluetoothClient();
-            new WP8ZebraBluetoothClient();
-            LoadApplication(new Sample.ZebraBluetoothPrinter.App());
+            //new WP8BluetoothClient();
+            //new WP8ZebraBluetoothClient();
+            LoadApplication(new ZebraBluetoothPrinter.App());
         }
     }
 }

@@ -35,6 +35,8 @@ namespace Sample.ZebraBluetoothPrinter.WinPhone
             // Language display initialization
             InitializeLanguage();
 
+            ThemeManager.ToLightTheme();
+
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {
