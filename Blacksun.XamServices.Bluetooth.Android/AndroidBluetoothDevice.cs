@@ -99,7 +99,7 @@ namespace Blacksun.Bluetooth.Android
 
         }
 
-        public void Disconnect()
+        public async Task Disconnect()
         {
             try
             {
@@ -123,6 +123,9 @@ namespace Blacksun.Bluetooth.Android
                     catch (Exception e) { }
                     Socket = null;
                 }
+
+                await Task.Delay(2000);
+
 
             }
             catch (Exception ex)
