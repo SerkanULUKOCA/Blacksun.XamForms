@@ -92,12 +92,6 @@
     <Compile Include="WindowsPhone8WebSocketManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blacksun.XamServices.Sockets\Blacksun.XamServices.Sockets.csproj">
-      <Project>{1d912a2e-9f16-415f-a2b4-8e84204a5fa7}</Project>
-      <Name>Blacksun.XamServices.Sockets</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +132,12 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blacksun.XamServices.Sockets\Blacksun.XamServices.Sockets.csproj">
+      <Project>{1d912a2e-9f16-415f-a2b4-8e84204a5fa7}</Project>
+      <Name>Blacksun.XamServices.Sockets</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
