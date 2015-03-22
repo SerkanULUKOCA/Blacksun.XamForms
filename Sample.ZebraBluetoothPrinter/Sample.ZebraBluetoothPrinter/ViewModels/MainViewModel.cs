@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.XamForms.UserDialogs;
+using Acr.UserDialogs;
 using Blacksun.Bluetooth;
 using Blacksun.Mvvm;
 using Blacksun.ZebraBluetoothPrinter;
@@ -20,9 +17,8 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
     public class MainViewModel : ViewModel
     {
 
-        private string ToPrint = "Z";
+        private string ToPrint = "";
 
-        private readonly IUserDialogService _dialogService;
         private readonly IZebraBluetoothClient _zebraBluetoothClient;
         private readonly IBluetoothClient _bluetoothClient;
 
@@ -32,7 +28,6 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
             {
                 _bluetoothClient = DependencyService.Get<IBluetoothClient>();
                 _zebraBluetoothClient = DependencyService.Get<IZebraBluetoothClient>();
-                _dialogService = DependencyService.Get<IUserDialogService>();
             }
             catch (Exception ex)
             {
@@ -63,13 +58,13 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
                     try
                     {
 
-                        using (_dialogService.Loading("Checking Bluetooth availability"))
+                        using (UserDialogs.Instance.Loading("Checking Bluetooth availability"))
                         {
                             var checkBluetoothResult = await _bluetoothClient.IsBluetoothOn();
 
                             if (!checkBluetoothResult)
                             {
-                                await _dialogService.AlertAsync("Bluetooth is off, please turn it on", "Error");
+                                await UserDialogs.Instance.AlertAsync("Bluetooth is off, please turn it on", "Error");
                                 return;
                             }
                         }
@@ -78,7 +73,7 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
 
                         IBluetoothDevice printer = null;
 
-                        using (_dialogService.Loading("Looking for printer"))
+                        using (UserDialogs.Instance.Loading("Looking for printer"))
                         {
                             printer = await _zebraBluetoothClient.FindPrinter();
                         }
@@ -87,7 +82,7 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
 
                         if (printer == null)
                         {
-                            await _dialogService.AlertAsync("No printer found", "Not found");
+                            await UserDialogs.Instance.AlertAsync("No printer found", "Not found");
                         }
                         else
                         {
@@ -102,7 +97,7 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
                                 ToPrint = result;
                             }
 
-                            using (_dialogService.Loading("Connecting"))
+                            using (UserDialogs.Instance.Loading("Connecting"))
                             {
                                 await printer.Connect();
                             }
@@ -111,15 +106,16 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
 
                             if (printer.IsConnected)
                             {
-                                using (_dialogService.Loading("Printing"))
+                                using (UserDialogs.Instance.Loading("Printing"))
                                 {
                                     await Task.Delay(2000);
                                     await _zebraBluetoothClient.Print(ToPrint);
+                                    await printer.Disconnect();
                                 }
                             }
                             else
                             {
-                                await _dialogService.AlertAsync("No se pudo conectar con el dispositivo "+printer.Name + "", "Error");
+                                await UserDialogs.Instance.AlertAsync("No se pudo conectar con el dispositivo " + printer.Name + "", "Error");
                             }
 
                             
