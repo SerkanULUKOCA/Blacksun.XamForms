@@ -20,7 +20,6 @@ namespace Sample.ZebraBluetoothPrinter.WinPhone
             InitializeComponent();
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
             UserDialogs.Init();
-            new Acr.XamForms.UserDialogs.WindowsPhone.UserDialogService();
             new WP8BluetoothClient();
             new WP8ZebraBluetoothClient();
             Xamarin.Forms.Forms.Init();
