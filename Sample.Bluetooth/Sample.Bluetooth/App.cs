@@ -13,8 +13,8 @@ namespace Sample.Bluetooth
 
         public App()
         {
-            //AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
-            //AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+            AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
             MainPage = new MainView();
         }
 

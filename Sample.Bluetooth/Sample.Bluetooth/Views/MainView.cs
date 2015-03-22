@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Blacksun.Bluetooth;
 using Blacksun.XamForms.Controls;
 using BlacksunForms;
@@ -29,11 +30,27 @@ namespace Sample.Bluetooth.Views
 
             var appointmentsListView = new ListView();
             appointmentsListView.VerticalOptions = LayoutOptions.FillAndExpand;
-            appointmentsListView.ItemTapped += (o, t) =>
+            appointmentsListView.ItemTapped += async (o, t) =>
             {
                 var item = t.Item as IBluetoothDevice;
-                ViewModel.ConnectDevice(item);
-                item.Write("Hello world");
+                try
+                {
+
+                    using (UserDialogs.Instance.Loading("Searching for "+item.Name+"..."))  
+                        await item.Connect();
+
+                    using (UserDialogs.Instance.Loading("Saying hi ..."))  
+                        await item.Write("Hello world");
+
+                    using (UserDialogs.Instance.Loading("Releasing device ..."))  
+                        await item.Disconnect();
+
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.AlertAsync(ex.Message);
+                }
+                
                 appointmentsListView.SelectedItem = null;
             };
             var cell = new DataTemplate(typeof(TextCell));
