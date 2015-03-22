@@ -80,9 +80,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Sockets.iOS", "Samp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Sockets.WinPhone", "Samples.Sockets\Samples.Sockets.WinPhone\Samples.Sockets.WinPhone.csproj", "{B200D2DD-B27C-456A-BED3-EAE379EF5EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ZebraBluetoothPrinter", "Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter.csproj", "{BDA57C00-677F-42CD-A153-C28793049835}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ZebraBluetoothPrinter.Core", "Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter.Core.csproj", "{BDA57C00-677F-42CD-A153-C28793049835}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksun.ZebraBluetoothPrinter", "Blacksun.ZebraBluetoothPrinter\Blacksun.ZebraBluetoothPrinter.csproj", "{46F70C62-4908-4497-B6DE-72116DA904D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ZebraBluetoothPrinter.WinPhone", "Sample.ZebraBluetoothPrinter.WinPhone\Sample.ZebraBluetoothPrinter.WinPhone.csproj", "{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1136,6 +1138,62 @@ Global
 		{46F70C62-4908-4497-B6DE-72116DA904D9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{46F70C62-4908-4497-B6DE-72116DA904D9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{46F70C62-4908-4497-B6DE-72116DA904D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|ARM.ActiveCfg = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|ARM.Build.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|ARM.Deploy.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Mixed Platforms.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Mixed Platforms.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|x86.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|x86.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Ad-Hoc|x86.Deploy.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|ARM.ActiveCfg = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|ARM.Build.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|ARM.Deploy.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Mixed Platforms.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Mixed Platforms.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|Mixed Platforms.Deploy.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|x86.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|x86.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.AppStore|x86.Deploy.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|ARM.Build.0 = Debug|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|ARM.Deploy.0 = Debug|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|x86.ActiveCfg = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|x86.Build.0 = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Debug|x86.Deploy.0 = Debug|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|ARM.ActiveCfg = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|ARM.Build.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|ARM.Deploy.0 = Release|ARM
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|x86.ActiveCfg = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|x86.Build.0 = Release|x86
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1175,5 +1233,6 @@ Global
 		{B200D2DD-B27C-456A-BED3-EAE379EF5EC5} = {24693A12-F65F-4F68-92BE-2A5F0C743B3C}
 		{BDA57C00-677F-42CD-A153-C28793049835} = {72B9B243-CF58-461E-92A1-0556562BA932}
 		{46F70C62-4908-4497-B6DE-72116DA904D9} = {EB4B8FAA-BF1A-4AAD-977C-F4C424F6B8FB}
+		{7BA0BA91-EBA4-409E-A543-7A5E0E85DEC8} = {72B9B243-CF58-461E-92A1-0556562BA932}
 	EndGlobalSection
 EndGlobal

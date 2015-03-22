@@ -2,7 +2,7 @@
 using Sample.ZebraBluetoothPrinter.Views;
 using Xamarin.Forms;
 
-namespace Sample.ZebraBluetoothPrinter
+namespace Sample.ZebraBluetoothPrinter.Core
 {
     public class App : Application
     {

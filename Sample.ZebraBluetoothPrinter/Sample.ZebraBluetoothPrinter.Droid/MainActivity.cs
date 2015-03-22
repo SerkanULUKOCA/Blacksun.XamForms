@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.OS;
 using Blacksun.Bluetooth.Android;
 using Blacksun.ZebraBluetoothPrinter.Android;
+using Sample.ZebraBluetoothPrinter.Core;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 

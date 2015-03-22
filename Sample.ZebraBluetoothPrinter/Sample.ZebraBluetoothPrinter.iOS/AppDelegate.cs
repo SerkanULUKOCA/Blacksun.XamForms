@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Sample.ZebraBluetoothPrinter.Core;
 using UIKit;
 
 namespace Sample.ZebraBluetoothPrinter.iOS

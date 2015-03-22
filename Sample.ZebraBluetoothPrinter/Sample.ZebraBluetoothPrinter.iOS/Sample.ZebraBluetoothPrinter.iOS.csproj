@@ -101,8 +101,9 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter.csproj">
-      <Name>Sample.ZebraBluetoothPrinter</Name>
+    <ProjectReference Include="..\Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter.Core.csproj">
+      <Name>Sample.ZebraBluetoothPrinter.Core</Name>
+      <Project>{BDA57C00-677F-42CD-A153-C28793049835}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
