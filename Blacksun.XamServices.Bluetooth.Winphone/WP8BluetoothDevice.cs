@@ -80,14 +80,20 @@ namespace Blacksun.Bluetooth.Winphone
             }
             catch (Exception ex)
             {
-                
+                IsConnected = false;
+                throw new BluetoothDeviceNotFoundException("Couldnt find "+Name);
             }
             
         }
 
-        public void Disconnect()
+        public async Task Disconnect()
         {
-            
+            Socket.Dispose();
+            dataReader = null;
+            dataWriter = null;
+
+            await Task.Delay(2000);
+
         }
 
         public async Task Write(string message)

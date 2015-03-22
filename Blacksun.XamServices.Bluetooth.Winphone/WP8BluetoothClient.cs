@@ -70,7 +70,7 @@ namespace Blacksun.Bluetooth.Winphone
                    
                     device.BluetoothDevice = paireddevice;
 
-                    var id = device.GetPropertyValue<string>("Id");
+                    var id = paireddevice.GetPropertyValue<string>("Id");
 
                     if (!String.IsNullOrEmpty(id))
                     {
