@@ -167,6 +167,10 @@
       <Project>{d25e4c43-1bb4-4b15-9997-e7f29e59bd41}</Project>
       <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BlacksunForms\Blacksun.XamForms.csproj">
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Name>Blacksun.XamForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Bluetooth\Sample.Bluetooth.csproj">
       <Name>Sample.Bluetooth</Name>
     </ProjectReference>

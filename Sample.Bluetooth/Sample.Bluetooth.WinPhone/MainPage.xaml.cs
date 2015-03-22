@@ -9,7 +9,7 @@ namespace Sample.Bluetooth.WinPhone
         public MainPage()
         {
             InitializeComponent();
-
+           
             Forms.Init();
             new WP8BluetoothClient();
             UserDialogs.Init();
