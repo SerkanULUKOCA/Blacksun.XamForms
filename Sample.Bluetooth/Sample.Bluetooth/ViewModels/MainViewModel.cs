@@ -2,7 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Acr.XamForms.UserDialogs;
+using Acr.UserDialogs;
 using Blacksun.Bluetooth;
 using Blacksun.Mvvm;
 using Xamarin.Forms;
@@ -12,7 +12,7 @@ namespace Sample.Bluetooth.ViewModels
 {
     public class MainViewModel : ViewModel
     {
-        private readonly IUserDialogService _dialogService;
+
         private readonly IBluetoothClient _bluetoothClient;
 
         public MainViewModel()
@@ -20,7 +20,6 @@ namespace Sample.Bluetooth.ViewModels
             try
             {
                 _bluetoothClient = DependencyService.Get<IBluetoothClient>();
-                _dialogService = DependencyService.Get<IUserDialogService>();
             }
             catch (Exception ex)
             {
@@ -54,11 +53,11 @@ namespace Sample.Bluetooth.ViewModels
 
                         if (result)
                         {
-                            await _dialogService.AlertAsync("Bluetooth is on", "Sucess");
+                            await UserDialogs.Instance.AlertAsync("Bluetooth is on", "Sucess");
                         }
                         else
                         {
-                            await _dialogService.AlertAsync("Bluetooth is off, please turn it on", "Sucess");
+                            await UserDialogs.Instance.AlertAsync("Bluetooth is off, please turn it on", "Error");
                         }
                     }
                     catch (Exception ex)
@@ -78,14 +77,25 @@ namespace Sample.Bluetooth.ViewModels
             {
                 return new Command(async() =>
                 {
-                    var devices = await _bluetoothClient.GetPairedDevices();
 
-                    Devices.Clear();
 
-                    foreach (var device in devices)
+                    try
                     {
-                        Devices.Add(device);
+                        var devices = await _bluetoothClient.GetPairedDevices();
+
+                        Devices.Clear();
+
+                        foreach (var device in devices)
+                        {
+                            Devices.Add(device);
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        UserDialogs.Instance.AlertAsync(ex.Message, "Error");
+                    }
+
+                    
 
                 });
             }

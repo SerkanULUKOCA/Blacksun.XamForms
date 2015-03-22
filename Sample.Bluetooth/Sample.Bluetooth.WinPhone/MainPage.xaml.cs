@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Acr.XamForms.UserDialogs.WindowsPhone;
+﻿using Acr.UserDialogs;
 using Blacksun.Bluetooth.Winphone;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
 using Xamarin.Forms;
-
 
 namespace Sample.Bluetooth.WinPhone
 {
@@ -23,7 +12,7 @@ namespace Sample.Bluetooth.WinPhone
 
             Forms.Init();
             new WP8BluetoothClient();
-            new UserDialogService();
+            UserDialogs.Init();
             LoadApplication(new Bluetooth.App());
         }
     }

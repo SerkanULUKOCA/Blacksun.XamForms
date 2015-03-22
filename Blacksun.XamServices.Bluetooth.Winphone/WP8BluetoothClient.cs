@@ -28,9 +28,12 @@ namespace Blacksun.Bluetooth.Winphone
             var tcs = new TaskCompletionSource<bool>();
 
 
-            Windows.Networking.Proximity.PeerFinder.Start();
+           
             try
             {
+
+                Windows.Networking.Proximity.PeerFinder.Start();
+
                 var peers = await Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync();
                 return  true; //boolean variable
             }
@@ -51,8 +54,7 @@ namespace Blacksun.Bluetooth.Winphone
 
         public async Task<List<IBluetoothDevice>> GetPairedDevices()
         {
-            var tcs = new TaskCompletionSource<List<IBluetoothDevice>>();
-
+            
             var devices = new List<IBluetoothDevice>();
 
             PeerFinder.AlternateIdentities["Bluetooth:Paired"] = "";
@@ -75,54 +77,7 @@ namespace Blacksun.Bluetooth.Winphone
                         var guid = Guid.Parse(id);
                         device.UniqueIdentifiers.Add(guid);
                     }
-                    
-                    //device.UniqueIdentifiers.Add(paireddevice.HostName.);
-                    try
-                    {
-                        /*
-                        switch (paireddevice.HostName.Type)
-                        {
-                            case HostNameType.Bluetooth:
-                                device.Type = BluetoothDeviceType.Classic;
-                                break;
-                            case global::Android.Bluetooth.BluetoothDeviceType.Dual:
-                                device.Type = BluetoothDeviceType.Dual;
-                                break;
-                            case global::Android.Bluetooth.BluetoothDeviceType.Le:
-                                device.Type = BluetoothDeviceType.Le;
-                                break;
-                            case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
-                                device.Type = BluetoothDeviceType.Unknown;
-                                break;
-                        }
-                        
 
-                        */
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-
-                    try
-                    {
-                        /*
-                        var uuids = paireddevice.HostName.CanonicalName;
-
-                        foreach (var uuid in uuids)
-                        {
-
-                            var stringUUID = uuid.ToString();
-                            device.UniqueIdentifiers.Add(Guid.Parse(stringUUID));
-                        }
-                        */
-
-                    }
-                    catch (Exception wz)
-                    {
-
-                    }
 
                     devices.Add(device);
                 }
