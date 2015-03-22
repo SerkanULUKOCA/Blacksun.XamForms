@@ -10,6 +10,7 @@ using Blacksun.Bluetooth.Winphone;
 using Blacksun.ZebraBluetoothPrinter.Winphone;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Xamarin.Forms;
 
 namespace Sample.ZebraBluetoothPrinter.WinPhone
 {
@@ -19,10 +20,11 @@ namespace Sample.ZebraBluetoothPrinter.WinPhone
         {
             InitializeComponent();
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
+            
+            Forms.Init();
             UserDialogs.Init();
             new WP8BluetoothClient();
             new WP8ZebraBluetoothClient();
-            Xamarin.Forms.Forms.Init();
             LoadApplication(new Sample.ZebraBluetoothPrinter.App());
         }
     }
