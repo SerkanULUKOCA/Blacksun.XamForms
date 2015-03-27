@@ -1,15 +1,17 @@
 Blacksun.XamForms
 =================
 
-Changed everythign to make the way it is done similar to the good old DataForm in Silverlight or WPF
+Changed everythign to make the way it is done similar to the good old DataForm in Silverlight or WPF but its not a dataform so no edit delete or new its just to make views easier to do
 
 ##View Helpers
 
-Xamforms is just a view helper That adds a label to fields which reduce the time to make forms for now I havent tested it Xaml yet but if you wish to help make the controls xamable please do ask
+Xamforms is just a view are custom controls that wraps xamarin controls and adds a label to them and exposes properties for easy databinding for non xaml users 
 
-Aside from adding labels There are Global Positioning Paddings and spacing which are already implemented
+Aside from adding labels There are Global Positioning Paddings and spacing which are already implemented so you dont have to
 
-if you wish to Change these setting for now you cant but I will implement the static methods to do so 
+if you wish to Change these setting for you can do it by using The Appropiate Static class and modifying its value
+
+
 
 ##NOTE
 
