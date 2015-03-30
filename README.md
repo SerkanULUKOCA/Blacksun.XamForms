@@ -25,7 +25,7 @@ AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
         
 ```
 
-##DATAFORM
+##DataForm
 
 a main container that has a scrollviewer and has a spacing of 20 , 20 ,40 on Device Platform and a padding of 30
 
@@ -39,13 +39,116 @@ a main container that has a scrollviewer and has a spacing of 20 , 20 ,40 on Dev
         
 ```
 
+##DataGroup
 
-##Bindable Picker
-
-Theres even a bindable picker which can be used like so
+groups are like a segmentation of fields for example you have a couple of fields are the customer info and then you want to show something else it would be done like so 
 
 ```c#
-new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
 
+<controls:DataForm >
+  <controls:DataFormGroup Header="Customer Info">
+        ...
+  </controls:DataFormGroup>
+  <controls:DataFormGroup Header="Something else">
+        ...
+  </controls:DataFormGroup>
+</controls:DataForm>
+        
+        
+```
+
+this would show a Subtitle on top of the groups children properties
+
+Fields
+=================
+
+these are the diferent types of fields similar to the DataForm instead of binding to Text or Value It binds to DataMemberBinding
+
+##DataFormDataField TextField
+
+```c#
+
+<controls:DataFormDataField Label="Editable" DataMemberBinding="{Binding Property,Mode=TwoWay}"/>
+        
+        
+```
+
+##DataFormDataField TextField with Watermark Label
+
+```c#
+
+<controls:DataFormDataField Label="I am a watermarked Entry" LabelType="Watermark" DataMemberBinding="{Binding WatermarkProperty,Mode=TwoWay}"/>
+        
+        
+```
+
+##DataFormDataField TextField Read Only
+
+```c#
+
+<controls:DataFormLabelField Label="Read Only" DataMemberBinding="{Binding Property}"/>
+        
+        
+```
+
+##DataFormPickerField Picker Field
+
+```c#
+
+<controls:DataFormPickerField Label="Picker" DataMemberBinding="{Binding CustomerID,Mode = TwoWay}" 
+                                    DisplayMemberPath="Name" SelectedValueMemberPath ="ID" 
+                                    SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                                    ItemsSource= "{Binding Customers}"/>
+        
+        
+```
+
+##DataFormSliderField Slider
+
+```c#
+
+<controls:DataFormSliderField Label="Slider" DataMemberBinding="{Binding SliderValue,Mode=TwoWay}" Minimum="0" Maximum="255"/>
+        
+        
+```
+
+##DataFormSliderField Slider
+
+```c#
+
+<controls:DataFormImageField Label="Image" DataMemberBinding="{Binding ImageSource}" />
+        
+        
+```
+
+##DataFormDateField Date Picker
+
+```c#
+
+<controls:DataFormDateField Label="Date picker" DataMemberBinding="{Binding CurrentDate,Mode=TwoWay}" />
+        
+        
+```
+
+##DataFormDateField Date Picker
+
+```c#
+
+<controls:DataFormDateField Label="Date picker" DataMemberBinding="{Binding CurrentDate,Mode=TwoWay}" />
+        
+        
+```
+
+##DataFormContentField Content Field
+
+you can use this to encapsulate any other control and give it a label
+
+```c#
+
+<controls:DataFormContentField Label="Busy indicator">
+        <controls:DataFormButton Text="Show busy indicator" Command="{Binding LoadingCommand}"/>
+      </controls:DataFormContentField>
+        
+        
 ```
 
