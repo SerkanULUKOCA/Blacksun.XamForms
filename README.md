@@ -181,14 +181,15 @@ var devices = await _bluetoothClient.GetPairedDevices();
 
 ##Connect Write Disconnect
 
+device is an IDevice
 
 ```c#
 
-        await item.Connect();
+        await device.Connect();
 
-        await item.Write("Hello world");
+        await device.Write("Hello world");
 
-        await item.Disconnect();
+        await device.Disconnect();
         
         
 ```
