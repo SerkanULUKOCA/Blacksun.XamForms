@@ -25,59 +25,20 @@ AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
         
 ```
 
-for example a simple login viewn would be done like so
+##DATAFORM
+
+a main container that has a scrollviewer and has a spacing of 20 , 20 ,40 on Device Platform and a padding of 30
+
 
 ```c#
 
-public LoginView()
-        {
-            Content = ViewHelper.GetCenteredForm(new List<View>
-            {
-                new DataFormDataField(){Label = "Username",DataMemberBindingPath = "Username",LabelType = LabelType.Watermark},
-                new DataFormPasswordField(){Label = "Password",DataMemberBindingPath = "Password",LabelType = LabelType.Watermark},
-                new DataFormButton(){Text = "Login"}
-                
-            });
-        }
+<controls:DataForm >
+
+</controls:DataForm>
         
         
 ```
 
-A more complex example showing grouping would be
-
-```c#
-public MainView()
-        {
-
-            BindingContext = new MainViewModel();
-            
-            Content = new DataForm()
-            {
-                Children =
-                {
-                    new DataFormGroup()
-                    {
-                        Header = "Group",
-                        Children =
-                        {
-                            new DataFormDataField(){Label = "Editable",DataMemberBindingPath = "Property"},
-                            new DataFormDataField(){Label = "I am a watermarked Entry",DataMemberBindingPath = "WatermarkProperty",LabelType = LabelType.Watermark},
-                            new DataFormReadOnlyField(){Label = "Read Only",DataMemberBindingPath = "Property"},
-                            new DataFormContentField(){Label = "Busy indicator",Content = new DataFormButton(){Text= "Show busy indicator",Command = ViewModel.LoadingCommand}},
-                            new DataFormContentField(){Label = "Progress Dialog",Content = new DataFormButton(){Text= "Show Progress Dialog",Command = ViewModel.ProgressCommand}},
-                            new DataFormPickerField(){Label = "Picker",DatamemberBindingPath = "CustomerID",DisplayMemberPath="Name",SelectedValueMemberPath = "ID",ItemSourcePath = "Customers"},
-                            new DataFormReadOnlyField(){Label = "Picker Selected Value",DataMemberBindingPath = "CustomerID"},
-                            new DataFormSliderField(){Label= "Slider",DataMemberBindingPath="SliderValue",Minimum = 0,Maximum = 255},
-                            new DataFormImageField(){Label = "Image",DataMemberBindingPath = "ImageSource"}
-                        }
-                    }
-
-                }
-            };
-
-        }
-
-```
 
 ##Bindable Picker
 
