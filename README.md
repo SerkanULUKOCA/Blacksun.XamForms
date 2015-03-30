@@ -1,4 +1,4 @@
-Blacksun.XamForms
+Blacksun.XamForms For Xamarin Forms
 =================
 
 Changed everythign to make the way it is done similar to the good old DataForm in Silverlight or WPF but its not a dataform so no edit delete or new its just to make views easier to do
@@ -152,3 +152,55 @@ you can use this to encapsulate any other control and give it a label
         
 ```
 
+Bluetooth Services For Xamarin Forms
+=================
+
+This a xamarin forms implementation for the bluetooth service
+
+##Check if bluetooth is on
+
+returns boolean
+
+```c#
+
+var result = await _bluetoothClient.IsBluetoothOn();
+        
+        
+```
+
+##Get Paired devices
+
+returns a list of IDevice
+
+```c#
+
+var devices = await _bluetoothClient.GetPairedDevices();
+        
+        
+```
+
+##Connect Write Disconnect
+
+
+```c#
+
+        await item.Connect();
+
+        await item.Write("Hello world");
+
+        await item.Disconnect();
+        
+        
+```
+
+NuGet Support
+=================
+
+Just search for them on NuGet Blacksun for all my libraries
+
+TODO
+=================
+
+If anyone wishes to do the iOS Services plugins for the services just say so :D
+
+Anything else that is needed just communicate what else you wish to see
