@@ -8,11 +8,11 @@ using Acr.UserDialogs;
 using Blacksun.Bluetooth;
 using Blacksun.Mvvm;
 using Blacksun.ZebraBluetoothPrinter;
-using Sample.ZebraBluetoothPrinter.Views;
+using Sample.ZebraBluetoothPrinter.Core.Views;
 using Xamarin.Forms;
 using Command = Blacksun.Mvvm.Command;
 
-namespace Sample.ZebraBluetoothPrinter.ViewModels
+namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
 {
     public class MainViewModel : ViewModel
     {
@@ -86,16 +86,18 @@ namespace Sample.ZebraBluetoothPrinter.ViewModels
                         }
                         else
                         {
-
+                            /*
                             var assembly = typeof(MainView).GetTypeInfo().Assembly;
-                            var resourceName = "Sample.ZebraBluetoothPrinter.PrintFormat.txt";
+                            var resourceName = "Sample.ZebraBluetoothPrinter.Core.PrintFormat.txt";
 
                             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                             using (StreamReader reader = new StreamReader(stream))
                             {
                                 string result = reader.ReadToEnd();
                                 ToPrint = result;
-                            }
+                            }*/
+
+                            ToPrint = Environment.NewLine+Environment.NewLine+"I am a test"+Environment.NewLine+Environment.NewLine;
 
                             using (UserDialogs.Instance.Loading("Connecting"))
                             {

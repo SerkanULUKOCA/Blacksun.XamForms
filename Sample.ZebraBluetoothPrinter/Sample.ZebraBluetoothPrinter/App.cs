@@ -1,5 +1,4 @@
-﻿using Blacksun.XamForms.Resources;
-using Sample.ZebraBluetoothPrinter.Views;
+﻿using Sample.ZebraBluetoothPrinter.Core.Views;
 using Xamarin.Forms;
 
 namespace Sample.ZebraBluetoothPrinter.Core
@@ -8,9 +7,9 @@ namespace Sample.ZebraBluetoothPrinter.Core
     {
         public App()
         {
-            AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
-            AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
-            AppColors.SetAccent("#FF31B6E7");
+            //AppColors.WindowsPhoneTheme = WindowsPhoneTheme.LightTheme;
+            //AppColors.AndroidTheme = AndroidTheme.HoloLightTheme;
+            //AppColors.SetAccent("#FF31B6E7");
             MainPage = new MainView();
         }
 

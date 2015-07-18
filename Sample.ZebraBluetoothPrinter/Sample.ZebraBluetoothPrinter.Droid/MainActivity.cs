@@ -16,7 +16,7 @@ namespace Sample.ZebraBluetoothPrinter.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            UserDialogs.Init(this);
+            UserDialogs.Init(() => (Activity)Forms.Context);
             new AndroidBluetoothClient();
             new AndroidZebraBluetoothClient();
             Forms.Init(this, bundle);

@@ -1,7 +1,7 @@
-﻿using Sample.ZebraBluetoothPrinter.ViewModels;
+﻿using Sample.ZebraBluetoothPrinter.Core.ViewModels;
 using Xamarin.Forms;
 
-namespace Sample.ZebraBluetoothPrinter.Views
+namespace Sample.ZebraBluetoothPrinter.Core.Views
 {
     public partial class MainView : ContentPage
     {
