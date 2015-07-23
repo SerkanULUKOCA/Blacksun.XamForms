@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Blacksun.Bluetooth;
-using Blacksun.Mvvm;
 using Blacksun.ZebraBluetoothPrinter;
+using GalaSoft.MvvmLight;
 using Sample.ZebraBluetoothPrinter.Core.Views;
 using Xamarin.Forms;
-using Command = Blacksun.Mvvm.Command;
 
 namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
 {
-    public class MainViewModel : ViewModel
+    public class MainViewModel : ViewModelBase
     {
 
         private string ToPrint = "";
@@ -40,7 +39,7 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
             set
             {
                 _devices = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 

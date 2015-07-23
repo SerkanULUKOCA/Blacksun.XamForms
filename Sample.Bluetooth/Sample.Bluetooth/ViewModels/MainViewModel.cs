@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Blacksun.Bluetooth;
-using Blacksun.Mvvm;
+using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 using Command = Xamarin.Forms.Command;
 
 namespace Sample.Bluetooth.ViewModels
 {
-    public class MainViewModel : ViewModel
+    public class MainViewModel : ViewModelBase
     {
 
         private readonly IBluetoothClient _bluetoothClient;
@@ -35,7 +35,7 @@ namespace Sample.Bluetooth.ViewModels
             set
             {
                 _devices = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
