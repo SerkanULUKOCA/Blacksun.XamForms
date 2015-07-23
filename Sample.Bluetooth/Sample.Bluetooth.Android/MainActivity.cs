@@ -1,6 +1,8 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
@@ -13,7 +15,7 @@ namespace Sample.Bluetooth.Droid
         {
             base.OnCreate(bundle);
 
-            Acr.UserDialogs.UserDialogs.Init(this);
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
             Xamarin.Forms.Forms.Init(this, bundle);
             

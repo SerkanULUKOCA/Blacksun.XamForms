@@ -18,8 +18,6 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
     {
 
         private string ToPrint = "";
-
-        private readonly IZebraBluetoothClient _zebraBluetoothClient;
         private readonly IBluetoothClient _bluetoothClient;
 
         public MainViewModel()
@@ -27,7 +25,6 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
             try
             {
                 _bluetoothClient = DependencyService.Get<IBluetoothClient>();
-                _zebraBluetoothClient = DependencyService.Get<IZebraBluetoothClient>();
             }
             catch (Exception ex)
             {
@@ -71,7 +68,7 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
 
                         
 
-                        IBluetoothDevice printer = null;
+                        BluetoothPrinter printer = null;
 
                         using (UserDialogs.Instance.Loading("Looking for printer"))
                         {
@@ -87,7 +84,10 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
                         else
                         {
 
-                            ToPrint = Environment.NewLine+Environment.NewLine+"I am a test"+Environment.NewLine+Environment.NewLine;
+                            var nl = Environment.NewLine;
+
+                            ToPrint = nl+ nl + nl + nl + nl + nl + nl + "I am a printer" + nl + nl + nl + nl + nl + nl + nl+
+                            "My name is "+printer.Name+ nl + nl + nl + nl + nl + nl ;
 
                             using (UserDialogs.Instance.Loading("Connecting"))
                             {
@@ -101,7 +101,7 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
                                 using (UserDialogs.Instance.Loading("Printing"))
                                 {
                                     await Task.Delay(2000);
-                                    await _zebraBluetoothClient.Print(ToPrint);
+                                    await printer.Print(ToPrint);
                                     await printer.Disconnect();
                                     await Task.Delay(2000);
                                 }

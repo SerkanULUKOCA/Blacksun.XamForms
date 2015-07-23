@@ -7,7 +7,7 @@
     <viewModels1:MainViewModel />
   </ContentPage.BindingContext>
   <StackLayout>
-    <Label Text="Zebra printer test"></Label>
-    <Button Text="Print test page" Command="{Binding PrintCommand}" HeightRequest="40"></Button>
+        <Label Text="Zebra printer test" FontSize="24"></Label>
+        <Button Text="Print test page" Command="{Binding PrintCommand}" HeightRequest="40"></Button>
   </StackLayout>
 </ContentPage>

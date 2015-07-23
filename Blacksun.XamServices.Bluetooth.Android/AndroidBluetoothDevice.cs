@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.Bluetooth;
+using Android.Runtime;
 using Java.Util;
 using IOException = Java.IO.IOException;
 
@@ -80,8 +81,6 @@ namespace Blacksun.Bluetooth.Android
             // don't care if it blocks.
             try
             {
-                //Wait for discovery canceling
-                //Thread.Sleep(5000); 
                 //var device = Socket.RemoteDevice;
                 Socket.Connect();
                 IsConnected = true;
@@ -93,13 +92,29 @@ namespace Blacksun.Bluetooth.Android
                 IsConnected = false;
                 try
                 {
-                    Socket.Close();
+                    IntPtr createRfcommSocket = JNIEnv.GetMethodID(BluetoothDevice.Class.Handle, "createRfcommSocket", "(I)Landroid/bluetooth/BluetoothSocket;");
+                    IntPtr _socket = JNIEnv.CallObjectMethod(BluetoothDevice.Handle, createRfcommSocket,new JValue(1));
+                    Socket = Java.Lang.Object.GetObject<BluetoothSocket>(_socket, JniHandleOwnership.TransferLocalRef);
+
+                    bluetoothAdapter.CancelDiscovery();
+                    Socket.Connect();
+                    IsConnected = true;
+                    
                 }
                 catch (Exception e2)
                 {
-                    
+                    try
+                    {
+                        Socket.Close();
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+
+                    throw e2;
                 }
-                throw ex;
+                
             }
 
         }

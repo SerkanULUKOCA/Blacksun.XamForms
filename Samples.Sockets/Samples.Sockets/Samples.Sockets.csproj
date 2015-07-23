@@ -46,10 +46,6 @@
       <Project>{1d912a2e-9f16-415f-a2b4-8e84204a5fa7}</Project>
       <Name>Blacksun.XamServices.Sockets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BlacksunForms\Blacksun.XamForms.csproj">
-      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
-      <Name>Blacksun.XamForms</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.XamForms">

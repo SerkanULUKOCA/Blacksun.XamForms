@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Sample.Bluetooth.ViewModels;assembly=Sample.Bluetooth"
+             x:Class="Sample.Bluetooth.Views.MainView">
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Label Text="Bluetooth test" FontSize="24"></Label>
+        <Label Text="Availability"></Label>
+        <Button Text="Check" Command="{Binding CheckBluetoothAvailableCommand}"></Button>
+        <Button Text="Get paired devices" Command="{Binding GetPairedDevicesCommand}"></Button>
+        <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding Devices}" ItemTapped="ListView_OnItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Address}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

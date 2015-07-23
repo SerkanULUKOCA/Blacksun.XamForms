@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Blacksun.Bluetooth.Android;
-using Blacksun.ZebraBluetoothPrinter.Android;
 using Sample.ZebraBluetoothPrinter.Core;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -18,7 +17,6 @@ namespace Sample.ZebraBluetoothPrinter.Droid
             base.OnCreate(bundle);
             UserDialogs.Init(() => (Activity)Forms.Context);
             new AndroidBluetoothClient();
-            new AndroidZebraBluetoothClient();
             Forms.Init(this, bundle);
             LoadApplication(new App());
         }
