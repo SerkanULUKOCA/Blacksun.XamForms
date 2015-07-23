@@ -98,6 +98,24 @@ namespace Blacksun.Bluetooth.Android
             return devices;
         }
 
+        public async Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier)
+        {
+            var bluetoothClient = new AndroidBluetoothClient();
+            var devices = await bluetoothClient.GetPairedDevices();
+
+            foreach (var device in devices)
+            {
+                if (device.ContainsUniqueIdentifier(identifier))
+                {
+                    device.SetUniqueIdentifier(identifier);
+                    return device;
+                }
+
+            }
+
+            return null;
+        }
+
         
     }
 }

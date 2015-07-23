@@ -75,7 +75,7 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
 
                         using (UserDialogs.Instance.Loading("Looking for printer"))
                         {
-                            printer = await _zebraBluetoothClient.FindPrinter();
+                            printer = await _bluetoothClient.FindPrinter();
                         }
 
                         
@@ -86,16 +86,6 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
                         }
                         else
                         {
-                            /*
-                            var assembly = typeof(MainView).GetTypeInfo().Assembly;
-                            var resourceName = "Sample.ZebraBluetoothPrinter.Core.PrintFormat.txt";
-
-                            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                            using (StreamReader reader = new StreamReader(stream))
-                            {
-                                string result = reader.ReadToEnd();
-                                ToPrint = result;
-                            }*/
 
                             ToPrint = Environment.NewLine+Environment.NewLine+"I am a test"+Environment.NewLine+Environment.NewLine;
 
@@ -113,6 +103,7 @@ namespace Sample.ZebraBluetoothPrinter.Core.ViewModels
                                     await Task.Delay(2000);
                                     await _zebraBluetoothClient.Print(ToPrint);
                                     await printer.Disconnect();
+                                    await Task.Delay(2000);
                                 }
                             }
                             else

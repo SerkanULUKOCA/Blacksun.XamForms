@@ -21,10 +21,6 @@ namespace Blacksun.Bluetooth
 
         void SetUniqueIdentifier(string uniqueIdentifier);
 
-        bool ContainsUniqueIdentifier(Guid uniqueIdentifier);
-
-        void SetUniqueIdentifier(Guid uniqueIdentifier);
-
         Task Connect();
 
         Task Disconnect();

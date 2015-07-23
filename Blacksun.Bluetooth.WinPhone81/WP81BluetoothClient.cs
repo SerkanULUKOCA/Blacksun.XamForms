@@ -5,17 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
-using Blacksun.Bluetooth.Winphone;
+using Blacksun.Bluetooth.WinPhone81;
 
-[assembly: Xamarin.Forms.Dependency(typeof(WP8BluetoothClient))]
-namespace Blacksun.Bluetooth.Winphone
+[assembly: Xamarin.Forms.Dependency(typeof(WP81BluetoothClient))]
+namespace Blacksun.Bluetooth.WinPhone81
 {
-    public class WP8BluetoothClient : IBluetoothClient
+    public class WP81BluetoothClient : IBluetoothClient
     {
 
         private StreamSocket Socket;
 
-        public WP8BluetoothClient()
+        public WP81BluetoothClient()
         {
             Socket = new StreamSocket(); 
         }
@@ -67,7 +67,7 @@ namespace Blacksun.Bluetooth.Winphone
                 foreach (var paireddevice in pairedDevices)
                 {
 
-                    var device = new WP8BluetoothDevice() { Name = paireddevice.DisplayName, Address = paireddevice.HostName.CanonicalName };
+                    var device = new WP81BluetoothDevice() { Name = paireddevice.DisplayName, Address = paireddevice.HostName.CanonicalName };
                    
                     device.BluetoothDevice = paireddevice;
 
@@ -103,7 +103,7 @@ namespace Blacksun.Bluetooth.Winphone
 
                 var paireddevice = pairedDevices.First();
 
-                var device = new WP8BluetoothDevice() { Name = paireddevice.DisplayName, Address = paireddevice.HostName.CanonicalName };
+                var device = new WP81BluetoothDevice() { Name = paireddevice.DisplayName, Address = paireddevice.HostName.CanonicalName };
 
                 device.BluetoothDevice = paireddevice;
                 var id = paireddevice.GetPropertyValue<string>("Id");

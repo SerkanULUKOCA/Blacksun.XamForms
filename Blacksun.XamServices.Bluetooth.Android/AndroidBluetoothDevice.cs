@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.Bluetooth;
 using Java.Util;
@@ -71,6 +72,7 @@ namespace Blacksun.Bluetooth.Android
                 
             }
 
+            //DIscovery canceled so that it comt interfere with the connection
             bluetoothAdapter.CancelDiscovery();
 
             // Blocking connect, for a simple client nothing else can
@@ -78,13 +80,15 @@ namespace Blacksun.Bluetooth.Android
             // don't care if it blocks.
             try
             {
-                var device = Socket.RemoteDevice;
+                //Wait for discovery canceling
+                //Thread.Sleep(5000); 
+                //var device = Socket.RemoteDevice;
                 Socket.Connect();
                 IsConnected = true;
                 inStream = Socket.InputStream;
                 outStream = Socket.OutputStream;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 IsConnected = false;
                 try
@@ -95,6 +99,7 @@ namespace Blacksun.Bluetooth.Android
                 {
                     
                 }
+                throw ex;
             }
 
         }

@@ -10,5 +10,7 @@ namespace Blacksun.Bluetooth
 
         Task<List<IBluetoothDevice>> GetPairedDevices();
 
+        Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier);
+
     }
 }

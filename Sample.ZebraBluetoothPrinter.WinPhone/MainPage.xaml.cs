@@ -21,7 +21,6 @@ namespace Sample.ZebraBluetoothPrinter.WinPhone
             InitializeComponent();
             this.SupportedOrientations = SupportedPageOrientation.Portrait;
             Forms.Init();
-            UserDialogs.Init();
             LoadApplication(new Core.App());
         }
 
