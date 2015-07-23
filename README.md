@@ -1,6 +1,6 @@
 Blacksun.Xamarin plugins 
 =================
-Removing everything and only making plugins
+Removing everything and only making service plugins mainly Bluetooth and whatever gizmos I find are missing
 
 TODO
 =================
