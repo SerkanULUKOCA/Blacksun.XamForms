@@ -120,10 +120,6 @@
       <Project>{d25e4c43-1bb4-4b15-9997-e7f29e59bd41}</Project>
       <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Blacksun.ZebraBluetoothPrinter\Blacksun.ZebraBluetoothPrinter.csproj">
-      <Project>{46f70c62-4908-4497-b6de-72116da904d9}</Project>
-      <Name>Blacksun.ZebraBluetoothPrinter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.ZebraBluetoothPrinter\Sample.ZebraBluetoothPrinter.Core.csproj">
       <Name>Sample.ZebraBluetoothPrinter.Core</Name>
       <Project>{BDA57C00-677F-42CD-A153-C28793049835}</Project>

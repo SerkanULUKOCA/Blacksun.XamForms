@@ -176,10 +176,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blacksun.ZebraBluetoothPrinter.Winphone\Blacksun.ZebraBluetoothPrinter.Winphone.csproj">
-      <Project>{fc127b2d-d6df-4954-b4f9-8f1822831961}</Project>
-      <Name>Blacksun.ZebraBluetoothPrinter.Winphone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Blacksun.ZebraBluetoothPrinter\Blacksun.ZebraBluetoothPrinter.csproj">
       <Project>{46f70c62-4908-4497-b6de-72116da904d9}</Project>
       <Name>Blacksun.ZebraBluetoothPrinter</Name>
