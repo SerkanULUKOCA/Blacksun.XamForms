@@ -45,10 +45,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Blacksun.Mvvm\Blacksun.Mvvm.csproj">
-      <Project>{612928a8-4462-403b-b645-918ee029503b}</Project>
-      <Name>Blacksun.Mvvm</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Blacksun.XamServices.Bluetooth\Blacksun.Bluetooth.csproj">
       <Project>{d25e4c43-1bb4-4b15-9997-e7f29e59bd41}</Project>
       <Name>Blacksun.Bluetooth</Name>
