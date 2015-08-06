@@ -82,6 +82,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="InternalReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WP81BluetoothClient.cs" />
     <Compile Include="WP81BluetoothDevice.cs" />
@@ -109,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
-      <Project>{B981537D-D4EB-4199-9A69-3A075164C6AA}</Project>
+      <Project>{95f01900-7959-4036-980d-f75a56cde4c7}</Project>
       <Name>BlacksunBluetooth</Name>
     </ProjectReference>
   </ItemGroup>

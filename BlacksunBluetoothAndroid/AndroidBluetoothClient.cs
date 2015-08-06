@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Bluetooth;
+using Android.Content.PM;
+using Android.Provider;
 using BlacksunBluetooth;
+using BlacksunBluetooth.Exceptions;
 using BlacksunBluetoothAndroid;
 using Xamarin.Forms;
 using BluetoothDeviceType = Android.Bluetooth.BluetoothDeviceType;
@@ -23,6 +26,9 @@ namespace BlacksunBluetoothAndroid
 
         public async Task<bool> IsBluetoothOn()
         {
+
+            CheckPermissions();
+
             var bluetoothAdapter = BluetoothAdapter.DefaultAdapter;
             if (bluetoothAdapter == null)
             {
@@ -37,6 +43,8 @@ namespace BlacksunBluetoothAndroid
 
         public async Task<List<IBluetoothDevice>> GetPairedDevices()
         {
+
+            CheckPermissions();
 
             var devices = new List<IBluetoothDevice>();
 
@@ -111,10 +119,13 @@ namespace BlacksunBluetoothAndroid
 
         public async Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier)
         {
+
+            CheckPermissions();
+
             var bluetoothClient = new AndroidBluetoothClient();
             var devices = await bluetoothClient.GetPairedDevices();
 
-            foreach (var device in devices)
+            foreach (AndroidBluetoothDevice device in devices)
             {
                 if (device.ContainsUniqueIdentifier(identifier))
                 {
@@ -125,6 +136,32 @@ namespace BlacksunBluetoothAndroid
             }
 
             return null;
+        }
+
+        private void CheckPermissions()
+        {
+            var context = Android.App.Application.Context;
+
+            PackageManager pm = context.PackageManager;
+            var hasPerm = pm.CheckPermission(Android.Manifest.Permission.Bluetooth,context.PackageName);
+            if (hasPerm == Permission.Denied)
+            {
+                throw new BluetoothPermissionException("Bluetooth permision not added");
+            }
+
+            hasPerm = pm.CheckPermission(Android.Manifest.Permission.BluetoothAdmin, context.PackageName);
+            if (hasPerm == Permission.Denied)
+            {
+                throw new BluetoothPermissionException("BluetoothAdmin permision not added");
+            }
+            /*
+            hasPerm = pm.CheckPermission(Android.Manifest.Permission.BluetoothPrivileged, context.PackageName);
+            if (hasPerm == Permission.Denied)
+            {
+                throw new BluetoothPermissionException("BluetoothPriviliged permision not added");
+            }
+            */
+
         }
 
         

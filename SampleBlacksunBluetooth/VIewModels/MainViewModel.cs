@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 using Command = Xamarin.Forms.Command;
 
-namespace SampleBlacksunBluetooth.VIewModels
+namespace SampleBlacksunBluetooth.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
@@ -61,7 +61,7 @@ namespace SampleBlacksunBluetooth.VIewModels
                     }
                     catch (Exception ex)
                     {
-                        
+                        UserDialogs.Instance.AlertAsync(ex.Message, "Error");
                     }
 
                     

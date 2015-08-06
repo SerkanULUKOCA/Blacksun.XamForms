@@ -5,6 +5,7 @@ using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using BlacksunBluetooth;
+using BlacksunBluetooth.Exceptions;
 
 namespace BlacksunBluetoothWinPhone81
 {

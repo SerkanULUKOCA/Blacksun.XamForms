@@ -34,16 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
-      <Project>{B981537D-D4EB-4199-9A69-3A075164C6AA}</Project>
-      <Name>BlacksunBluetooth</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="BluetoothPrinter.cs" />
     <Compile Include="BluetoothPrinterExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
+      <Project>{95F01900-7959-4036-980D-F75A56CDE4C7}</Project>
+      <Name>BlacksunBluetooth</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
