@@ -10,9 +10,11 @@ namespace BlacksunBluetoothPrinter
     public static class BluetoothPrinterExtensions
     {
 
-        public static async Task<BluetoothPrinter> FindPrinter(this IBluetoothClient client)
+        public static async Task<List<BluetoothPrinter>> FindPrinters(this IBluetoothClient client)
         {
             const string generalPrinterIdentifier = "00001101-0000-1000-8000-00805f9b34fb";
+
+
 
             var device = await client.FindDeviceByIdentifier(generalPrinterIdentifier);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Bluetooth;
@@ -27,7 +28,7 @@ namespace BlacksunBluetoothAndroid
         public async Task<bool> IsBluetoothOn()
         {
 
-            CheckPermissions();
+            //CheckPermissions();
 
             var bluetoothAdapter = BluetoothAdapter.DefaultAdapter;
             if (bluetoothAdapter == null)
@@ -44,7 +45,9 @@ namespace BlacksunBluetoothAndroid
         public async Task<List<IBluetoothDevice>> GetPairedDevices()
         {
 
-            CheckPermissions();
+           // CheckPermissions();
+
+            Debug.WriteLine("Bluetooth Android: Getting bluetooth devices");
 
             var devices = new List<IBluetoothDevice>();
 
@@ -53,57 +56,88 @@ namespace BlacksunBluetoothAndroid
                 // Get a set of currently paired devices 
                 var pairedDevices = btAdapter.BondedDevices;
 
-                // If there are paired devices, add each one to the ArrayAdapter 
-                if (pairedDevices.Count > 0)
+                if (btAdapter.BondedDevices == null)
                 {
-                    foreach (var paireddevice in pairedDevices)
+                    Debug.WriteLine("Bluetooth Android: Bonded devices are null");
+                }
+                else
+                {
+                    // If there are paired devices, add each one to the ArrayAdapter 
+                    if (pairedDevices.Count > 0)
                     {
 
-                        var device = new AndroidBluetoothDevice() { Name = paireddevice.Name, Address = paireddevice.Address };
-                        device.BluetoothDevice = paireddevice;
-                        try
+                        Debug.WriteLine("Bluetooth Devices found");
+
+                        foreach (var paireddevice in pairedDevices)
                         {
-                            switch (paireddevice.Type)
+                            Debug.WriteLine("-"+paireddevice.Name+ " "+paireddevice.Address );
+                            var device = new AndroidBluetoothDevice() { Name = paireddevice.Name, Address = paireddevice.Address };
+                            device.BluetoothDevice = paireddevice;
+                            try
                             {
-                                case global::Android.Bluetooth.BluetoothDeviceType.Classic:
-                                    device.Type = BlacksunBluetooth.BluetoothDeviceType.Classic;
-                                    break;
-                                case global::Android.Bluetooth.BluetoothDeviceType.Dual:
-                                    device.Type = BlacksunBluetooth.BluetoothDeviceType.Dual;
-                                    break;
-                                case global::Android.Bluetooth.BluetoothDeviceType.Le:
-                                    device.Type = BlacksunBluetooth.BluetoothDeviceType.Le;
-                                    break;
-                                case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
-                                    device.Type = BlacksunBluetooth.BluetoothDeviceType.Unknown;
-                                    break;
+                                switch (paireddevice.Type)
+                                {
+                                    case global::Android.Bluetooth.BluetoothDeviceType.Classic:
+                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Classic;
+                                        break;
+                                    case global::Android.Bluetooth.BluetoothDeviceType.Dual:
+                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Dual;
+                                        break;
+                                    case global::Android.Bluetooth.BluetoothDeviceType.Le:
+                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Le;
+                                        break;
+                                    case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
+                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Unknown;
+                                        break;
+                                }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
-
-                        try
-                        {
-                            var uuids = paireddevice.GetUuids().ToList();
-
-                            foreach (var uuid in uuids)
+                            catch (Exception ex)
                             {
 
-                                var stringUUID = uuid.ToString();
-                                device.UniqueIdentifiers.Add(Guid.Parse(stringUUID));
                             }
 
-                        }
-                        catch (Exception wz)
-                        {
+                            try
+                            {
+                                Debug.WriteLine("Bluetooth getting Uuids with SDP");
+                                device.BluetoothDevice.FetchUuidsWithSdp();
 
-                        }
+                                Debug.WriteLine("Bluetooth Android: Getting UUIDs");
+                                var array = paireddevice.GetUuids();
+                                if (array != null)
+                                {
+                                    var uuids = array.ToList();
 
-                        devices.Add(device);
+                                    Debug.WriteLine("Bluetooth Android: " + uuids.Count + " found");
+
+                                    foreach (var uuid in uuids)
+                                    {
+                                        Debug.WriteLine(device.Name + " Adding uuid " + uuid.Uuid.ToString());
+                                        var stringUUID = uuid.ToString();
+                                        device.UniqueIdentifiers.Add(Guid.Parse(stringUUID));
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.WriteLine("Bluetooth Android: No Paired devices");
+                                }
+                                
+
+                            }
+                            catch (Java.Lang.Exception ex)
+                            {
+                                Debug.WriteLine(ex.Message);
+                            }
+
+                            devices.Add(device);
+                        }
                     }
-                } 
+                    else
+                    {
+                        Debug.WriteLine("Bluetooth Android: No devices found");
+                    }
+                }
+
+                
             }
             catch (Java.Lang.Exception ex)
             {
@@ -120,8 +154,6 @@ namespace BlacksunBluetoothAndroid
         public async Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier)
         {
 
-            CheckPermissions();
-
             var bluetoothClient = new AndroidBluetoothClient();
             var devices = await bluetoothClient.GetPairedDevices();
 
@@ -137,7 +169,7 @@ namespace BlacksunBluetoothAndroid
 
             return null;
         }
-
+        /*
         private void CheckPermissions()
         {
             var context = Android.App.Application.Context;
@@ -154,16 +186,10 @@ namespace BlacksunBluetoothAndroid
             {
                 throw new BluetoothPermissionException("BluetoothAdmin permision not added");
             }
-            /*
-            hasPerm = pm.CheckPermission(Android.Manifest.Permission.BluetoothPrivileged, context.PackageName);
-            if (hasPerm == Permission.Denied)
-            {
-                throw new BluetoothPermissionException("BluetoothPriviliged permision not added");
-            }
-            */
+
 
         }
-
+        */
         
     }
 }

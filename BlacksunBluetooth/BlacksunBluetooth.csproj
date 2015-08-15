@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="BluetoothDeviceType.cs" />
     <Compile Include="Exceptions\BluetoothDeviceNotFoundException.cs" />
+    <Compile Include="Exceptions\BluetoothMissingIDException.cs" />
     <Compile Include="Exceptions\BluetoothPermissionException.cs" />
     <Compile Include="IBluetoothClient.cs" />
     <Compile Include="IBluetoothDevice.cs" />
