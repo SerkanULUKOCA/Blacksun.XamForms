@@ -81,8 +81,8 @@
     <Compile Include="AndroidBluetoothClient.cs" />
     <Compile Include="AndroidBluetoothDevice.cs" />
     <Compile Include="ConnectThread.cs" />
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
