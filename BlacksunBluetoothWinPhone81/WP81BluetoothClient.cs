@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
 using BlacksunBluetooth;
+using BlacksunBluetooth.Exceptions;
 using BlacksunBluetoothWinPhone81;
 
 [assembly: Xamarin.Forms.Dependency(typeof(WP81BluetoothClient))]
@@ -30,14 +31,18 @@ namespace BlacksunBluetoothWinPhone81
             var tcs = new TaskCompletionSource<bool>();
 
 
-           
+
             try
             {
 
                 Windows.Networking.Proximity.PeerFinder.Start();
 
                 var peers = await Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync();
-                return  true; //boolean variable
+                return true; //boolean variable
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new BluetoothPermissionException("Unauthorized access: Proximity capability has no been checked");
             }
             catch (Exception ex)
             {
@@ -62,6 +67,8 @@ namespace BlacksunBluetoothWinPhone81
             PeerFinder.AlternateIdentities["Bluetooth:Paired"] = "";
 
             var pairedDevices = (await PeerFinder.FindAllPeersAsync()).ToList();
+
+            PeerFinder.Stop();
 
             if (pairedDevices.Count > 0)
             {

@@ -6,15 +6,19 @@
   <ContentPage.BindingContext>
     <viewModels:MainViewModel/>
   </ContentPage.BindingContext>
-  <StackLayout>
+  <StackLayout Padding="20">
     <Label Text="Bluetooth test" FontSize="24"></Label>
-    <Label Text="Availability"></Label>
-    <Button Text="Check" Command="{Binding CheckBluetoothAvailableCommand}"></Button>
+    <Button Text="Check if bluetooth is on" Command="{Binding CheckBluetoothAvailableCommand}"></Button>
     <Button Text="Get paired devices" Command="{Binding GetPairedDevicesCommand}"></Button>
     <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding Devices}" ItemTapped="ListView_OnItemTapped">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Name}" Detail="{Binding Address}" />
+          <ViewCell>
+            <StackLayout Padding="10">
+              <Label Text="{Binding Name}" FontSize="18"></Label>
+              <Label Text="{Binding Address}" FontSize="14"></Label>
+            </StackLayout>
+          </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

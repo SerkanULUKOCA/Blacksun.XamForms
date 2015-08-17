@@ -73,12 +73,23 @@ namespace BlacksunBluetoothWinPhone81
 
         public async Task Connect()
         {
+            await Connect(1);
+        }
+
+        public async Task Connect(int port)
+        {
             try
             {
-                await Socket.ConnectAsync(BluetoothDevice.HostName, "1");
+
+                await Socket.ConnectAsync(BluetoothDevice.HostName, port.ToString());
                 dataReader = new DataReader(Socket.InputStream);
                 dataWriter = new DataWriter(Socket.OutputStream);
                 IsConnected = true;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                IsConnected = false;
+                throw ex;
             }
             catch (Exception ex)
             {

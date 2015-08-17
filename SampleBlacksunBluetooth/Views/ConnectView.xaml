@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleBlacksunBluetooth.Views.ConnectView">
+  <StackLayout Padding="20">
+    <Label Text="Device Info" FontSize="24"></Label>
+    <StackLayout Padding="10">
+      <Label Text="Name" FontSize="18"></Label>
+      <Label x:Name="txtName" Text="{Binding Device.Name}" FontSize="22"></Label>
+    </StackLayout>
+    <StackLayout Padding="10">
+      <Label Text="Address" FontSize="18"></Label>
+      <Label x:Name="txtAddress" Text="{Binding Device.Address}" FontSize="22"></Label>
+    </StackLayout>
+    <StackLayout Padding="10">
+      <Label Text="Address" FontSize="18"></Label>
+      <Label x:Name="txtUniqueIdentifier" Text="{Binding Device.Address}" FontSize="22"></Label>
+    </StackLayout>
+    <Label Text="Connection options" FontSize="24"></Label>
+    <StackLayout Padding="10">
+      <Label Text="Port" FontSize="18"></Label>
+      <Entry x:Name="txtPort" Text="1" Keyboard="Numeric"></Entry>
+      <Button Text="Connect" Clicked="Button_OnClicked"></Button>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>

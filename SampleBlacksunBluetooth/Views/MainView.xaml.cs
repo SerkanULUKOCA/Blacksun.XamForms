@@ -19,6 +19,19 @@ namespace SampleBlacksunBluetooth.Views
         private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var item = e.Item as IBluetoothDevice;
+
+            var view = new ConnectView();
+            view.Init(item);
+            view.DeviceConnected += async (o, t) =>
+            {
+                var connectedView = new ConnectedView(t.Device);
+                await Navigation.PopModalAsync();
+                await Navigation.PushModalAsync(connectedView);
+            };
+
+            await Navigation.PushModalAsync(view);
+
+            /*
             try
             {
 
@@ -38,8 +51,12 @@ namespace SampleBlacksunBluetooth.Views
             {
                 UserDialogs.Instance.AlertAsync(ex.Message);
             }
+            */
 
             (sender as ListView).SelectedItem = null;
+
+
         }
+
     }
 }
