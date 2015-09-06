@@ -37,6 +37,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BluetoothDeviceType.cs" />
+    <Compile Include="IPairableBluetoothDevice.cs" />
+    <Compile Include="Models\DeviceFoundEventArgs.cs" />
     <Compile Include="Exceptions\BluetoothDeviceNotFoundException.cs" />
     <Compile Include="Exceptions\BluetoothMissingIDException.cs" />
     <Compile Include="Exceptions\BluetoothPermissionException.cs" />

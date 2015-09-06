@@ -11,7 +11,7 @@ namespace SampleBlacksunBluetooth.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-
+        /*
         private readonly IBluetoothClient _bluetoothClient;
 
         public MainViewModel()
@@ -105,6 +105,6 @@ namespace SampleBlacksunBluetooth.ViewModels
             bluetoothDevice.Connect();
         }
 
-
+        */
     }
 }

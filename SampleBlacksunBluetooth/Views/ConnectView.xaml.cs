@@ -64,6 +64,10 @@ namespace SampleBlacksunBluetooth.Views
             }
         }
 
+        private void ButtonDiscover_OnClicked(object sender, EventArgs e)
+        {
+            
+        }
     }
 
     public class BluetoothDeviceConnectedEventArgs : EventArgs

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.App;
 using Android.Bluetooth;
+using Android.Content;
 using Android.Content.PM;
 using Android.Provider;
 using BlacksunBluetooth;
 using BlacksunBluetooth.Exceptions;
+using BlacksunBluetooth.Models;
 using BlacksunBluetoothAndroid;
 using Xamarin.Forms;
 using BluetoothDeviceType = Android.Bluetooth.BluetoothDeviceType;
@@ -19,10 +22,51 @@ namespace BlacksunBluetoothAndroid
     {
 
         private BluetoothAdapter btAdapter;
+        private CustomBroadcastReceiver broadcastReceiver;
+        private Activity CurrentActivity;
+        private bool started;
 
         public AndroidBluetoothClient()
         {
             btAdapter = BluetoothAdapter.DefaultAdapter;
+            CheckStarted();
+
+
+        }
+
+        public void CheckStarted()
+        {
+            if(!started)
+                Start();
+        }
+
+        public void Start()
+        {
+            try
+            {
+                broadcastReceiver = new CustomBroadcastReceiver();
+                CurrentActivity = (Activity)Forms.Context;
+                IntentFilter filter = new IntentFilter();
+                filter.AddAction(BluetoothDevice.ActionFound);
+                filter.AddAction(BluetoothAdapter.ActionDiscoveryStarted);
+                filter.AddAction(BluetoothAdapter.ActionDiscoveryFinished);
+                CurrentActivity.RegisterReceiver(broadcastReceiver, filter);
+                broadcastReceiver.DeviceDiscoveryStarted += (o, t) =>
+                {
+                    DoDeviceDiscoveryStarted();
+                };
+                broadcastReceiver.DeviceDiscovered += (o, t) =>
+                {
+                    DoOnDeviceDiscovered(t.Device);
+                };
+                
+                started = true;
+            }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         public async Task<bool> IsBluetoothOn()
@@ -141,7 +185,7 @@ namespace BlacksunBluetoothAndroid
             }
             catch (Java.Lang.Exception ex)
             {
-                throw new System.Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
 
             
@@ -150,6 +194,53 @@ namespace BlacksunBluetoothAndroid
 
             return devices;
         }
+
+        public void StartDiscovery()
+        {
+
+            CheckStarted();
+
+            btAdapter.StartDiscovery();
+        }
+
+        public void EndDiscovery()
+        {
+
+            CheckStarted();
+
+            btAdapter.CancelDiscovery();
+        }
+
+        public void DoDeviceDiscoveryStarted()
+        {
+            if (DeviceDiscoveryStarted != null)
+            {
+                DeviceDiscoveryStarted(this, new EventArgs());
+            }
+        }
+
+        public void DoDeviceDiscoverEnded()
+        {
+            if (DeviceDiscoverEnded != null)
+            {
+                DeviceDiscoverEnded(this, new EventArgs());
+            }
+        }
+
+        public void DoOnDeviceDiscovered(IPairableBluetoothDevice device)
+        {
+            if (DeviceDiscovered != null)
+            {
+                DeviceDiscovered(this,new DeviceFoundEventArgs()
+                {
+                    Device = device
+                });
+            }
+        }
+
+        public event EventHandler DeviceDiscoveryStarted;
+        public event EventHandler DeviceDiscoverEnded;
+        public event EventHandler<DeviceFoundEventArgs> DeviceDiscovered;
 
         public async Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier)
         {
