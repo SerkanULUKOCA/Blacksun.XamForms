@@ -35,33 +35,50 @@ namespace SampleBlacksunBluetooth.Views
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
+
+            if (String.IsNullOrEmpty(txtMessage.Text))
+            {
+                UserDialogs.Instance.Alert("Message is empty");
+                return;
+            }
+
+            /*
             if (String.IsNullOrEmpty(txtPort.Text))
             {
                 txtPort.Text = "1";
             }
-
+            */
             try
             {
-                await Device.Connect(Convert.ToInt32(txtPort.Text));
-                DoDeviceConnected(Device);
+
+                using (var dialog = UserDialogs.Instance.Loading(""))
+                {
+                    dialog.Title = "Connecting";
+                    await Device.Connect(Convert.ToInt32(1));
+                    dialog.Title = "Writing";
+                    await Device.Write(txtMessage.Text);
+                    dialog.Title = "Disconnecting";
+                    await Device.Disconnect();
+                    await Task.Delay(500);
+                }
+
+                
                 
             }
             catch (Exception ex)
             {
+                try
+                {
+                    Device.Disconnect();
+                }
+                catch (Exception)
+                {
+                    
+                }
                 UserDialogs.Instance.Alert(ex.Message);
 
             }
 
-        }
-
-        public event EventHandler<BluetoothDeviceConnectedEventArgs> DeviceConnected;
-
-        private void DoDeviceConnected(IBluetoothDevice device)
-        {
-            if (DeviceConnected != null)
-            {
-                DeviceConnected(this,new BluetoothDeviceConnectedEventArgs(device) );
-            }
         }
 
         private void ButtonDiscover_OnClicked(object sender, EventArgs e)

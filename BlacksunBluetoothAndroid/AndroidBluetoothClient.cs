@@ -188,9 +188,6 @@ namespace BlacksunBluetoothAndroid
                 throw new Exception(ex.Message);
             }
 
-            
-
-
 
             return devices;
         }

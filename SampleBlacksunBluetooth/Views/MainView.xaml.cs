@@ -62,13 +62,14 @@ namespace SampleBlacksunBluetooth.Views
 
             var view = new ConnectView();
             view.Init(item);
+            /*
             view.DeviceConnected += async (o, t) =>
             {
                 var connectedView = new ConnectedView(t.Device);
                 await Navigation.PopModalAsync();
                 await Navigation.PushModalAsync(connectedView);
             };
-
+            */
             await Navigation.PushModalAsync(view);
 
             (sender as ListView).SelectedItem = null;
@@ -105,6 +106,7 @@ namespace SampleBlacksunBluetooth.Views
 
                 using (UserDialogs.Instance.Loading("Getting paired devices"))
                 {
+                    _bluetoothClient.EndDiscovery();
                     var devices = await _bluetoothClient.GetPairedDevices();
 
                     foreach (var device in devices)
