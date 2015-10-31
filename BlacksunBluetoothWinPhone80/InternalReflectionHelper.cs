@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 
-namespace BlacksunBluetoothWinPhone80
+namespace Blacksun.Bluetooth.WinPhone80
 {
     internal static class InternalReflectionHelper
     {

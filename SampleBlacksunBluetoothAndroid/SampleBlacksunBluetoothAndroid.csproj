@@ -121,13 +121,13 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlacksunBluetoothAndroid\BlacksunBluetoothAndroid.csproj">
+    <ProjectReference Include="..\BlacksunBluetoothAndroid\Blacksun.Bluetooth.Android.csproj">
       <Project>{0870640c-b409-4734-b99f-791ee0e9e7bd}</Project>
-      <Name>BlacksunBluetoothAndroid</Name>
+      <Name>Blacksun.Bluetooth.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
+    <ProjectReference Include="..\BlacksunBluetooth\Blacksun.Bluetooth.csproj">
       <Project>{95f01900-7959-4036-980d-f75a56cde4c7}</Project>
-      <Name>BlacksunBluetooth</Name>
+      <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
     <ProjectReference Include="..\SampleBlacksunBluetooth\SampleBlacksunBluetooth.csproj">
       <Project>{a923037b-5b20-4107-b8b8-ebc13eba263d}</Project>

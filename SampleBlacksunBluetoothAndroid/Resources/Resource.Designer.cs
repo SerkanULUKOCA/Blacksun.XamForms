@@ -63,8 +63,8 @@ namespace SampleBlacksunBluetoothAndroid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::SampleBlacksunBluetoothAndroid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::SampleBlacksunBluetoothAndroid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::SampleBlacksunBluetoothAndroid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::BlacksunBluetoothAndroid.Resource.String.ApplicationName = global::SampleBlacksunBluetoothAndroid.Resource.String.ApplicationName;
-			global::BlacksunBluetoothAndroid.Resource.String.Hello = global::SampleBlacksunBluetoothAndroid.Resource.String.Hello;
+			global::Blacksun.Bluetooth.Android.Resource.String.ApplicationName = global::SampleBlacksunBluetoothAndroid.Resource.String.ApplicationName;
+			global::Blacksun.Bluetooth.Android.Resource.String.Hello = global::SampleBlacksunBluetoothAndroid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::SampleBlacksunBluetoothAndroid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::SampleBlacksunBluetoothAndroid.Resource.String.Hello;
 		}

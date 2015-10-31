@@ -1,4 +1,4 @@
-﻿namespace BlacksunBluetooth.Models
+﻿namespace Blacksun.Bluetooth.Models
 {
     public class DeviceFoundEventArgs : System.EventArgs
     {

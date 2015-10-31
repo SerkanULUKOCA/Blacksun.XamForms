@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Bluetooth;
 using Android.Content;
-using Android.Content.PM;
-using Android.Provider;
-using BlacksunBluetooth;
-using BlacksunBluetooth.Exceptions;
-using BlacksunBluetooth.Models;
+using Blacksun.Bluetooth.Android;
+using Blacksun.Bluetooth.Models;
 using BlacksunBluetoothAndroid;
 using Xamarin.Forms;
-using BluetoothDeviceType = Android.Bluetooth.BluetoothDeviceType;
 
 [assembly: Dependency(typeof(AndroidBluetoothClient))]
-namespace BlacksunBluetoothAndroid
+namespace Blacksun.Bluetooth.Android
 {
     public class AndroidBluetoothClient : IBluetoothClient
     {
@@ -51,6 +47,7 @@ namespace BlacksunBluetoothAndroid
                 filter.AddAction(BluetoothAdapter.ActionDiscoveryStarted);
                 filter.AddAction(BluetoothAdapter.ActionDiscoveryFinished);
                 CurrentActivity.RegisterReceiver(broadcastReceiver, filter);
+                /*
                 broadcastReceiver.DeviceDiscoveryStarted += (o, t) =>
                 {
                     DoDeviceDiscoveryStarted();
@@ -59,6 +56,7 @@ namespace BlacksunBluetoothAndroid
                 {
                     DoOnDeviceDiscovered(t.Device);
                 };
+                */
                 
                 started = true;
             }
@@ -122,16 +120,16 @@ namespace BlacksunBluetoothAndroid
                                 switch (paireddevice.Type)
                                 {
                                     case global::Android.Bluetooth.BluetoothDeviceType.Classic:
-                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Classic;
+                                        device.Type = Blacksun.Bluetooth.BluetoothDeviceType.Classic;
                                         break;
                                     case global::Android.Bluetooth.BluetoothDeviceType.Dual:
-                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Dual;
+                                        device.Type = Blacksun.Bluetooth.BluetoothDeviceType.Dual;
                                         break;
                                     case global::Android.Bluetooth.BluetoothDeviceType.Le:
-                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Le;
+                                        device.Type = Blacksun.Bluetooth.BluetoothDeviceType.Le;
                                         break;
                                     case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
-                                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Unknown;
+                                        device.Type = Blacksun.Bluetooth.BluetoothDeviceType.Unknown;
                                         break;
                                 }
                             }
@@ -191,7 +189,7 @@ namespace BlacksunBluetoothAndroid
 
             return devices;
         }
-
+        /*
         public void StartDiscovery()
         {
 
@@ -238,46 +236,27 @@ namespace BlacksunBluetoothAndroid
         public event EventHandler DeviceDiscoveryStarted;
         public event EventHandler DeviceDiscoverEnded;
         public event EventHandler<DeviceFoundEventArgs> DeviceDiscovered;
-
-        public async Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier)
+        */
+        public async Task<List<IBluetoothDevice>> FindDevicesWithIdentifier(string identifier)
         {
 
             var bluetoothClient = new AndroidBluetoothClient();
             var devices = await bluetoothClient.GetPairedDevices();
+
+            var result = new List<IBluetoothDevice>();
 
             foreach (AndroidBluetoothDevice device in devices)
             {
                 if (device.ContainsUniqueIdentifier(identifier))
                 {
                     device.SetUniqueIdentifier(identifier);
-                    return device;
+                    result.Add(device);
                 }
 
             }
 
-            return null;
+            return result;
         }
-        /*
-        private void CheckPermissions()
-        {
-            var context = Android.App.Application.Context;
 
-            PackageManager pm = context.PackageManager;
-            var hasPerm = pm.CheckPermission(Android.Manifest.Permission.Bluetooth,context.PackageName);
-            if (hasPerm == Permission.Denied)
-            {
-                throw new BluetoothPermissionException("Bluetooth permision not added");
-            }
-
-            hasPerm = pm.CheckPermission(Android.Manifest.Permission.BluetoothAdmin, context.PackageName);
-            if (hasPerm == Permission.Denied)
-            {
-                throw new BluetoothPermissionException("BluetoothAdmin permision not added");
-            }
-
-
-        }
-        */
-        
     }
 }

@@ -5,15 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Android.Bluetooth;
-using Android.OS;
-using Android.Runtime;
-using BlacksunBluetooth;
-using BlacksunBluetooth.Exceptions;
+using BlacksunBluetoothAndroid;
 using Java.Util;
-using BluetoothDeviceType = BlacksunBluetooth.BluetoothDeviceType;
 using IOException = Java.IO.IOException;
 
-namespace BlacksunBluetoothAndroid
+namespace Blacksun.Bluetooth.Android
 {
     public class AndroidBluetoothDevice : IBluetoothDevice
     {

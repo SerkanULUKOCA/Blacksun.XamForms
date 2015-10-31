@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("BlacksunBluetoothAndroid.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Blacksun.Bluetooth.Android.Resource", IsApplication=false)]
 
-namespace BlacksunBluetoothAndroid
+namespace Blacksun.Bluetooth.Android
 {
 	
 	

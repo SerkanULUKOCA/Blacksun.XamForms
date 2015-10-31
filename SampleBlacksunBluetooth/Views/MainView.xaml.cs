@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Blacksun.Bluetooth;
 using BlacksunBluetooth;
 using Xamarin.Forms;
 

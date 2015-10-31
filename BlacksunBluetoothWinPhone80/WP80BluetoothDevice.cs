@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using Windows.Networking.Proximity;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
-using BlacksunBluetooth;
 using BlacksunBluetooth.Exceptions;
 
-namespace BlacksunBluetoothWinPhone80
+namespace Blacksun.Bluetooth.WinPhone80
 {
     public class WP80BluetoothDevice : IBluetoothDevice
     {

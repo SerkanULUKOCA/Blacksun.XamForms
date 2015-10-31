@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlacksunBluetoothWinPhone80</RootNamespace>
-    <AssemblyName>BlacksunBluetoothWinPhone80</AssemblyName>
+    <RootNamespace>Blacksun.Bluetooth.WinPhone80</RootNamespace>
+    <AssemblyName>Blacksun.Bluetooth.WinPhone80</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -125,9 +125,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
+    <ProjectReference Include="..\BlacksunBluetooth\Blacksun.Bluetooth.csproj">
       <Project>{95F01900-7959-4036-980D-F75A56CDE4C7}</Project>
-      <Name>BlacksunBluetooth</Name>
+      <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

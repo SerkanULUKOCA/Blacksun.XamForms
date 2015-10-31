@@ -12,6 +12,9 @@ using Android.Views;
 using Android.Widget;
 using BlacksunBluetooth;
 using System.Diagnostics;
+using Blacksun.Bluetooth;
+using Blacksun.Bluetooth.Android;
+using BluetoothDeviceType = Blacksun.Bluetooth.BluetoothDeviceType;
 
 namespace BlacksunBluetoothAndroid.Extensions
 {
@@ -28,16 +31,16 @@ namespace BlacksunBluetoothAndroid.Extensions
                 switch (bluetoothDevice.Type)
                 {
                     case global::Android.Bluetooth.BluetoothDeviceType.Classic:
-                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Classic;
+                        device.Type = BluetoothDeviceType.Classic;
                         break;
                     case global::Android.Bluetooth.BluetoothDeviceType.Dual:
-                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Dual;
+                        device.Type = BluetoothDeviceType.Dual;
                         break;
                     case global::Android.Bluetooth.BluetoothDeviceType.Le:
-                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Le;
+                        device.Type = BluetoothDeviceType.Le;
                         break;
                     case global::Android.Bluetooth.BluetoothDeviceType.Unknown:
-                        device.Type = BlacksunBluetooth.BluetoothDeviceType.Unknown;
+                        device.Type = BluetoothDeviceType.Unknown;
                         break;
                 }
             }

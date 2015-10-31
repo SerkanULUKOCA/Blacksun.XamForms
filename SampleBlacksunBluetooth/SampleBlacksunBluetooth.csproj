@@ -94,9 +94,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
+    <ProjectReference Include="..\BlacksunBluetooth\Blacksun.Bluetooth.csproj">
       <Project>{95F01900-7959-4036-980D-F75A56CDE4C7}</Project>
-      <Name>BlacksunBluetooth</Name>
+      <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

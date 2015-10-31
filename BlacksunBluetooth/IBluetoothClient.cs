@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using BlacksunBluetooth.Models;
+using Blacksun.Bluetooth.Models;
+using BlacksunBluetooth;
 
-namespace BlacksunBluetooth
+namespace Blacksun.Bluetooth
 {
     public interface IBluetoothClient
     {
@@ -13,7 +12,7 @@ namespace BlacksunBluetooth
         Task<bool> IsBluetoothOn();
 
         Task<List<IBluetoothDevice>> GetPairedDevices();
-
+        /*
         void StartDiscovery();
 
         void EndDiscovery();
@@ -21,10 +20,10 @@ namespace BlacksunBluetooth
         event EventHandler DeviceDiscoveryStarted;
 
         event EventHandler DeviceDiscoverEnded;
-
+        
         event EventHandler<DeviceFoundEventArgs> DeviceDiscovered;
-
-        Task<IBluetoothDevice> FindDeviceByIdentifier(string identifier);
+        */
+        Task<List<IBluetoothDevice>> FindDevicesWithIdentifier(string identifier);
 
     }
 }

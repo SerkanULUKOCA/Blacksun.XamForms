@@ -167,13 +167,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlacksunBluetoothWinPhone81\BlacksunBluetoothWinPhone81.csproj">
-      <Project>{b7fae69f-d3a6-4e08-9a85-5b195f88e8b9}</Project>
-      <Name>BlacksunBluetoothWinPhone81</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlacksunBluetooth\BlacksunBluetooth.csproj">
+    <ProjectReference Include="..\BlacksunBluetooth\Blacksun.Bluetooth.csproj">
       <Project>{95F01900-7959-4036-980D-F75A56CDE4C7}</Project>
-      <Name>BlacksunBluetooth</Name>
+      <Name>Blacksun.Bluetooth</Name>
     </ProjectReference>
     <ProjectReference Include="..\SampleBlacksunBluetooth\SampleBlacksunBluetooth.csproj">
       <Project>{a923037b-5b20-4107-b8b8-ebc13eba263d}</Project>
