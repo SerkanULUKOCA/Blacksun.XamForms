@@ -21,6 +21,7 @@
        </ListView>
      </StackLayout>
    </ContentPage>
+   <!--
    <ContentPage Title="Unpaired devices">
     <StackLayout Padding="20">
       <Button Text="Get paired devices" Clicked="ButtonDiscover_OnClicked"></Button>
@@ -41,6 +42,6 @@
         </ListView.ItemTemplate>
       </ListView>
     </StackLayout>
-   </ContentPage>
+   </ContentPage>-->
  </TabbedPage.Children>
 </TabbedPage>

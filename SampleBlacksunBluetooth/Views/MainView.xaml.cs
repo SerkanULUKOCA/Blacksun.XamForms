@@ -21,6 +21,7 @@ namespace SampleBlacksunBluetooth.Views
             InitializeComponent();
 
             _bluetoothClient = DependencyService.Get<IBluetoothClient>();
+            /*
             _bluetoothClient.DeviceDiscoveryStarted += (o, t) =>
             {
                 
@@ -38,9 +39,9 @@ namespace SampleBlacksunBluetooth.Views
             _bluetoothClient.DeviceDiscoverEnded += (o, t) =>
             {
                 
-            };
+            };*/
             listViewPaired.ItemsSource = PairedDevices;
-            listViewDiscovered.ItemsSource = DiscoveredDevices;
+            //listViewDiscovered.ItemsSource = DiscoveredDevices;
         }
 
         private readonly ObservableCollection<IBluetoothDevice> _pairedDevices = new ObservableCollection<IBluetoothDevice>();
@@ -93,9 +94,9 @@ namespace SampleBlacksunBluetooth.Views
 
         public async Task SearchDevices()
         {
-            _bluetoothClient.StartDiscovery();
-            await Task.Delay(TimeSpan.FromMilliseconds(10000));
-            _bluetoothClient.EndDiscovery();
+            ///_bluetoothClient.StartDiscovery();
+            //await Task.Delay(TimeSpan.FromMilliseconds(10000));
+            //_bluetoothClient.EndDiscovery();
         }
 
         private async void ButtonGetPaired_OnClicked(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace SampleBlacksunBluetooth.Views
 
                 using (UserDialogs.Instance.Loading("Getting paired devices"))
                 {
-                    _bluetoothClient.EndDiscovery();
+                    //_bluetoothClient.EndDiscovery();
                     var devices = await _bluetoothClient.GetPairedDevices();
 
                     foreach (var device in devices)
@@ -126,7 +127,7 @@ namespace SampleBlacksunBluetooth.Views
 
         private void OnPairMenuItem_Clicked(object sender, EventArgs e)
         {
-
+            /*
             var device = listViewDiscovered.SelectedItem as IPairableBluetoothDevice;
 
             var query = PairedDevices.FirstOrDefault(x => x.Name == device.Name && x.Address == device.Address);
@@ -147,7 +148,7 @@ namespace SampleBlacksunBluetooth.Views
             {
                 UserDialogs.Instance.AlertAsync("Device already paired");
             }
-
+            */
         }
     }
 }
