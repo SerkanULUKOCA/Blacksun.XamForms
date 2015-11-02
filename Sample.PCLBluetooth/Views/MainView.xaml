@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SampleBlacksunBluetooth.ViewModels;assembly=SampleBlacksunBluetooth"
+             x:Class="Sample.PCLBluetooth.Views.MainView">
+ <TabbedPage.Children>
+   <ContentPage Title="Paired devices">
+     <StackLayout Padding="20" >
+       <Button Text="Get paired devices" Clicked="ButtonGetPaired_OnClicked"></Button>
+       <ListView VerticalOptions="FillAndExpand" x:Name="listViewPaired" RowHeight="100" ItemTapped="ListView_OnItemTapped">
+         <ListView.ItemTemplate>
+           <DataTemplate>
+             <ViewCell>
+               <StackLayout Padding="10">
+                 <Label Text="{Binding Name}" FontSize="18"></Label>
+                 <Label Text="{Binding Address}" FontSize="14"></Label>
+               </StackLayout>
+             </ViewCell>
+           </DataTemplate>
+         </ListView.ItemTemplate>
+       </ListView>
+     </StackLayout>
+   </ContentPage>
+   <!--
+   <ContentPage Title="Unpaired devices">
+    <StackLayout Padding="20">
+      <Button Text="Get paired devices" Clicked="ButtonDiscover_OnClicked"></Button>
+      <ListView VerticalOptions="FillAndExpand" x:Name="listViewDiscovered" RowHeight="100">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.ContextActions>
+                <MenuItem Clicked="OnPairMenuItem_Clicked" Text="Pair" />
+              </ViewCell.ContextActions>
+              <StackLayout Padding="10">
+                <Label Text="{Binding Name}" FontSize="18"></Label>
+                <Label Text="{Binding Address}" FontSize="14"></Label>
+              </StackLayout>
+            </ViewCell>
+            
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+   </ContentPage>-->
+ </TabbedPage.Children>
+</TabbedPage>
